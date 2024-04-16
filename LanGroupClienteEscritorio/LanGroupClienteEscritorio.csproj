@@ -58,8 +58,8 @@
     <Compile Include="Vista\GUIIniciarSesion.xaml.cs">
       <DependentUpon>GUIIniciarSesion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Vista\GUIMainWindow.xaml.cs">
+      <DependentUpon>GUIMainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -69,7 +69,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\MainWindow.xaml">
+    <Page Include="Vista\GUIMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
