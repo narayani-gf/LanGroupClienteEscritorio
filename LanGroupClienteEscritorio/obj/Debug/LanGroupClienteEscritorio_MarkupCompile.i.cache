@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\repos\LanGroupClienteEscritorio\obj\Debug\
+D:\repos\LanGroupClienteEscritorio\LanGroupClienteEscritorio\obj\Debug\
 LanGroupClienteEscritorio
 none
 false
 DEBUG;TRACE
-D:\repos\LanGroupClienteEscritorio\App.xaml
-1219584333
+D:\repos\LanGroupClienteEscritorio\LanGroupClienteEscritorio\App.xaml
+21531278159
 
-6-502434485
+7-548200887
 13-1310406943
-MainWindow.xaml;
+Vista\GUIIniciarSesion.xaml;Vista\GUIMainWindow.xaml;
 
 True
 
