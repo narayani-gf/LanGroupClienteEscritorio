@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\repos\LanGroupClienteEscritorio\LanGroupClienteEscritorio\obj\Debug\
+D:\Coding\Repositorios GitHub\LanGroupClienteEscritorio\LanGroupClienteEscritorio\obj\Debug\
 LanGroupClienteEscritorio
 none
 false
 DEBUG;TRACE
-D:\repos\LanGroupClienteEscritorio\LanGroupClienteEscritorio\App.xaml
-21531278159
+D:\Coding\Repositorios GitHub\LanGroupClienteEscritorio\LanGroupClienteEscritorio\App.xaml
+5-655359788
 
-7-548200887
+10-1492064400
 13-1310406943
-Vista\GUIIniciarSesion.xaml;Vista\GUIMainWindow.xaml;
+Vista\GUIAgregarInstructor.xaml;Vista\GUIEstadisticas.xaml;Vista\GUIIniciarSesion.xaml;Vista\GUIMainWindow.xaml;Vista\GUISolicitarRolInstructor.xaml;
 
 True
 

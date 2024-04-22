@@ -55,6 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Vista\GUIAgregarInstructor.xaml.cs">
+      <DependentUpon>GUIAgregarInstructor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GUIEstadisticas.xaml.cs">
+      <DependentUpon>GUIEstadisticas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\GUIIniciarSesion.xaml.cs">
       <DependentUpon>GUIIniciarSesion.xaml</DependentUpon>
     </Compile>
@@ -65,11 +71,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Vista\GUISolicitarRolInstructor.xaml.cs">
+      <DependentUpon>GUISolicitarRolInstructor.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Vista\GUIAgregarInstructor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\GUIEstadisticas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\GUIIniciarSesion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\GUIMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\GUISolicitarRolInstructor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
