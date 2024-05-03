@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Coding\Repositorios GitHub\LanGroupClienteEscritorio\LanGroupClienteEscritorio\App.xaml
-5-655359788
+5-537125599
 
-10-1492064400
+10258992523
 13-1310406943
-Vista\GUIAgregarInstructor.xaml;Vista\GUIEstadisticas.xaml;Vista\GUIIniciarSesion.xaml;Vista\GUIMainWindow.xaml;Vista\GUISolicitarRolInstructor.xaml;
+Vista\GUIInstructor.xaml;Vista\GUIEstadisticas.xaml;Vista\GUIIniciarSesion.xaml;Vista\GUIMainWindow.xaml;Vista\GUISolicitudRolInstructor.xaml;
 
-True
+False
 

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace LanGroupClienteEscritorio.Vista
 {
     /// <summary>
-    /// Lógica de interacción para GUISolicitarRolInstructor.xaml
+    /// Lógica de interacción para GUIInstructor.xaml
     /// </summary>
-    public partial class GUISolicitarRolInstructor : Page
+    public partial class GUIInstructor : Page
     {
-        public GUISolicitarRolInstructor()
+        public GUIInstructor()
         {
             InitializeComponent();
         }
