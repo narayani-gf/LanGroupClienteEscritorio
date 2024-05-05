@@ -1,0 +1,52 @@
+﻿<Page x:Class="LanGroupClienteEscritorio.Vista.GUICreatePost"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LanGroupClienteEscritorio.Vista"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="GUICreatePost">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Border Grid.Column="0" Background="#d4e3de">
+            <Grid  VerticalAlignment="Top"  Width="Auto" Height="Auto" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Content="Regresar" Margin="30" FontSize="20"/> 
+            </Grid>
+        </Border>
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Row="0" FontSize="15" Content="[Grupo]"/>
+            <Label Grid.Row="1" FontSize="25" HorizontalAlignment="Center" Content="Nueva publicacion"/>
+            <Label Grid.Row="2" FontSize="15" Margin="80,0,0,0" Content="Titulo:"/>
+            <TextBox Grid.Row="3" FontSize="20" Margin="80,0,100,0"/>
+            <Border Grid.Row="4" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="80,20,80,0" Height="150">
+                
+            </Border>
+            <Label Grid.Row="5" FontSize="15" Margin="80,0,0,0" Content="Descripcion:"/>
+            <TextBox Grid.Row="6" FontSize="20" Margin="80,0,80,0" Height="100"/>
+            <Button Grid.Row="8" HorizontalAlignment="Right" Content="Regresar" FontSize="20" Width="100" Margin="0,0,40,0"/> 
+		</Grid>
+    </Grid>
+</Page>

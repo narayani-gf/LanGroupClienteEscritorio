@@ -55,6 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Vista\GUIAddInteraction.xaml.cs">
+      <DependentUpon>GUIAddInteraction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GUICreatePost.xaml.cs">
+      <DependentUpon>GUICreatePost.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\GUIIniciarSesion.xaml.cs">
       <DependentUpon>GUIIniciarSesion.xaml</DependentUpon>
     </Compile>
@@ -65,6 +71,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Vista\GUIAddInteraction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vista\GUICreatePost.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Vista\GUIIniciarSesion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
