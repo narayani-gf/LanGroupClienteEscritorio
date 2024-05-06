@@ -55,21 +55,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Vista\GUIIniciarSesion.xaml.cs">
-      <DependentUpon>GUIIniciarSesion.xaml</DependentUpon>
+    <Compile Include="View\GUILogin.xaml.cs">
+      <DependentUpon>GUILogin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\GUIMainWindow.xaml.cs">
-      <DependentUpon>GUIMainWindow.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Vista\GUIIniciarSesion.xaml">
+    <Compile Include="View\GUIRegisterView.xaml.cs">
+      <DependentUpon>GUIRegisterView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\GUILogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\GUIMainWindow.xaml">
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GUIRegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Resources\Dictionaries\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Resources\Dictionaries\ContentLabel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Resources\Dictionaries\ContentTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Resources\Dictionaries\TitleLabel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -99,6 +122,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resources\Images\loginIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resources\Images\lanGroupIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
