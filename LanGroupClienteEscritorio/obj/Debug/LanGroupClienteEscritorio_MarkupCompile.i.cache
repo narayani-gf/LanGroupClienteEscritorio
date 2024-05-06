@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\repos\LanGroupClienteEscritorio\LanGroupClienteEscritorio\App.xaml
-21531278159
+7-1876455796
 
-7-548200887
+8-1021912584
 13-1310406943
-Vista\GUIIniciarSesion.xaml;Vista\GUIMainWindow.xaml;
+View\GUILogin.xaml;MainWindow.xaml;View\GUIRegisterView.xaml;View\Resources\Dictionaries\Button.xaml;View\Resources\Dictionaries\ContentLabel.xaml;View\Resources\Dictionaries\ContentTextBox.xaml;View\Resources\Dictionaries\TitleLabel.xaml;
 
-True
+False
 

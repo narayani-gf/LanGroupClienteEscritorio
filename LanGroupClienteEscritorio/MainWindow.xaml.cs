@@ -10,19 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LanGroupClienteEscritorio.Vista
+namespace LanGroupClienteEscritorio
 {
     /// <summary>
-    /// Lógica de interacción para GUIIniciarSesion.xaml
+    /// Lógica de interacción para MainWindow.xaml
     /// </summary>
-    public partial class GUIIniciarSesion : Page
+    public partial class MainWindow : Window
     {
-        public GUIIniciarSesion()
+        public MainWindow()
         {
             InitializeComponent();
+            framePage.Navigate(new Uri("/View/GUILogin.xaml", UriKind.Relative));
         }
     }
 }
