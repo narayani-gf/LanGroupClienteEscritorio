@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LanGroupClienteEscritorio.View
+namespace LanGroupClienteEscritorio.Vista
 {
     /// <summary>
-    /// Lógica de interacción para GUILogin.xaml
+    /// Lógica de interacción para GUIRegisterView.xaml
     /// </summary>
-    public partial class GUILogin : Page
+    public partial class GUIRegistrarCuenta : Page
     {
-        public GUILogin()
+        public GUIRegistrarCuenta()
         {
             InitializeComponent();
         }

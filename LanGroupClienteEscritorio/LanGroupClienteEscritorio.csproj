@@ -55,8 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View\GUILogin.xaml.cs">
-      <DependentUpon>GUILogin.xaml</DependentUpon>
+    <Compile Include="Vista\GUIIniciarSesion.xaml.cs">
+      <DependentUpon>GUIIniciarSesion.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -65,10 +65,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\GUIRegisterView.xaml.cs">
-      <DependentUpon>GUIRegisterView.xaml</DependentUpon>
+    <Compile Include="Vista\GUIRegistarCuenta.xaml.cs">
+      <DependentUpon>GUIRegistarCuenta.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\GUILogin.xaml">
+    <Page Include="Vista\GUIIniciarSesion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,23 +76,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\GUIRegisterView.xaml">
+    <Page Include="Vista\GUIRegistarCuenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Resources\Dictionaries\Button.xaml">
+    <Page Include="Vista\Recursos\Diccionarios\Boton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Resources\Dictionaries\ContentLabel.xaml">
+    <Page Include="Vista\Recursos\Diccionarios\LabelContenido.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Resources\Dictionaries\ContentTextBox.xaml">
+    <Page Include="Vista\Recursos\Diccionarios\TextBoxContenido.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Resources\Dictionaries\TitleLabel.xaml">
+    <Page Include="Vista\Recursos\Diccionarios\LabelTitulo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,10 +124,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\Images\loginIcon.png" />
+    <Resource Include="Vista\Recursos\Imagenes\iniciarSesionIcono.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\Images\lanGroupIcon.png" />
+    <Resource Include="Vista\Recursos\Imagenes\lanGroupIcono.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

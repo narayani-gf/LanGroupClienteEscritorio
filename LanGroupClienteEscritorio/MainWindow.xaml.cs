@@ -22,7 +22,7 @@ namespace LanGroupClienteEscritorio
         public MainWindow()
         {
             InitializeComponent();
-            framePage.Navigate(new Uri("/View/GUILogin.xaml", UriKind.Relative));
+            framePage.Navigate(new Uri("/Vista/GUIIniciarSesion.xaml", UriKind.Relative));
         }
     }
 }

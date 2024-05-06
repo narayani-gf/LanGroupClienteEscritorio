@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\repos\LanGroupClienteEscritorio\LanGroupClienteEscritorio\App.xaml
-7-1876455796
+71439435031
 
-8-1021912584
+8-260576446
 13-1310406943
-View\GUILogin.xaml;MainWindow.xaml;View\GUIRegisterView.xaml;View\Resources\Dictionaries\Button.xaml;View\Resources\Dictionaries\ContentLabel.xaml;View\Resources\Dictionaries\ContentTextBox.xaml;View\Resources\Dictionaries\TitleLabel.xaml;
+Vista\GUIIniciarSesion.xaml;MainWindow.xaml;Vista\GUIRegistarCuenta.xaml;Vista\Recursos\Diccionarios\Boton.xaml;Vista\Recursos\Diccionarios\LabelContenido.xaml;Vista\Recursos\Diccionarios\TextBoxContenido.xaml;Vista\Recursos\Diccionarios\LabelTitulo.xaml;
 
 False
 

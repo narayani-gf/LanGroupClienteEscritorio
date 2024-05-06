@@ -6,10 +6,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="\View\Resources\Dictionaries\TitleLabel.xaml"/>
-                <ResourceDictionary Source="\View\Resources\Dictionaries\ContentLabel.xaml"/>
-                <ResourceDictionary Source="\View\Resources\Dictionaries\ContentTextBox.xaml"/>
-                <ResourceDictionary Source="\View\Resources\Dictionaries\Button.xaml"/>
+                <ResourceDictionary Source="\Vista\Recursos\Diccionarios\LabelTitulo.xaml"/>
+                <ResourceDictionary Source="\Vista\Recursos\Diccionarios\LabelContenido.xaml"/>
+                <ResourceDictionary Source="\Vista\Recursos\Diccionarios\TextBoxContenido.xaml"/>
+                <ResourceDictionary Source="\Vista\Recursos\Diccionarios\Boton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
