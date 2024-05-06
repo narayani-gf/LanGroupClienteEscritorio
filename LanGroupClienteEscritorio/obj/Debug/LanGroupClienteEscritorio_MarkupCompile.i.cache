@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Coding\Repositorios GitHub\LanGroupClienteEscritorio\LanGroupClienteEscritorio\obj\Debug\
+D:\repos\LanGroupClienteEscritorio\LanGroupClienteEscritorio\obj\Debug\
 LanGroupClienteEscritorio
 none
 false
 DEBUG;TRACE
-D:\Coding\Repositorios GitHub\LanGroupClienteEscritorio\LanGroupClienteEscritorio\App.xaml
-5-537125599
+D:\repos\LanGroupClienteEscritorio\LanGroupClienteEscritorio\App.xaml
+71439435031
 
-10258992523
+8-260576446
 13-1310406943
-Vista\GUIInstructor.xaml;Vista\GUIEstadisticas.xaml;Vista\GUIIniciarSesion.xaml;Vista\GUIMainWindow.xaml;Vista\GUISolicitudRolInstructor.xaml;
+Vista\GUIIniciarSesion.xaml;MainWindow.xaml;Vista\GUIRegistarCuenta.xaml;Vista\Recursos\Diccionarios\Boton.xaml;Vista\Recursos\Diccionarios\LabelContenido.xaml;Vista\Recursos\Diccionarios\TextBoxContenido.xaml;Vista\Recursos\Diccionarios\LabelTitulo.xaml;
 
 False
 

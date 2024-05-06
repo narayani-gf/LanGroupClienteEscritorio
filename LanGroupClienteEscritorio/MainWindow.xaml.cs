@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace LanGroupClienteEscritorio.Vista
+namespace LanGroupClienteEscritorio
 {
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
-    public partial class GUIMainWindow : Window
+    public partial class MainWindow : Window
     {
-        public GUIMainWindow()
+        public MainWindow()
         {
             InitializeComponent();
             framePage.Navigate(new Uri("/Vista/GUIIniciarSesion.xaml", UriKind.Relative));
