@@ -1,0 +1,91 @@
+﻿<Page x:Class="LanGroupClienteEscritorio.Vista.GUIAnadirInteraccion"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LanGroupClienteEscritorio.Vista"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="GUIAnadirInteraccion">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Border Grid.Column="0" Background="#d4e3de">
+            <Grid  VerticalAlignment="Top"  Width="Auto" Height="Auto" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Content="Regresar" Margin="30" FontSize="20"/> 
+            </Grid>
+        </Border>
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0" Margin="10,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="0" FontSize="45" Content="LanGroup"/>
+                <Button Grid.Column="1" Content="Crear Grupo"/>
+                <Button Grid.Column="2" Content="Añadir Publicación"/>
+            </Grid>
+            <Label Grid.Row="1" FontSize="25" HorizontalAlignment="Left" Content="[Nombre Publicacion]" Margin="15,0,0,0"/>
+            
+            <Grid Grid.Row="2" Margin="30,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="0" Content="Por: Usuario0987"/>
+                <Label Grid.Column="1" Content="Grupo: nombregrupo"/>
+                <Label Grid.Column="2" Content="Idioma: idioma"/>
+            </Grid>
+            
+            <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="80,20,80,0" Height="150">
+                
+            </Border>
+            
+            <Button Grid.Row="4" HorizontalAlignment="Left" Margin="80,10,0,0" Content="Me gusta" FontSize="15" Width="100" />
+            <Label Grid.Row="5" FontSize="15" Margin="80,0,0,0" Content="Ver comentarios"/>
+            
+            <Border Grid.Row="6" BorderBrush="Black" BorderThickness="1" Margin="80,0,80,0">
+                <ScrollViewer>
+                    
+                </ScrollViewer>
+            </Border>
+            
+            <Label Grid.Row="7" FontSize="15" Margin="80,0,0,0" Content="Añadir comentario"/>
+            
+            <Grid Grid.Row="8" Margin="80,0,80,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBox Grid.Column="0" FontSize="20" Margin="0,0,0,30"/>
+                <Button Grid.Column="1" Content=">" Margin="5,2,0,0" Width="20" Height="20" VerticalAlignment="Top"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
