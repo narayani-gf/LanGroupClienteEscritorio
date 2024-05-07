@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="\Vista\Recursos\Diccionarios\LabelContenido.xaml"/>
                 <ResourceDictionary Source="\Vista\Recursos\Diccionarios\TextBoxContenido.xaml"/>
                 <ResourceDictionary Source="\Vista\Recursos\Diccionarios\Boton.xaml"/>
+                <ResourceDictionary Source="\Vista\Recursos\Diccionarios\TextBlockError.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
