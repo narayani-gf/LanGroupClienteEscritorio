@@ -64,12 +64,15 @@
     <Compile Include="Vista\GUIIniciarSesion.xaml.cs">
       <DependentUpon>GUIIniciarSesion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\GUIMainWindow.xaml.cs">
-      <DependentUpon>GUIMainWindow.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Vista\GUIRegistarCuenta.xaml.cs">
+      <DependentUpon>GUIRegistarCuenta.xaml</DependentUpon>
     </Compile>
     <Page Include="Vista\GUIAnadirInteraccion.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -83,7 +86,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\GUIMainWindow.xaml">
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\GUIRegistarCuenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Recursos\Diccionarios\Boton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Recursos\Diccionarios\LabelContenido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Recursos\Diccionarios\TextBoxContenido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Recursos\Diccionarios\LabelTitulo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,6 +136,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Recursos\Imagenes\iniciarSesionIcono.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Recursos\Imagenes\lanGroupIcono.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:LanGroupClienteEscritorio"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="\Vista\Recursos\Diccionarios\LabelTitulo.xaml"/>
+                <ResourceDictionary Source="\Vista\Recursos\Diccionarios\LabelContenido.xaml"/>
+                <ResourceDictionary Source="\Vista\Recursos\Diccionarios\TextBoxContenido.xaml"/>
+                <ResourceDictionary Source="\Vista\Recursos\Diccionarios\Boton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
