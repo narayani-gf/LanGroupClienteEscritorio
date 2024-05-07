@@ -1,4 +1,4 @@
-﻿<Page x:Class="LanGroupClienteEscritorio.Vista.GUICreatePost"
+﻿<Page x:Class="LanGroupClienteEscritorio.Vista.GUICrearPublicacion"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:LanGroupClienteEscritorio.Vista"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="900"
-      Title="GUICreatePost">
+      Title="GUICrearPublicacion">
 
     <Grid>
         <Grid.ColumnDefinitions>

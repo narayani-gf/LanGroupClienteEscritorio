@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace LanGroupClienteEscritorio.Vista
 {
 	/// <summary>
-	/// Interaction logic for GUIAddInteraction.xaml
+	/// Interaction logic for GUICrearPublicacion.xaml
 	/// </summary>
-	public partial class GUIAddInteraction : Page
+	public partial class GUICrearPublicacion : Page
 	{
-		public GUIAddInteraction()
+		public GUICrearPublicacion()
 		{
 			InitializeComponent();
 		}
