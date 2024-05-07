@@ -16,19 +16,18 @@ using System.Windows.Shapes;
 namespace LanGroupClienteEscritorio.Vista
 {
     /// <summary>
-    /// Lógica de interacción para GUIIniciarSesion.xaml
+    /// Lógica de interacción para GUISeleccionarIdioma.xaml
     /// </summary>
-    public partial class GUIIniciarSesion : Page
+    public partial class GUISeleccionarIdioma : Page
     {
-        public GUIIniciarSesion()
+        public GUISeleccionarIdioma()
         {
             InitializeComponent();
         }
 
-        private void LblRegistrarCuenta_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ImgRegresar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            GUIRegistrarCuenta gUIRegistrarCuenta = new GUIRegistrarCuenta();
-            NavigationService.Navigate(gUIRegistrarCuenta);
+            NavigationService.GoBack();
         }
     }
 }

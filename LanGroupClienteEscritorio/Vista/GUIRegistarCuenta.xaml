@@ -8,7 +8,86 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GUIRegistrarCuenta">
 
-    <Grid>
-        
+    <Grid  Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="#365486">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="imgRegresar" Source="/Vista/Recursos/Imagenes/regresarIcono.png" Width="25" VerticalAlignment="Top" Margin="0,17.5,0,0" Cursor="Hand" MouseLeftButtonDown="ImgRegresar_MouseLeftButtonDown"/>
+            <Label Grid.Row="0" Grid.Column="1" Style="{DynamicResource LabelStyle2}" Foreground="White" Content="Regresar" Margin="0,19,0,0"/>
+        </Grid>
+
+        <ScrollViewer Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Nueva Cuenta" Style="{DynamicResource LabelStyle1}" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+
+                <Image />
+
+                <Image Grid.Row="1" Grid.Column="1" Source="/Vista/Recursos/Imagenes/Perfiles/perfil1.png" HorizontalAlignment="Center"/>
+                <Label Grid.Row="2" Grid.Column="1" Content="Cambiar ícono" Style="{DynamicResource LabelStyle2}" FontSize="12" HorizontalAlignment="Center" x:Name="lblCambiarIcono" Cursor="Hand" MouseLeftButtonDown="LblCambiarIcono_MouseLeftButtonDown"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Usuario" Style="{DynamicResource LabelStyle2}" Margin="40,0,0,0"/>
+                <TextBox Grid.Row="4" Grid.Column="0" x:Name="txtbUsuario" Style="{DynamicResource TextBoxStyle1}" Margin="40,0,0,0" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                <TextBlock Style="{DynamicResource TextBlockStyle1}" Grid.Row="5" Grid.Column="0" x:Name="lblErrorUsuario" Margin="40,0,0,0" TextWrapping="Wrap" Text="error" Visibility="Collapsed"/>
+
+                <Label Grid.Row="3" Grid.Column="2" Content="Correo" Style="{DynamicResource LabelStyle2}" Margin="0,0,40,0"/>
+                <TextBox Grid.Row="4" Grid.Column="2" x:Name="txtbCorreo" Style="{DynamicResource TextBoxStyle1}" Margin="0,0,40,0" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                <TextBlock Style="{DynamicResource TextBlockStyle1}" Grid.Row="5" Grid.Column="2" x:Name="lblErrorCorreo" Margin="0,0,40,0" TextWrapping="Wrap" Text="error" Visibility="Collapsed"/>
+
+                <Label Grid.Row="6" Grid.Column="0" Content="Nombre(s)" Style="{DynamicResource LabelStyle2}" Margin="40,0,0,0"/>
+                <TextBox Grid.Row="7" Grid.Column="0" x:Name="txtbNombre" Style="{DynamicResource TextBoxStyle1}" Margin="40,0,0,0" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                <TextBlock Style="{DynamicResource TextBlockStyle1}" Grid.Row="8" Grid.Column="0" x:Name="lblErrorNombre" Margin="40,0,0,0" TextWrapping="Wrap" Text="error" Visibility="Collapsed"/>
+
+                <Label Grid.Row="6" Grid.Column="2" Content="Apellido(s)" Style="{DynamicResource LabelStyle2}" Margin="0,0,40,0"/>
+                <TextBox Grid.Row="7" Grid.Column="2" x:Name="txtbApellido" Style="{DynamicResource TextBoxStyle1}" Margin="0,0,40,0" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                <TextBlock Style="{DynamicResource TextBlockStyle1}" Grid.Row="8" Grid.Column="2" x:Name="lblErrorApellido" Margin="0,0,40,0" TextWrapping="Wrap" Text="error" Visibility="Collapsed"/>
+
+                <Label Grid.Row="9" Grid.Column="0" Content="Contraseña" Style="{DynamicResource LabelStyle2}" Margin="40,0,0,0"/>
+                <TextBox Grid.Row="10" Grid.Column="0" x:Name="txtbContrasenia" Style="{DynamicResource TextBoxStyle1}" Margin="40,0,0,0" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                <TextBlock Style="{DynamicResource TextBlockStyle1}" Grid.Row="11" Grid.Column="0" x:Name="lblErrorContrasenia" Margin="40,0,0,0" TextWrapping="Wrap" Text="error" Visibility="Collapsed"/>
+
+                <Label Grid.Row="9" Grid.Column="2" Content="Confirmar contraseña" Style="{DynamicResource LabelStyle2}" Margin="0,0,40,0"/>
+                <TextBox Grid.Row="10" Grid.Column="2" x:Name="txtbConfirmarContrasenia" Style="{DynamicResource TextBoxStyle1}" Margin="0,0,40,0" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                <TextBlock Style="{DynamicResource TextBlockStyle1}" Grid.Row="11" Grid.Column="2" x:Name="lblErrorConfirmarContrasenia" Margin="0,0,40,0" TextWrapping="Wrap" Text="error" Visibility="Collapsed"/>
+
+                <Label Grid.Row="12" Grid.Column="0" Content="Descripción" Style="{DynamicResource LabelStyle2}" Margin="40,0,0,0"/>
+                <Label x:Name="lblMensajeDescripcion" Grid.Row="13" Grid.Column="0" Content="Agregar descripción (opcional)" Margin="40,0,0,0" Opacity="0.5" VerticalAlignment="Top"/>
+                <TextBox TextWrapping="Wrap" Background="{x:Null}" Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="3" x:Name="txtbDescripcion" Style="{DynamicResource TextBoxStyle1}" Margin="40,0,40,0" VerticalAlignment="Top" TextChanged="TxtbDescripcion_TextChanged"/>
+                
+
+                <Button Grid.Column="2" Grid.Row="15" Style="{DynamicResource ButtonStyle1}" Content="Crear cuenta" HorizontalAlignment="Right" Margin="0,0,40,0" Padding="5" VerticalAlignment="Top" Cursor="Hand" x:Name="btnCrearCuenta" Click="BtnCrearCuenta_Click"/>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

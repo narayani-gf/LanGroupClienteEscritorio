@@ -74,6 +74,9 @@
     <Compile Include="Vista\GUIRegistarCuenta.xaml.cs">
       <DependentUpon>GUIRegistarCuenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\GUISeleccionarIdioma.xaml.cs">
+      <DependentUpon>GUISeleccionarIdioma.xaml</DependentUpon>
+    </Compile>
     <Page Include="Vista\GUIAnadirInteraccion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,11 +97,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\GUISeleccionarIdioma.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Recursos\Diccionarios\Boton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\Recursos\Diccionarios\LabelContenido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Recursos\Diccionarios\TextBlockError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,6 +153,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vista\Recursos\Imagenes\lanGroupIcono.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Recursos\Imagenes\regresarIcono.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Recursos\Imagenes\español.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Recursos\Imagenes\Perfiles\perfil1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Recursos\Imagenes\ingles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Recursos\Imagenes\frances.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
