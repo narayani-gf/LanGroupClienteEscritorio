@@ -24,5 +24,33 @@ namespace LanGroupClienteEscritorio.Vista
         {
             InitializeComponent();
         }
+
+        private void ImgRegresar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void LblCambiarIcono_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void BtnCrearCuenta_Click(object sender, RoutedEventArgs e)
+        {
+            GUISeleccionarIdioma gUISeleccionarIdioma = new GUISeleccionarIdioma();
+            NavigationService.Navigate(gUISeleccionarIdioma);
+        }
+
+        private void TxtbDescripcion_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtbDescripcion.Text.Length > 0)
+            {
+                lblMensajeDescripcion.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                lblMensajeDescripcion.Visibility = Visibility.Visible;
+            }
+        }
     }
 }
