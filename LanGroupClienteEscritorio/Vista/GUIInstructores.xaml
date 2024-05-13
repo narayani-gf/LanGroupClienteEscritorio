@@ -12,6 +12,7 @@
         <DataGrid Margin="66,71,66,71" CanUserReorderColumns="False" CanUserResizeColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre de usuario" Width="*" FontSize="18"/>
+                <!--="{Binding usuario}"-->
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Aceptar" HorizontalAlignment="Left" Margin="66,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84"/>
