@@ -26,10 +26,6 @@
                 <syncfusion:ChartLegend/>
             </syncfusion:SfChart.Legend>
 
-            <syncfusion:ColumnSeries Label="Publicaciones" ItemsSource="{Binding Data}" XBindingPath="" YBindingPath="">
-
-            </syncfusion:ColumnSeries>
-
             <syncfusion:ColumnSeries Label="Me gusta" ItemsSource="{Binding Data}" XBindingPath="" YBindingPath="">
 
             </syncfusion:ColumnSeries>
