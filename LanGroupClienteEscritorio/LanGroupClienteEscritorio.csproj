@@ -143,5 +143,10 @@
   <ItemGroup>
     <Resource Include="Vista\Recursos\Imagenes\lanGroupIcono.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Vista\Recursos\Imagenes\flechaDerecha.png" />
+    <Content Include="Vista\Recursos\Imagenes\flechaIzquierda.png" />
+    <Content Include="Vista\Recursos\Imagenes\perfilPlaceHolder.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

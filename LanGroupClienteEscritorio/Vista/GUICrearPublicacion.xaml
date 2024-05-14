@@ -8,45 +8,37 @@
       d:DesignHeight="600" d:DesignWidth="900"
       Title="GUICrearPublicacion">
 
-    <Grid>
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <Border Grid.Column="0" Background="#d4e3de">
-            <Grid  VerticalAlignment="Top"  Width="Auto" Height="Auto" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="100*"/>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0" Content="Regresar" Margin="30" FontSize="20"/> 
+        <Border Grid.Column="0" Background="#365486">
+            <Grid  VerticalAlignment="Top" Width="Auto" Height="Auto" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,10,5,0" Cursor="Hand">
+                    <Image Source="/Vista/Recursos/Imagenes/flechaIzquierda.png" Width="24" Height="24" />
+                    <Button x:Name="btnRegresar" FontSize="15" Foreground="White" FontWeight="Regular"
+                            Background="Transparent" BorderBrush="Transparent" Padding="2" Width="Auto" Height="Auto"
+                            Content="Regresar" />                    
+                </StackPanel>
             </Grid>
         </Border>
         
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            
-            <Label Grid.Row="0" FontSize="15" Content="[Grupo]"/>
-            <Label Grid.Row="1" FontSize="25" HorizontalAlignment="Center" Content="Nueva publicacion"/>
-            <Label Grid.Row="2" FontSize="15" Margin="80,0,0,0" Content="Titulo:"/>
-            <TextBox Grid.Row="3" FontSize="20" Margin="80,0,100,0"/>
-            <Border Grid.Row="4" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="80,20,80,0" Height="150">
+            <StackPanel Background="{x:Null}" Orientation="Vertical">
+                <Label FontSize="25" HorizontalAlignment="Left" Margin="40,30,40,0" FontWeight="Bold" Content="Nueva publicación"/>
+                <Label FontSize="15" HorizontalAlignment="Left" Margin="40,-10,40,0" Foreground="#7FC7D9" Content="[Grupo]"/>
+                <Label FontSize="15" Margin="40,0,0,0" FontWeight="Bold" Content="Título"/>
+                <TextBox x:Name="txtTitulo" FontSize="20" Margin="40,0,40,0" Height="35" Style="{DynamicResource TextBoxStyle1}"/>
+                <Label FontSize="15" Margin="40,15,0,0" FontWeight="Bold" Content="Archivos"/>
+                <Border BorderBrush="#FFABAdB3" BorderThickness="1" CornerRadius="5" Margin="40,0,40,0" Height="150">
                 
-            </Border>
-            <Label Grid.Row="5" FontSize="15" Margin="80,0,0,0" Content="Descripcion:"/>
-            <TextBox Grid.Row="6" FontSize="20" Margin="80,0,80,0" Height="100"/>
-            <Button Grid.Row="8" HorizontalAlignment="Right" Content="Regresar" FontSize="20" Width="100" Margin="0,0,40,0"/> 
+                </Border>
+                <Label FontSize="15" Margin="40,15,0,0" FontWeight="Bold" Content="Descripción"/>
+                <TextBox x:Name="txtDescripcion" FontSize="20" Margin="40,0,40,0" Height="100" Style="{DynamicResource TextBoxStyle1}"/>
+                <Button x:Name="btnPublicar" HorizontalAlignment="Right" FontSize="15" Width="120" Height="35" Margin="0,30,40,0" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Publicar"/> 
+            </StackPanel>
 		</Grid>
     </Grid>
 </Page>
