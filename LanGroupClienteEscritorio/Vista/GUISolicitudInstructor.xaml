@@ -8,21 +8,40 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SolicitudInstructor">
 
-    <Grid>
-        <Label Content="Solicitar rol de instructor" HorizontalAlignment="Left" Margin="52,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}"/>
-        <Button Content="➕ Agregar constancia" HorizontalAlignment="Left" Margin="52,84,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Background="#FF808687" Width="140" Height="25"/>
-        <Label Content="Nombre de archivo" HorizontalAlignment="Left" Margin="198,81,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Width="550"/>
-        <Label Content="Profesión actual" HorizontalAlignment="Left" Margin="52,123,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="696" Style="{DynamicResource TextBoxStyle1}"/>
-        <Label Content="Explica, ¿Por qué quieres ser instructor?" HorizontalAlignment="Left" Margin="52,196,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,233,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="696" Style="{DynamicResource TextBoxStyle1}" Height="58"/>
-        <Label Content="Explica, ¿Qué tipo de contenido publicarás?" HorizontalAlignment="Left" Margin="52,307,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,339,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="696" Style="{DynamicResource TextBoxStyle1}" Height="58"/>
-        <Button Content="Guardar" HorizontalAlignment="Left" Margin="670,415,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Width="78" Height="25"/>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Label Content="Solicitud de XXX" HorizontalAlignment="Left" Margin="52,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Visibility="Hidden"/>
-        <Label Content="Constancia" HorizontalAlignment="Left" Margin="52,51,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Visibility="Hidden"/>
-        <Button Content="Descargar" HorizontalAlignment="Left" Margin="52,82,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Background="#FF808687" Width="140" Visibility="Hidden" Height="25"/>
-        <Button Content="Cerrar" HorizontalAlignment="Left" Margin="670,415,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Width="78" Height="25" Visibility="Hidden"/>
+
+        <Grid Background="#365486">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="imagenRegresar" Source="/Vista/Recursos/Imagenes/regresarIcono.png" Width="25" VerticalAlignment="Top" Margin="0,17.5,0,0" Cursor="Hand" MouseLeftButtonDown="Regresar"/>
+            <Label Grid.Row="0" Grid.Column="1" Style="{DynamicResource LabelStyle2}" Foreground="White" Content="Regresar" Margin="0,19,0,0"/>
+        </Grid>
+
+        <Label x:Name="labelSolicitarRol" Content="Solicitar rol de instructor" HorizontalAlignment="Left" Margin="52,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Grid.Column="1"/>
+        <Button x:Name="buttonAgregarConstancia" Content="➕ Agregar constancia" HorizontalAlignment="Left" Margin="52,84,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Background="#FF808687" Width="140" Height="25" Click="AgregarConstancia" Grid.Column="1"/>
+        <Label x:Name="labelNombreArchivo" Content="Nombre de archivo" HorizontalAlignment="Left" Margin="198,81,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Width="550" Grid.Column="1"/>
+        <Label Content="Profesión actual" HorizontalAlignment="Left" Margin="52,123,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
+        <TextBox x:Name="textBoxProfesion" HorizontalAlignment="Center" Margin="0,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Grid.Column="1"/>
+        <Label Content="Explica, ¿Por qué quieres ser instructor?" HorizontalAlignment="Left" Margin="52,196,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
+        <TextBox x:Name="textBoxRazon" HorizontalAlignment="Center" Margin="0,233,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Height="58" Grid.Column="1"/>
+        <Label Content="Explica, ¿Qué tipo de contenido publicarás?" HorizontalAlignment="Left" Margin="52,307,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
+        <TextBox x:Name="textBoxTipoContenido" HorizontalAlignment="Center" Margin="0,339,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Height="58" Grid.Column="1"/>
+        <Button x:Name="buttonGuardar" Content="Guardar" HorizontalAlignment="Left" Margin="490,415,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Width="78" Height="25" Click="GuardarSolicitud" Grid.Column="1"/>
+
+        <Label x:Name="labelSolicitudDe" Content="Solicitud de XXX" HorizontalAlignment="Left" Margin="52,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Visibility="Hidden" Grid.Column="1"/>
+        <Label x:Name="labelConstancia" Content="Constancia" HorizontalAlignment="Left" Margin="52,51,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Visibility="Hidden" Grid.Column="1"/>
+        <Button x:Name="buttonDescargar" Content="Descargar" HorizontalAlignment="Left" Margin="52,82,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Background="#FF808687" Width="140" Visibility="Hidden" Height="25" Click="DescargarConstancia" Grid.Column="1"/>
+
+        <Label x:Name="labelErrorConstancia"  Content="" HorizontalAlignment="Left" Margin="52,109,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
+        <Label x:Name="labelErrorProfesion"  Content="" HorizontalAlignment="Left" Margin="52,184,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
+        <Label x:Name="labelErrorRazon" Content="" HorizontalAlignment="Left" Margin="52,291,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
+        <Label x:Name="labelErrorTipoContenido" Content="" HorizontalAlignment="Left" Margin="52,397,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
     </Grid>
 </Page>

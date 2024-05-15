@@ -15,14 +15,34 @@ using System.Windows.Shapes;
 
 namespace LanGroupClienteEscritorio.Vista
 {
-    /// <summary>
-    /// Lógica de interacción para Estadisticas.xaml
-    /// </summary>
+    /* =======================================================================
+     * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
+     * == Fecha de actualización: 14/05/2024                                ==
+     * == Descripción: Logica de interacción para GUIEstadisticas.xaml      ==
+     * =======================================================================
+     */
     public partial class GUIEstadisticas : Page
     {
+        private string rolUsuario;
         public GUIEstadisticas()
         {
             InitializeComponent();
+        }
+
+        public void IniciarVentana(string rolUsuario)
+        {
+            this.rolUsuario = rolUsuario;
+            CargarChart();
+        }
+
+        private void CargarChart()
+        {
+
+        }
+
+        private void Regresar(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
