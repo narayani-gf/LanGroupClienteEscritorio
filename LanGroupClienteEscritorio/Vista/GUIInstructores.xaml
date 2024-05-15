@@ -1,0 +1,41 @@
+﻿<Page x:Class="LanGroupClienteEscritorio.Vista.GUIInstructores"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LanGroupClienteEscritorio.Vista"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Instructores">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid Background="#365486">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="imagenRegresar" Source="/Vista/Recursos/Imagenes/regresarIcono.png" Width="25" VerticalAlignment="Top" Margin="0,17.5,0,0" Cursor="Hand" MouseLeftButtonDown="Regresar"/>
+            <Label Grid.Row="0" Grid.Column="1" Style="{DynamicResource LabelStyle2}" Foreground="White" Content="Regresar" Margin="0,19,0,0"/>
+        </Grid>
+
+        <DataGrid x:Name="dataGridUsuarios" Margin="66,71,66,71" CanUserReorderColumns="False" CanUserResizeColumns="False" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre de usuario" Width="*" FontSize="18"/>
+                <!--="{Binding usuario}"-->
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="buttonAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="66,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Click="AceptarSolicitud" Grid.Column="1"/>
+        <Button x:Name="buttonRechazar" Content="Rechazar" HorizontalAlignment="Center" Margin="0,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Background="#FFD8D97F" Click="RechazarSolicitud" Grid.Column="1"/>
+        <Button x:Name="buttonVerSolicitud" Content="Ver solicitud" HorizontalAlignment="Left" Margin="444,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="110" Background="#FFB8B8B5" Click="VerSolicitud" Grid.Column="1"/>
+        <Label x:Name="labelAgregarInstructor" Content="Agregar instructor" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Grid.Column="1"/>
+
+        <Label x:Name="labelEliminarInstructor" Content="Eliminar instructor" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Visibility="Hidden" Grid.Column="1"/>
+        <Button x:Name="buttonEliminar" Content="Eliminar" HorizontalAlignment="Center" Margin="0,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Background="#FFD97F7F" Visibility="Hidden" Click="EliminarInstructor" Grid.Column="1"/>
+    </Grid>
+</Page>
