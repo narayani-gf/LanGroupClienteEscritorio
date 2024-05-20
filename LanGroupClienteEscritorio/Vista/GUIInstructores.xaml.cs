@@ -17,7 +17,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 15/05/2024                                ==
+     * == Fecha de actualización: 20/05/2024                                ==
      * == Descripción: Logica de interacción para GUIInstructores.xaml      ==
      * =======================================================================
      */
@@ -56,7 +56,7 @@ namespace LanGroupClienteEscritorio.Vista
         private void VerSolicitud(object sender, RoutedEventArgs e)
         {
             GUISolicitudInstructor guiSolicitudInstructor = new GUISolicitudInstructor();
-            guiSolicitudInstructor.IniciarVentana(rolUsuario, 0);//dataGridUsuarios.SelectedItem.idUsuario);
+            guiSolicitudInstructor.IniciarVentanaAdministrador(rolUsuario, 0);//dataGridUsuarios.SelectedItem.idUsuario);
             NavigationService.Navigate(guiSolicitudInstructor);
         }
 
