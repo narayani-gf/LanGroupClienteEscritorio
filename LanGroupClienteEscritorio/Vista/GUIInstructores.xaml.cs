@@ -83,11 +83,20 @@ namespace LanGroupClienteEscritorio.Vista
         {
             if (esEliminacion)
             {
+                //TODO cargar los usuarios con solicitudes pendientes, si no hay solicitudes pendientes mandar el mensaje.
+                if (true)
+                {
 
+                }
+                else
+                {
+                    dataGridUsuarios.Visibility = Visibility.Hidden;
+                    labelSinSolicitudes.Visibility = Visibility.Visible;
+                }
             }
             else
             {
-
+                //TODO cargar los usuarios que cuenten con rol de instructor.
             }
         }
     }
