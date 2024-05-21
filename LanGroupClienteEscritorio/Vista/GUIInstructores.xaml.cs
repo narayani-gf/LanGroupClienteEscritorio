@@ -17,7 +17,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 20/05/2024                                ==
+     * == Fecha de actualización: 21/05/2024                                ==
      * == Descripción: Logica de interacción para GUIInstructores.xaml      ==
      * =======================================================================
      */
@@ -33,41 +33,73 @@ namespace LanGroupClienteEscritorio.Vista
         public void IniciarVentanaAgregarInstructor(string rolUsuario)
         {
             this.rolUsuario = rolUsuario;
-            CargarDataGrid(false);
+            CargarDataGridAgregacion();
         }
 
         public void IniciarVentanaEliminarInstructor(string rolUsuario)
         {
             this.rolUsuario = rolUsuario;
             ModificarVisibilidadObjetos();
-            CargarDataGrid(true);
+            CargarDataGridEliminacion();
         }
 
         private void AceptarSolicitud(object sender, RoutedEventArgs e)
         {
+            if(dataGridUsuarios.SelectedItem != null)
+            { 
+                if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas agregar como instructor a " /* + dataGridUsuarios.SelectedItem.Usuario */ + "?", "Aceptar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                {
 
+                }
+            }
+            else
+            {
+                MostrarMensajeInstructorNoSeleccionado();
+            }
         }
 
         private void RechazarSolicitud(object sender, RoutedEventArgs e)
         {
+            if (dataGridUsuarios.SelectedItem != null)
+            {
+                if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas rechazar como instructor a " /* + dataGridUsuarios.SelectedItem.Usuario */ + "?", "Rechazar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                {
 
+                }
+            }
+            else
+            {
+                MostrarMensajeInstructorNoSeleccionado();
+            }
         }
 
         private void VerSolicitud(object sender, RoutedEventArgs e)
         {
-            GUISolicitudInstructor guiSolicitudInstructor = new GUISolicitudInstructor();
-            guiSolicitudInstructor.IniciarVentanaAdministrador(rolUsuario, 0);//dataGridUsuarios.SelectedItem.idUsuario);
-            NavigationService.Navigate(guiSolicitudInstructor);
+            if(dataGridUsuarios.SelectedItem != null)
+            {
+                GUISolicitudInstructor guiSolicitudInstructor = new GUISolicitudInstructor();
+                guiSolicitudInstructor.IniciarVentanaAdministrador(rolUsuario, 0);//dataGridUsuarios.SelectedItem.idUsuario);
+                NavigationService.Navigate(guiSolicitudInstructor);
+            }
+            else
+            {
+                MostrarMensajeInstructorNoSeleccionado();
+            }            
         }
 
         private void EliminarInstructor(object sender, RoutedEventArgs e)
         {
+            if(dataGridUsuarios.SelectedItem != null)
+            {
+                if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas eliminar como instructor a " /* + dataGridUsuarios.SelectedItem.Usuario */ + "?", "Eliminar instructor", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                {
 
-        }
-
-        private void Regresar(object sender, MouseButtonEventArgs e)
-        {
-
+                }
+            }
+            else
+            {
+                MostrarMensajeInstructorNoSeleccionado();
+            }
         }
 
         private void ModificarVisibilidadObjetos()
@@ -79,28 +111,31 @@ namespace LanGroupClienteEscritorio.Vista
             buttonEliminar.Visibility = Visibility.Visible;
         }
 
-        private void CargarDataGrid(bool esEliminacion)
+        private void CargarDataGridAgregacion()
         {
-            if (esEliminacion)
+            //TODO cargar los usuarios con solicitudes pendientes, si no hay pendientes mostrar el mensaje
+            if (true)
             {
-                //TODO cargar los usuarios con solicitudes pendientes, si no hay solicitudes pendientes mandar el mensaje.
-                if (true)
-                {
 
-                }
-                else
-                {
-                    dataGridUsuarios.Visibility = Visibility.Hidden;
-                    labelSinSolicitudes.Visibility = Visibility.Visible;
-                }
             }
             else
             {
-                //TODO cargar los usuarios que cuenten con rol de instructor.
+                dataGridUsuarios.Visibility = Visibility.Hidden;
+                labelSinSolicitudes.Visibility = Visibility.Visible;
             }
         }
 
-        private void BtnRegresar_Click(object sender, RoutedEventArgs e)
+        private void CargarDataGridEliminacion()
+        {
+            //TODO cargar los usuarios que cuenten con rol de instructor.
+        }
+
+        private void MostrarMensajeInstructorNoSeleccionado()
+        {
+            MessageBox.Show("Debes seleccionar a un instructor.", "Instructor no seleccionado", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        private void Regresar(object sender, RoutedEventArgs e)
         {
             Utils.AdministrarNavegacion.RegresarPaginaPrincipal();
         }

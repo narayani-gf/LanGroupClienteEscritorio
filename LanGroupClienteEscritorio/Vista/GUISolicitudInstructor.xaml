@@ -41,7 +41,7 @@
         <Label x:Name="labelSolicitudDe" Content="Solicitud de XXX" HorizontalAlignment="Left" Margin="52,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Visibility="Hidden" Grid.Column="1"/>
         <Label x:Name="labelConstancia" Content="Constancia" HorizontalAlignment="Left" Margin="52,51,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Visibility="Hidden" Grid.Column="1"/>
         <Button x:Name="buttonDescargar" Content="Descargar" HorizontalAlignment="Left" Margin="52,82,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Background="#FF808687" Width="140" Visibility="Hidden" Height="25" Click="DescargarConstancia" Grid.Column="1"/>
-        <Label x:Name="labelIdioma" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="448,84,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}"/>
+        <Label x:Name="labelIdioma" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="448,84,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Visibility="Hidden"/>
 
         <Label x:Name="labelErrorConstancia"  Content="" HorizontalAlignment="Left" Margin="52,109,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
         <Label x:Name="labelErrorProfesion"  Content="" HorizontalAlignment="Left" Margin="52,184,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>

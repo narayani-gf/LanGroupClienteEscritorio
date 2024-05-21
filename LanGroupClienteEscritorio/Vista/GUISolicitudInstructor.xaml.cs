@@ -17,7 +17,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =========================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                       ==
-     * == Fecha de actualización: 20/05/2024                                  ==
+     * == Fecha de actualización: 21/05/2024                                  ==
      * == Descripción: Logica de interacción para GUISolicitudInstructor.xaml ==
      * =========================================================================
      */
@@ -64,17 +64,21 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void AgregarConstancia(object sender, RoutedEventArgs e)
         {
-
+            //TODO subir archivo
         }
 
         private void DescargarConstancia(object sender, RoutedEventArgs e)
         {
-
+            //TODO obtener el archivo que subio el usuario
         }
 
         private void GuardarSolicitud(object sender, RoutedEventArgs e)
         {
-
+            limpiarErrores();
+            if (CamposValidos())
+            {
+                //TODO 
+            }
         }
 
         private void Regresar(object sender, MouseButtonEventArgs e)
@@ -90,6 +94,51 @@ namespace LanGroupClienteEscritorio.Vista
                 //TODO regresar al menu principal
             }
 
+        }
+
+        private bool CamposValidos()
+        {
+            bool validos = true;
+
+            if(String.IsNullOrEmpty(textBoxProfesion.Text))
+            {
+                validos = false;
+                labelErrorProfesion.Content = "No se puede dejar vacío.";
+                textBoxProfesion.BorderBrush = Brushes.Red;
+            }
+
+            if(String.IsNullOrEmpty(textBoxRazon.Text)) 
+            { 
+                validos = false;
+                labelErrorRazon.Content = "No se puede dejar vacío.";
+                textBoxRazon.BorderBrush = Brushes.Red;
+            }
+
+            if (String.IsNullOrEmpty(textBoxTipoContenido.Text))
+            {
+                validos = false;
+                labelErrorTipoContenido.Content = "No se puede dejar vacío.";
+                textBoxTipoContenido.BorderBrush = Brushes.Red;
+            }
+
+            if (String.IsNullOrEmpty(labelNombreArchivo.Content.ToString()))
+            {
+                validos = false;
+                labelErrorConstancia.Content = "Debe de subir una constancia.";
+            }
+
+            return validos;
+        }
+
+        private void limpiarErrores()
+        {
+            labelErrorProfesion.Content = String.Empty;
+            textBoxProfesion.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+            labelErrorRazon.Content = String.Empty;
+            textBoxRazon.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+            labelErrorTipoContenido.Content = String.Empty;
+            textBoxTipoContenido.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+            labelErrorConstancia.Content= String.Empty;
         }
     }
 }
