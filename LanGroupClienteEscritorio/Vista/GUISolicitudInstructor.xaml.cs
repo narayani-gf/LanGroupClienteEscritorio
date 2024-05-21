@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 
 namespace LanGroupClienteEscritorio.Vista
 {
-    /* =======================================================================
-     * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 15/05/2024                                ==
+    /* =========================================================================
+     * == Autor(es): Froylan De Jesus Alvarez Rodriguez                       ==
+     * == Fecha de actualización: 20/05/2024                                  ==
      * == Descripción: Logica de interacción para GUISolicitudInstructor.xaml ==
-     * =======================================================================
+     * =========================================================================
      */
     public partial class GUISolicitudInstructor : Page
     {
@@ -29,15 +29,16 @@ namespace LanGroupClienteEscritorio.Vista
             InitializeComponent();
         } 
 
-        public void IniciarVentana(string rolUsuario, int idUsuarioSolicitante)
+        public void IniciarVentanaColaborador(string rolUsuario)
         {
             this.rolUsuario = rolUsuario;
+        }
 
-            if (rolUsuario.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
-            {
-                ModificarVisibilidadObjetos();
-                CargarDatosSolicitud(idUsuarioSolicitante);
-            }
+        public void IniciarVentanaAdministrador(string rolUsuario, int idUsuarioSolicitante)
+        {
+            this.rolUsuario = rolUsuario;
+            ModificarVisibilidadObjetos();
+            CargarDatosSolicitud(idUsuarioSolicitante);
         }
 
         private void ModificarVisibilidadObjetos()
@@ -48,6 +49,12 @@ namespace LanGroupClienteEscritorio.Vista
             buttonAgregarConstancia.Visibility = Visibility.Hidden;
             buttonDescargar.Visibility = Visibility.Visible;
             buttonGuardar.Visibility = Visibility.Hidden;
+            comboBoxIdioma.Visibility = Visibility.Hidden;
+            labelSeleccionarIdioma.Visibility = Visibility.Hidden;
+            labelIdioma.Visibility = Visibility.Visible;
+            textBoxProfesion.IsReadOnly = true;
+            textBoxRazon.IsReadOnly = true;
+            textBoxTipoContenido.IsReadOnly = true;
         }
 
         private void CargarDatosSolicitud(int idUsuarioSolicitante)
