@@ -25,9 +25,9 @@ namespace LanGroupClienteEscritorio.Vista
             InitializeComponent();
         }
 
-        private void ImgRegresar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void BtnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            Utils.AdministrarNavegacion.RegresarPaginaPrincipal();
         }
 
         private void LblCambiarIcono_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

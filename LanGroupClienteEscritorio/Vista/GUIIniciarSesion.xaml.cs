@@ -30,5 +30,17 @@ namespace LanGroupClienteEscritorio.Vista
             GUIRegistrarCuenta gUIRegistrarCuenta = new GUIRegistrarCuenta();
             NavigationService.Navigate(gUIRegistrarCuenta);
         }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            GUIRecuperarContraseña gUIRecuperarContraseña = new GUIRecuperarContraseña();
+            NavigationService.Navigate(gUIRecuperarContraseña);
+        }
+
+        private void BtnIniciarSesion_Click(object sender, RoutedEventArgs e)
+        {
+           GUIAnadirInteraccion gUIAnadirInteraccion = new GUIAnadirInteraccion();
+           NavigationService.Navigate(gUIAnadirInteraccion);
+        }
     }
 }

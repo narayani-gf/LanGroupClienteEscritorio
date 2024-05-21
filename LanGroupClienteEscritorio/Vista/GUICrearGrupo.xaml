@@ -1,4 +1,4 @@
-﻿<Page x:Class="LanGroupClienteEscritorio.Vista.GUICrearPublicacion"
+﻿<Page x:Class="LanGroupClienteEscritorio.Vista.GUICrearGrupo"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,15 +6,20 @@
       xmlns:local="clr-namespace:LanGroupClienteEscritorio.Vista"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="900"
-      Title="GUICrearPublicacion">
+      Title="GUICrearGrupo">
 
     <Grid Background="White">
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180"/>
-            <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="180"/>
+        <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Column="0" Background="#365486"/>
+        <Border Grid.Column="0" Background="#365486">
+            <Grid  VerticalAlignment="Top" Width="Auto" Height="Auto" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,10,5,0" Cursor="Hand"/>
+            </Grid>
+        </Border>
 
         <Button BorderThickness="0" Cursor="Hand" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="24" Width="91" Click="BtnRegresar_Click">
             <Button.Background>
@@ -22,21 +27,21 @@
             </Button.Background>
         </Button>
 
-        <Grid Grid.Column="2">
-            <StackPanel Background="{x:Null}" Orientation="Vertical">
-                <Label FontSize="25" HorizontalAlignment="Left" Margin="40,30,40,0" FontWeight="Bold" Content="Nueva publicación"/>
-                <Label FontSize="15" HorizontalAlignment="Left" Margin="40,-10,40,0" Foreground="#7FC7D9" Content="[Grupo]"/>
-                <Label FontSize="15" Margin="40,0,0,0" FontWeight="Bold" Content="Título"/>
-                <TextBox x:Name="txtTitulo" FontSize="20" Margin="40,0,40,0" Height="35" Style="{DynamicResource TextBoxStyle1}"/>
-                <Label FontSize="15" Margin="40,15,0,0" FontWeight="Bold" Content="Archivos"/>
-                <Border BorderBrush="#FFABAdB3" BorderThickness="1" CornerRadius="5" Margin="40,0,40,0" Height="150">
 
-                </Border>
+
+        <Grid Grid.Column="1">
+            <StackPanel Background="{x:Null}" Orientation="Vertical">
+                <Label FontSize="25" HorizontalAlignment="Left" Margin="40,30,40,0" FontWeight="Bold" Content="Crear grupo"/>
+                <Label FontSize="15" Margin="40,0,0,0" FontWeight="Bold" Content="Nombre del grupo"/>
+                <TextBox x:Name="txtTitulo" FontSize="20" Margin="40,0,40,0" Height="35" Style="{DynamicResource TextBoxStyle1}"/>
+                <Label FontSize="15" Margin="40,15,0,0" FontWeight="Bold" Content="Idioma"/>
+                <ComboBox Width="162" Margin="-470,15,0,0"/>
                 <Label FontSize="15" Margin="40,15,0,0" FontWeight="Bold" Content="Descripción"/>
                 <TextBox x:Name="txtDescripcion" FontSize="20" Margin="40,0,40,0" Height="100" Style="{DynamicResource TextBoxStyle1}"/>
-                <Button x:Name="btnPublicar" HorizontalAlignment="Right" FontSize="15" Width="120" Height="35" Margin="0,30,40,0" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Publicar"/>
-                <Button Background="#FF7B7B" Margin="-520,-35,0,0" x:Name="btnPublicar_Copiar" FontSize="15" Width="157" Height="35" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Eliminar publicación"/>
+                <Button x:Name="btnPublicar" HorizontalAlignment="Right" FontSize="15" Width="120" Height="35" Margin="0,30,40,0" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Guardar"/>
+                
             </StackPanel>
         </Grid>
+
     </Grid>
 </Page>

@@ -15,15 +15,15 @@ using System.Windows.Shapes;
 
 namespace LanGroupClienteEscritorio.Vista
 {
-	/// <summary>
-	/// Interaction logic for GUICrearPublicacion.xaml
-	/// </summary>
-	public partial class GUICrearPublicacion : Page
-	{
-		public GUICrearPublicacion()
-		{
-			InitializeComponent();
-		}
+    /// <summary>
+    /// Lógica de interacción para GUIRecuperarContraseña.xaml
+    /// </summary>
+    public partial class GUIRecuperarContraseña : Page
+    {
+        public GUIRecuperarContraseña()
+        {
+            InitializeComponent();
+        }
 
         private void BtnRegresar_Click(object sender, RoutedEventArgs e)
         {

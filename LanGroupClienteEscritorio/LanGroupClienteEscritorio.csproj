@@ -61,8 +61,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\AdministrarNavegacion.cs" />
+    <Compile Include="Vista\GUIAnadirInteraccion.xaml.cs">
+      <DependentUpon>GUIAnadirInteraccion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GUICrearGrupo.xaml.cs">
+      <DependentUpon>GUICrearGrupo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GUICrearPublicacion.xaml.cs">
+      <DependentUpon>GUICrearPublicacion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\GUIEstadisticas.xaml.cs">
       <DependentUpon>GUIEstadisticas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GUIGruposAprendiz.xaml.cs">
+      <DependentUpon>GUIGruposAprendiz.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\GUIIniciarSesion.xaml.cs">
       <DependentUpon>GUIIniciarSesion.xaml</DependentUpon>
@@ -77,9 +90,33 @@
     <Compile Include="Vista\GUIInstructores.xaml.cs">
       <DependentUpon>GUIInstructores.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\GUIMenu.xaml.cs">
+      <DependentUpon>GUIMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GUIRecuperarContraseña.xaml.cs">
+      <DependentUpon>GUIRecuperarContraseña.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GUISeleccionarIdioma.xaml.cs">
+      <DependentUpon>GUISeleccionarIdioma.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\GUISolicitudInstructor.xaml.cs">
       <DependentUpon>GUISolicitudInstructor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\GUISolicitudRolInstructor.xaml.cs">
+      <DependentUpon>GUISolicitudRolInstructor.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Vista\GUIAnadirInteraccion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vista\GUICrearGrupo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\GUICrearPublicacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Vista\GUIEstadisticas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,11 +124,23 @@
     <Compile Include="Vista\GUIRegistarCuenta.xaml.cs">
       <DependentUpon>GUIRegistarCuenta.xaml</DependentUpon>
     </Compile>
+    <Page Include="Vista\GUIGruposAprendiz.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\GUIIniciarSesion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\GUIMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\GUIRecuperarContraseña.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,6 +151,14 @@
     <Page Include="Vista\GUIInstructores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\GUISeleccionarIdioma.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vista\GUISolicitudRolInstructor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Vista\Recursos\Diccionarios\Boton.xaml">
       <SubType>Designer</SubType>
@@ -158,8 +215,20 @@
     <Resource Include="Vista\Recursos\Imagenes\lanGroupIcono.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Vista\Recursos\Imagenes\Img-contraseña.png" />
+    <Resource Include="Vista\Recursos\Imagenes\icon-estadisticas.png" />
     <Content Include="Vista\Recursos\Imagenes\flechaDerecha.png" />
     <Content Include="Vista\Recursos\Imagenes\flechaIzquierda.png" />
+    <Resource Include="Vista\Recursos\Imagenes\iconoMensaje.png" />
+    <Resource Include="Vista\Recursos\Imagenes\icons-star.png" />
+    <Resource Include="Vista\Recursos\Imagenes\icon-sin-relleno.png" />
+    <Resource Include="Vista\Recursos\Imagenes\icons-star - Copia.png" />
+    <Resource Include="Vista\Recursos\Imagenes\icon-lenguaje.png" />
+    <Resource Include="Vista\Recursos\Imagenes\icon-maestro.png" />
+    <Resource Include="Vista\Recursos\Imagenes\icon-grupo.png" />
+    <Resource Include="Vista\Recursos\Imagenes\icon-administrar.png" />
+    <Resource Include="Vista\Recursos\Imagenes\Fondo-tabla-instructor.png" />
+    <Resource Include="Vista\Recursos\Imagenes\img-regresar.png" />
     <Content Include="Vista\Recursos\Imagenes\perfilPlaceHolder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

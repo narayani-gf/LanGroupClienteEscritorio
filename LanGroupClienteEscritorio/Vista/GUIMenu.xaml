@@ -1,0 +1,22 @@
+﻿<Page x:Class="LanGroupClienteEscritorio.Vista.GUIMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LanGroupClienteEscritorio.Vista"
+      mc:Ignorable="d" 
+      d:DesignHeight="445" d:DesignWidth="184"
+      Title="GUIMenu">
+
+    <Grid>
+        <Button Style="{DynamicResource ButtonStyle}" Foreground="White" Tag="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\iconoMensaje.png"  Content="Publicaciones" HorizontalAlignment="Center" Margin="0,17,0,0" VerticalAlignment="Top" Height="35" Width="144" Click="BtnPublicaciones_Click"/>
+        <Button Style="{DynamicResource ButtonStyle}" Foreground="White" Tag="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\icon-lenguaje.png" Content="Mis idiomas" HorizontalAlignment="Center" Margin="0,56,0,0" VerticalAlignment="Top" Height="36" Width="144" Click="BtnIdiomas_Click"/>
+        <Button Style="{DynamicResource ButtonStyle}" Foreground="White" Tag="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\icon-maestro.png" Content="Quiero ser instructor" HorizontalAlignment="Center" Margin="0,99,0,0" VerticalAlignment="Top" Height="32" Width="164" Click="BtnInstructor_Click"/>
+        <Button Style="{DynamicResource ButtonStyle}" Foreground="White" Tag="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\icon-grupo.png" Content="Mis grupos" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Height="32" Width="144" Click="BtnGrupos_Click"/>
+        <Button Style="{DynamicResource ButtonStyle}" Foreground="White" Tag="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\icon-estadisticas.png" Content="Estadísticas" HorizontalAlignment="Center" Margin="0,181,0,0" VerticalAlignment="Top" Height="32" Width="144" Click="BtnEstadisticas_Click"/>
+        <Button Style="{DynamicResource ButtonStyle}" Foreground="White" Tag="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\icon-administrar.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="144" Margin="0,222,0,0" Click="BtnAdministrarInstructor_Click">
+            <TextBlock Text="Administrar&#x0a;Instructores" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Button>
+
+    </Grid>
+</Page>

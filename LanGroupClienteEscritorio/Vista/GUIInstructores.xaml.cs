@@ -90,5 +90,10 @@ namespace LanGroupClienteEscritorio.Vista
 
             }
         }
+
+        private void BtnRegresar_Click(object sender, RoutedEventArgs e)
+        {
+            Utils.AdministrarNavegacion.RegresarPaginaPrincipal();
+        }
     }
 }

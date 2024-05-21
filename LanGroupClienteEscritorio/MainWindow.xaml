@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LanGroupClienteEscritorio"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
+        Title="MainWindow" Height="450" Width="800"  ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
     <Grid>
         <Frame x:Name="framePage" NavigationUIVisibility="Hidden"/>
     </Grid>

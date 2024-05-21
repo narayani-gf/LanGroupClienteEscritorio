@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace LanGroupClienteEscritorio.Vista
 {
-	/// <summary>
-	/// Interaction logic for GUIAnadirInteraccion.xaml
-	/// </summary>
-	public partial class GUIAnadirInteraccion : Page
-	{
-		public GUIAnadirInteraccion()
-		{
-			InitializeComponent();
-		}
-	}
+    /// <summary>
+    /// Interaction logic for GUIAnadirInteraccion.xaml
+    /// </summary>
+    public partial class GUIAnadirInteraccion : Page
+    {
+        public GUIAnadirInteraccion()
+        {
+            InitializeComponent();
+        }
+    }
 }

@@ -13,18 +13,11 @@
             <ColumnDefinition Width="180"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
+
         <Border Grid.Column="0" Background="#365486">
-            <Grid  VerticalAlignment="Top" Width="Auto" Height="Auto">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,10,0,0" Cursor="Hand">
-                    <Image Source="/Vista/Recursos/Imagenes/flechaIzquierda.png" Width="24" Height="24" />
-                    <Button x:Name="btnRegresar" FontSize="15" Foreground="White" FontWeight="Regular"
-                            Background="Transparent" BorderBrush="Transparent" Padding="2" Width="Auto" Height="Auto"
-                            Content="Regresar"/>                    
-                </StackPanel>
-            </Grid>
+            <Frame HorizontalAlignment="Center" Height="445" Margin="0,105,0,0" VerticalAlignment="Top" Width="164"/>
         </Border>
-        
+
         <Grid Grid.Column="1">
             <StackPanel Background="{x:Null}" Orientation="Vertical">
                 <Grid Margin="10,0,0,0">
@@ -33,7 +26,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,20,0,0" >
                         <Button x:Name="btnAnadirPublicacion" HorizontalAlignment="Right" FontSize="15"
                                 Width="150" Height="35" Margin="0,0,20,0" 
@@ -42,7 +35,7 @@
                                 Width="150" Height="35" Margin="0,0,0,0" 
                                 Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Crear grupo"/>
                     </StackPanel>
-                    
+
                     <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,20,0,0" >
                         <Image Source="/Vista/Recursos/Imagenes/perfilPlaceHolder.png" Width="50" />
                         <Label FontSize="15" VerticalAlignment="Center" FontWeight="Bold" Content="!Bienvenido(a)" />
@@ -50,13 +43,13 @@
                         <Label FontSize="15" VerticalAlignment="Center" FontWeight="Bold" Content="¡" />
                     </StackPanel>
                 </Grid>
-                
-                <Border CornerRadius="10" Background="#DCF2f1" Margin="30">
+
+                <Border CornerRadius="10" Background="#DCF2f1" Margin="30" Height="431">
                     <StackPanel Orientation="Vertical">
                         <Label x:Name="lblNombrePublicacion" FontSize="25" HorizontalAlignment="Left" Margin="15,0,0,0" 
                                Style="{DynamicResource LabelStyle1}"
                                Content="[Nombre Publicación]" />
-                        
+
                         <Grid Margin="20,0,20,0" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100*"/>
@@ -76,54 +69,65 @@
                                 <Label x:Name="lblIdioma" Content="[Idioma]" />
                             </StackPanel>
                         </Grid>
-                        
-                        <Border CornerRadius="10" Background="#C3CBC8" Margin="20,15,20,0" Height="150" Width="*">
-                
+
+                        <Border CornerRadius="10" Background="#C3CBC8" Margin="20,15,20,0" Height="150" Width="Auto">
+
                         </Border>
-                        
-                        <Line Stroke="Black" StrokeThickness="" Margin="20,10,20,0"/>
-                        
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,10,0,0" Cursor="Hand">
-                            <Image Source="/Vista/Recursos/Imagenes/flechaIzquierda.png" Width="24" Height="24" />
-                            <Button x:Name="btnMeGusta" FontSize="15" Foreground="Black" Background="Transparent" BorderBrush="Transparent"
-                                    Padding="2" Width="Auto" Height="Auto"
-                                    Content="Me gusta"/>                    
-                        </StackPanel>
+
+                        <Line  Stroke="Black" StrokeThickness="0,8" Margin="0,10,20,0"/>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,10,0,0" Cursor="Hand"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="100*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            
-            <Button Grid.Row="4" HorizontalAlignment="Left" Margin="80,10,0,0" Content="Me gusta" FontSize="15" Width="100" />
-            <Label Grid.Row="5" FontSize="15" Margin="80,0,0,0" Content="Ver comentarios"/>
-            
-            <Border Grid.Row="6" BorderBrush="Black" BorderThickness="1" Margin="80,0,80,0">
-                <ScrollViewer>
-                    
-                </ScrollViewer>
-            </Border>
-            
-            <Label Grid.Row="7" FontSize="15" Margin="80,0,0,0" Content="Añadir comentario"/>
-            
-            <Grid Grid.Row="8" Margin="80,0,80,0">
+            <Canvas>
+                <!-- Línea horizontal -->
+                <Line X1="10" Y1="50" X2="630" Y2="50" Stroke="Black" StrokeThickness="1" HorizontalAlignment="Center" Canvas.Top="294" VerticalAlignment="Top" Canvas.Left="40"/>
+                <Line X1="10" Y1="50" X2="630" Y2="50" Stroke="Black" StrokeThickness="1" Canvas.Top="322" Canvas.Left="40" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </Canvas>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="100*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="6" FontSize="15" Margin="48,365,32,130" Content="Ver comentarios"/>
+                <Canvas/>
+                <Border Grid.Row="6" BorderBrush="Black" BorderThickness="1" Margin="50,470,110,83"/>
+                <Label Grid.Row="6" FontSize="15" Margin="48,443,32,53" Content="Añadir comentario"/>
+                <Label Grid.Row="6" FontSize="15" Margin="72,341,8,154" Content="[No.] Estrellas"/>
+                <Label Grid.Row="6" FontSize="15" Margin="48,391,32,104" Content="Usuario123&#xD;&#xA;"/>
+                <Label Grid.Row="6" FontSize="15" Margin="48,412,486,83" Content="Muy interesante, gracias.&#xD;&#xA;"/>
+                <Label Grid.Row="6" FontSize="15" Margin="251,412,283,154" Content="Borrar"/>
+            </Grid>
+
+            <Image Source="../Vista/Recursos/Imagenes/icons-star.png" Margin="128,393,574,183" RenderTransformOrigin="0.615,0.47"></Image>
+
+            <Grid Margin="56,472,104,89">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                
-                <TextBox Grid.Column="0" FontSize="20" Margin="0,0,0,30"/>
-                <Button Grid.Column="1" Content=">" Margin="5,2,0,0" Width="20" Height="20" VerticalAlignment="Top"/>
-            </Grid> 
+
+                <TextBox Grid.Column="0" FontSize="20" Margin="0,459,0,30"/>
+                <Button Content=">" Margin="530,0,10,0" Width="20" Height="20" VerticalAlignment="Center"/>
+            </Grid>
+            <Image Source="/Vista/Recursos/Imagenes/icons-star.png" Margin="146,393,556,183" RenderTransformOrigin="0.615,0.47"/>
+            <Image Source="/Vista/Recursos/Imagenes/icons-star.png" Margin="164,393,538,183" RenderTransformOrigin="0.615,0.47"/>
+            <Image Source="/Vista/Recursos/Imagenes/icons-star.png" Margin="182,393,520,183" RenderTransformOrigin="0.615,0.47"/>
+            <Image Source="/Vista/Recursos/Imagenes/icon-sin-relleno.png" Margin="200,393,502,183" RenderTransformOrigin="0.615,0.47"/>
+            <Image Source="/Vista/Recursos/Imagenes/icons-star.png" Margin="56,345,646,231" RenderTransformOrigin="0.615,0.47"/>
         </Grid>
+
+        <Button x:Name="btnGuardar" HorizontalAlignment="Right" FontSize="15"
+        Width="150" Height="35" Margin="0,549,37,16" 
+        Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Guardar" Grid.Column="1"/>
     </Grid>
 </Page>

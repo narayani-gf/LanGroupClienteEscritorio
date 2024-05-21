@@ -22,9 +22,14 @@
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image x:Name="imagenRegresar" Source="/Vista/Recursos/Imagenes/regresarIcono.png" Width="25" VerticalAlignment="Top" Margin="0,17.5,0,0" Cursor="Hand" MouseLeftButtonDown="Regresar"/>
-            <Label Grid.Row="0" Grid.Column="1" Style="{DynamicResource LabelStyle2}" Foreground="White" Content="Regresar" Margin="0,19,0,0"/>
         </Grid>
+
+        <Button BorderThickness="0" Cursor="Hand" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="24" Width="91" Click="BtnRegresar_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\img-regresar.png"/>
+            </Button.Background>
+        </Button>
+
 
         <Label x:Name="labelSinPublicaciones" Content="Aun no tienes publicaciones creadas, &#xA;regresa cuando hayas creado una." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Visibility="Hidden" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
         <Label x:Name="labelPublicacionesSinValoracion" Content="Aun no tienes publicaciones con valoración :(" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Visibility="Hidden" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
