@@ -45,7 +45,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void AceptarSolicitud(object sender, RoutedEventArgs e)
         {
-            if(dataGridUsuarios.SelectedItem != null)
+            if(dataGridCreditPolicies.SelectedItem != null)
             { 
                 if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas agregar como instructor a " /* + dataGridUsuarios.SelectedItem.Usuario */ + "?", "Aceptar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
@@ -60,7 +60,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void RechazarSolicitud(object sender, RoutedEventArgs e)
         {
-            if (dataGridUsuarios.SelectedItem != null)
+            if (dataGridCreditPolicies.SelectedItem != null)
             {
                 if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas rechazar como instructor a " /* + dataGridUsuarios.SelectedItem.Usuario */ + "?", "Rechazar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
@@ -75,7 +75,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void VerSolicitud(object sender, RoutedEventArgs e)
         {
-            if(dataGridUsuarios.SelectedItem != null)
+            if(dataGridCreditPolicies.SelectedItem != null)
             {
                 GUISolicitudInstructor guiSolicitudInstructor = new GUISolicitudInstructor();
                 guiSolicitudInstructor.IniciarVentanaAdministrador(rolUsuario, 0);//dataGridUsuarios.SelectedItem.idUsuario);
@@ -105,10 +105,14 @@ namespace LanGroupClienteEscritorio.Vista
         private void ModificarVisibilidadObjetos()
         {
             labelEliminarInstructor.Visibility = Visibility.Visible;
+            labelAgregarInstructor.Visibility = Visibility.Hidden;
             buttonAceptar.Visibility = Visibility.Hidden;
             buttonRechazar.Visibility = Visibility.Hidden;
             buttonVerSolicitud.Visibility = Visibility.Hidden;
             buttonEliminar.Visibility = Visibility.Visible;
+            imagenDataGrid.Visibility = Visibility.Hidden;
+            dataGridCreditPolicies.Visibility = Visibility.Hidden;
+            dataGridEliminarInstructor.Visibility= Visibility.Visible;
         }
 
         private void CargarDataGridAgregacion()
@@ -122,13 +126,23 @@ namespace LanGroupClienteEscritorio.Vista
             {
                 imagenDataGrid.Visibility = Visibility.Hidden;
                 dataGridCreditPolicies.Visibility = Visibility.Hidden;
-                labelSinSolicitudes.Visibility = Visibility.Visible;
+                labelMensaje.Content = "No hay solicitudes pendientes.";
+                labelMensaje.Visibility = Visibility.Visible;
             }
         }
 
         private void CargarDataGridEliminacion()
         {
-            //TODO cargar los usuarios que cuenten con rol de instructor.
+            //TODO cargar los usuarios que cuenten con rol de instructor, si no hay instructores activos, mostrar mensaje
+            if(true)
+            {
+
+            }
+            else
+            {
+                labelMensaje.Content = "No hay instructores activos.";
+                labelMensaje.Visibility = Visibility.Visible;
+            }
         }
 
         private void MostrarMensajeInstructorNoSeleccionado()

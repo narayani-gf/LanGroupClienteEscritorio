@@ -35,10 +35,10 @@
 
         <Label x:Name="labelEliminarInstructor" Content="Eliminar instructor" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Visibility="Hidden" Grid.Column="1"/>
         <Button x:Name="buttonEliminar" Content="Eliminar" HorizontalAlignment="Center" Margin="0,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Background="#FFD97F7F" Visibility="Hidden" Click="EliminarInstructor" Grid.Column="1"/>
-        <Label x:Name="labelSinSolicitudes" Grid.Column="1" Content="Sin solicitudes pendientes." HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{DynamicResource LabelStyle2}" FontSize="20" Visibility="Hidden"/>
+        <Label x:Name="labelMensaje" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{DynamicResource LabelStyle2}" FontSize="20" Visibility="Hidden"/>
 
         <Image x:Name="imagenDataGrid" Source="Recursos\Imagenes\Fondo-tabla-instructor.png" Grid.Column="1" HorizontalAlignment="Center" Height="296" VerticalAlignment="Center" Width="489"/>
-        <DataGrid FontSize="16" x:Name="dataGridCreditPolicies" ItemsSource="{Binding CreditPolicies}" Margin="75,94,80,93" AutoGenerateColumns="False" Background="Transparent"
+        <DataGrid FontSize="16" x:Name="dataGridCreditPolicies" ItemsSource="{Binding CreditPolicies}" Margin="75,94,80,93" AutoGenerateColumns="False" Background="Transparent" 
     GridLinesVisibility="None" BorderBrush="Transparent" Grid.Column="1" >
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridRow}" >
@@ -63,6 +63,12 @@
                 <DataGridTextColumn Header="Estatus" Binding="{Binding Status}" Width="*" FontSize="16"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
+        <DataGrid x:Name="dataGridEliminarInstructor" Grid.Column="1"  Margin="66,94,66,79" Visibility="Hidden">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Usuario" Width="*" FontSize="16"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Page>
