@@ -17,7 +17,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 21/05/2024                                ==
+     * == Fecha de actualización: 23/05/2024                                ==
      * == Descripción: Logica de interacción para GUIInstructores.xaml      ==
      * =======================================================================
      */
@@ -89,7 +89,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void EliminarInstructor(object sender, RoutedEventArgs e)
         {
-            if(dataGridUsuarios.SelectedItem != null)
+            if(dataGridCreditPolicies.SelectedItem != null)
             {
                 if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas eliminar como instructor a " /* + dataGridUsuarios.SelectedItem.Usuario */ + "?", "Eliminar instructor", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
@@ -120,7 +120,8 @@ namespace LanGroupClienteEscritorio.Vista
             }
             else
             {
-                dataGridUsuarios.Visibility = Visibility.Hidden;
+                imagenDataGrid.Visibility = Visibility.Hidden;
+                dataGridCreditPolicies.Visibility = Visibility.Hidden;
                 labelSinSolicitudes.Visibility = Visibility.Visible;
             }
         }
