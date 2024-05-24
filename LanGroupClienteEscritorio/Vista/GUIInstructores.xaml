@@ -21,12 +21,13 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="0*"/>
             </Grid.ColumnDefinitions>
-            <Button BorderThickness="0" Cursor="Hand" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="24" Width="91" Click="BtnRegresar_Click">
+            <Button BorderThickness="0" Cursor="Hand" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="24" Width="91" Click="Regresar">
                 <Button.Background>
-                    <ImageBrush ImageSource="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\img-regresar.png"/>
+                    <ImageBrush ImageSource="Recursos\Imagenes\img-regresar.png"/>
                 </Button.Background>
             </Button>
         </Grid>
+
         <Button x:Name="buttonAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="66,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Click="AceptarSolicitud" Grid.Column="1"/>
         <Button x:Name="buttonRechazar" Content="Rechazar" HorizontalAlignment="Center" Margin="0,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Background="#FFD8D97F" Click="RechazarSolicitud" Grid.Column="1"/>
         <Button x:Name="buttonVerSolicitud" Content="Ver solicitud" HorizontalAlignment="Left" Margin="444,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="110" Background="#FFB8B8B5" Click="VerSolicitud" Grid.Column="1"/>
@@ -34,7 +35,9 @@
 
         <Label x:Name="labelEliminarInstructor" Content="Eliminar instructor" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Visibility="Hidden" Grid.Column="1"/>
         <Button x:Name="buttonEliminar" Content="Eliminar" HorizontalAlignment="Center" Margin="0,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Background="#FFD97F7F" Visibility="Hidden" Click="EliminarInstructor" Grid.Column="1"/>
-        <Image Source="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\Fondo-tabla-instructor.png" Grid.Column="1" HorizontalAlignment="Center" Height="296" VerticalAlignment="Center" Width="489"/>
+        <Label x:Name="labelMensaje" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{DynamicResource LabelStyle2}" FontSize="20" Visibility="Hidden"/>
+
+        <Image x:Name="imagenDataGrid" Source="Recursos\Imagenes\Fondo-tabla-instructor.png" Grid.Column="1" HorizontalAlignment="Center" Height="296" VerticalAlignment="Center" Width="489"/>
         <DataGrid FontSize="16" x:Name="dataGridCreditPolicies" ItemsSource="{Binding CreditPolicies}" Margin="75,94,80,93" AutoGenerateColumns="False" Background="Transparent" 
     GridLinesVisibility="None" BorderBrush="Transparent" Grid.Column="1" >
             <DataGrid.Resources>
@@ -60,5 +63,12 @@
                 <DataGridTextColumn Header="Estatus" Binding="{Binding Status}" Width="*" FontSize="16"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <DataGrid x:Name="dataGridEliminarInstructor" Grid.Column="1"  Margin="66,94,66,79" Visibility="Hidden">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Usuario" Width="*" FontSize="16"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Page>

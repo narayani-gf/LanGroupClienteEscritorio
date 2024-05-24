@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 
 namespace LanGroupClienteEscritorio.Vista
 {
-    /* =======================================================================
-     * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 15/05/2024                                ==
+    /* =========================================================================
+     * == Autor(es): Froylan De Jesus Alvarez Rodriguez                       ==
+     * == Fecha de actualización: 21/05/2024                                  ==
      * == Descripción: Logica de interacción para GUISolicitudInstructor.xaml ==
-     * =======================================================================
+     * =========================================================================
      */
     public partial class GUISolicitudInstructor : Page
     {
@@ -29,15 +29,16 @@ namespace LanGroupClienteEscritorio.Vista
             InitializeComponent();
         } 
 
-        public void IniciarVentana(string rolUsuario, int idUsuarioSolicitante)
+        public void IniciarVentanaColaborador(string rolUsuario)
         {
             this.rolUsuario = rolUsuario;
+        }
 
-            if (rolUsuario.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
-            {
-                ModificarVisibilidadObjetos();
-                CargarDatosSolicitud(idUsuarioSolicitante);
-            }
+        public void IniciarVentanaAdministrador(string rolUsuario, int idUsuarioSolicitante)
+        {
+            this.rolUsuario = rolUsuario;
+            ModificarVisibilidadObjetos();
+            CargarDatosSolicitud(idUsuarioSolicitante);
         }
 
         private void ModificarVisibilidadObjetos()
@@ -48,6 +49,12 @@ namespace LanGroupClienteEscritorio.Vista
             buttonAgregarConstancia.Visibility = Visibility.Hidden;
             buttonDescargar.Visibility = Visibility.Visible;
             buttonGuardar.Visibility = Visibility.Hidden;
+            comboBoxIdioma.Visibility = Visibility.Hidden;
+            labelSeleccionarIdioma.Visibility = Visibility.Hidden;
+            labelIdioma.Visibility = Visibility.Visible;
+            textBoxProfesion.IsReadOnly = true;
+            textBoxRazon.IsReadOnly = true;
+            textBoxTipoContenido.IsReadOnly = true;
         }
 
         private void CargarDatosSolicitud(int idUsuarioSolicitante)
@@ -57,17 +64,21 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void AgregarConstancia(object sender, RoutedEventArgs e)
         {
-
+            //TODO subir archivo
         }
 
         private void DescargarConstancia(object sender, RoutedEventArgs e)
         {
-
+            //TODO obtener el archivo que subio el usuario
         }
 
         private void GuardarSolicitud(object sender, RoutedEventArgs e)
         {
-
+            limpiarErrores();
+            if (CamposValidos())
+            {
+                //TODO 
+            }
         }
 
         private void Regresar(object sender, MouseButtonEventArgs e)
@@ -83,6 +94,51 @@ namespace LanGroupClienteEscritorio.Vista
                 //TODO regresar al menu principal
             }
 
+        }
+
+        private bool CamposValidos()
+        {
+            bool validos = true;
+
+            if(String.IsNullOrEmpty(textBoxProfesion.Text))
+            {
+                validos = false;
+                labelErrorProfesion.Content = "No se puede dejar vacío.";
+                textBoxProfesion.BorderBrush = Brushes.Red;
+            }
+
+            if(String.IsNullOrEmpty(textBoxRazon.Text)) 
+            { 
+                validos = false;
+                labelErrorRazon.Content = "No se puede dejar vacío.";
+                textBoxRazon.BorderBrush = Brushes.Red;
+            }
+
+            if (String.IsNullOrEmpty(textBoxTipoContenido.Text))
+            {
+                validos = false;
+                labelErrorTipoContenido.Content = "No se puede dejar vacío.";
+                textBoxTipoContenido.BorderBrush = Brushes.Red;
+            }
+
+            if (String.IsNullOrEmpty(labelNombreArchivo.Content.ToString()))
+            {
+                validos = false;
+                labelErrorConstancia.Content = "Debe de subir una constancia.";
+            }
+
+            return validos;
+        }
+
+        private void limpiarErrores()
+        {
+            labelErrorProfesion.Content = String.Empty;
+            textBoxProfesion.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+            labelErrorRazon.Content = String.Empty;
+            textBoxRazon.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+            labelErrorTipoContenido.Content = String.Empty;
+            textBoxTipoContenido.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+            labelErrorConstancia.Content= String.Empty;
         }
     }
 }

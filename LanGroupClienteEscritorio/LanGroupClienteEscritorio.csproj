@@ -102,9 +102,6 @@
     <Compile Include="Vista\GUISolicitudInstructor.xaml.cs">
       <DependentUpon>GUISolicitudInstructor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\GUISolicitudRolInstructor.xaml.cs">
-      <DependentUpon>GUISolicitudRolInstructor.xaml</DependentUpon>
-    </Compile>
     <Page Include="Vista\GUIAnadirInteraccion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -153,10 +150,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\GUISeleccionarIdioma.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Vista\GUISolicitudRolInstructor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
