@@ -61,12 +61,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Modelo\ArchivoMultimedia.cs" />
-    <Compile Include="Modelo\Colaborador.cs" />
-    <Compile Include="Modelo\Grupo.cs" />
-    <Compile Include="Modelo\Idioma.cs" />
-    <Compile Include="Modelo\Interaccion.cs" />
-    <Compile Include="Modelo\Solicitud.cs" />
+    <Compile Include="Modelo\POJO\ArchivoMultimedia.cs" />
+    <Compile Include="Modelo\POJO\Colaborador.cs" />
+    <Compile Include="Modelo\POJO\Grupo.cs" />
+    <Compile Include="Modelo\POJO\Idioma.cs" />
+    <Compile Include="Modelo\POJO\Interaccion.cs" />
+    <Compile Include="Modelo\POJO\Rol.cs" />
+    <Compile Include="Modelo\POJO\Solicitud.cs" />
     <Compile Include="Utils\AdministrarNavegacion.cs" />
     <Compile Include="Vista\GUIAnadirInteraccion.xaml.cs">
       <DependentUpon>GUIAnadirInteraccion.xaml</DependentUpon>
@@ -230,6 +231,8 @@
     <Resource Include="Vista\Recursos\Imagenes\img-regresar.png" />
     <Content Include="Vista\Recursos\Imagenes\perfilPlaceHolder.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Modelo\DAO\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

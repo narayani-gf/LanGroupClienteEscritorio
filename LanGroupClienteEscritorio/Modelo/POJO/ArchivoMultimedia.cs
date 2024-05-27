@@ -20,7 +20,21 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
         private string mime { get; set; }
         private int tamanio { get; set; }
         private bool enBaseDatos { get; set; }
-
         private string rutaArchivo { get; set; }
+
+        public ArchivoMultimedia()
+        {
+        }
+
+        public ArchivoMultimedia(string idArchivoMultimedia, string idPublicacion, string nombre, string mime, int tamanio, bool enBaseDatos, string rutaArchivo)
+        {
+            this.idArchivoMultimedia = idArchivoMultimedia;
+            this.idPublicacion = idPublicacion;
+            this.nombre = nombre;
+            this.mime = mime;
+            this.tamanio = tamanio;
+            this.enBaseDatos = enBaseDatos;
+            this.rutaArchivo = rutaArchivo;
+        }
     }
 }
