@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.Licensing, Version=25.1462.42.0, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.Licensing.25.1.42\lib\net462\Syncfusion.Licensing.dll</HintPath>
     </Reference>
@@ -42,6 +45,7 @@
       <HintPath>packages\Syncfusion.SfChart.WPF.25.1.42\lib\net462\Syncfusion.SfChart.WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,6 +65,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Modelo\Auth.cs" />
+    <Compile Include="Modelo\Response.cs" />
+    <Compile Include="Servicio\AuthServicio.cs" />
     <Compile Include="Utils\AdministrarNavegacion.cs" />
     <Compile Include="Vista\GUIAnadirInteraccion.xaml.cs">
       <DependentUpon>GUIAnadirInteraccion.xaml</DependentUpon>
@@ -224,5 +231,6 @@
     <Resource Include="Vista\Recursos\Imagenes\img-regresar.png" />
     <Content Include="Vista\Recursos\Imagenes\perfilPlaceHolder.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
