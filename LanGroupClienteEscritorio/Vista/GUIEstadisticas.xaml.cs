@@ -33,22 +33,6 @@ namespace LanGroupClienteEscritorio.Vista
         public void IniciarVentana(string rolUsuario)
         {
             this.rolUsuario = rolUsuario;
-            CargarChart();
-        }
-
-        private void CargarChart()
-        {
-            EstadisticasViewModel estadisticas = new EstadisticasViewModel(0); //Todo obtener el id del usuario actual
-
-            if(estadisticas.estadisticas != null)
-            {
-
-            }
-            else
-            {
-                barChartPublicaciones.Visibility = Visibility.Hidden;
-                labelSinPublicaciones.Visibility = Visibility.Visible;
-            }
         }
 
         private void Regresar(object sender, RoutedEventArgs e)

@@ -13,7 +13,7 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     * == Descripción:                                                      ==
     * =======================================================================
     */
-    internal class Solicitud
+    public class Solicitud
     {
         [JsonProperty("id")]
         private string id { get; set; }

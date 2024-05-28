@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LanGroupClienteEscritorio.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,7 +46,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void AceptarSolicitud(object sender, RoutedEventArgs e)
         {
-            if(dataGridCreditPolicies.SelectedItem != null)
+            if(dataGridAgregarInstructor.SelectedItem != null)
             { 
                 if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas agregar como instructor a " /* + dataGridUsuarios.SelectedItem.Usuario */ + "?", "Aceptar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
@@ -60,7 +61,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void RechazarSolicitud(object sender, RoutedEventArgs e)
         {
-            if (dataGridCreditPolicies.SelectedItem != null)
+            if (dataGridAgregarInstructor.SelectedItem != null)
             {
                 if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas rechazar como instructor a " /* + dataGridUsuarios.SelectedItem.Usuario */ + "?", "Rechazar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
@@ -75,10 +76,10 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void VerSolicitud(object sender, RoutedEventArgs e)
         {
-            if(dataGridCreditPolicies.SelectedItem != null)
+            if(dataGridAgregarInstructor.SelectedItem != null)
             {
                 GUISolicitudInstructor guiSolicitudInstructor = new GUISolicitudInstructor();
-                guiSolicitudInstructor.IniciarVentanaAdministrador(rolUsuario, 0);//dataGridUsuarios.SelectedItem.idUsuario);
+                guiSolicitudInstructor.IniciarVentanaAdministrador(rolUsuario, (Modelo.POJO.Solicitud) dataGridAgregarInstructor.SelectedItem);
                 NavigationService.Navigate(guiSolicitudInstructor);
             }
             else
@@ -89,7 +90,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void EliminarInstructor(object sender, RoutedEventArgs e)
         {
-            if(dataGridCreditPolicies.SelectedItem != null)
+            if(dataGridEliminarInstructor.SelectedItem != null)
             {
                 if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas eliminar como instructor a " /* + dataGridUsuarios.SelectedItem.Usuario */ + "?", "Eliminar instructor", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
@@ -110,22 +111,23 @@ namespace LanGroupClienteEscritorio.Vista
             buttonRechazar.Visibility = Visibility.Hidden;
             buttonVerSolicitud.Visibility = Visibility.Hidden;
             buttonEliminar.Visibility = Visibility.Visible;
-            imagenDataGrid.Visibility = Visibility.Hidden;
-            dataGridCreditPolicies.Visibility = Visibility.Hidden;
+            dataGridAgregarInstructor.Visibility = Visibility.Hidden;
             dataGridEliminarInstructor.Visibility= Visibility.Visible;
         }
 
         private void CargarDataGridAgregacion()
         {
-            //TODO cargar los usuarios con solicitudes pendientes, si no hay pendientes mostrar el mensaje
-            if (true)
-            {
+            SolicitudesPendientesViewModel solicitudesPendientes = new SolicitudesPendientesViewModel();
 
+            //TODO cargar los usuarios con solicitudes pendientes, si no hay pendientes mostrar el mensaje
+            if (solicitudesPendientes.solicitudesPendientes != null)
+            {
+                dataGridAgregarInstructor.ItemsSource = solicitudesPendientes.solicitudesPendientes;
             }
             else
             {
                 imagenDataGrid.Visibility = Visibility.Hidden;
-                dataGridCreditPolicies.Visibility = Visibility.Hidden;
+                dataGridAgregarInstructor.Visibility = Visibility.Hidden;
                 labelMensaje.Content = "No hay solicitudes pendientes.";
                 labelMensaje.Visibility = Visibility.Visible;
             }
@@ -133,13 +135,17 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void CargarDataGridEliminacion()
         {
-            //TODO cargar los usuarios que cuenten con rol de instructor, si no hay instructores activos, mostrar mensaje
-            if(true)
-            {
+            InstructoresViewModel instructores = new InstructoresViewModel();
 
+            //TODO cargar los usuarios que cuenten con rol de instructor, si no hay instructores activos, mostrar mensaje
+            if (instructores.instructores != null)
+            {
+                dataGridEliminarInstructor.ItemsSource = instructores.instructores;
             }
             else
             {
+                imagenDataGrid.Visibility = Visibility.Hidden;
+                dataGridEliminarInstructor.Visibility = Visibility.Hidden; 
                 labelMensaje.Content = "No hay instructores activos.";
                 labelMensaje.Visibility = Visibility.Visible;
             }

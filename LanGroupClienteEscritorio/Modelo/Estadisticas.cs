@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace LanGroupClienteEscritorio.Modelo
 {
+    /* =======================================================================
+     * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
+     * == Fecha de actualización: 28/05/2024                                ==
+     * == Descripción: Clase para mostrar la informacion en la grafica de   ==
+     * ==              barras.                                              ==
+     * =======================================================================
+     */
     internal class Estadisticas
     {
-        private int totalPublicaciones { get; set; }
-        private string promedio { get; set; }
+        public int totalPublicaciones { get; set; }
+        public string promedio { get; set; }
     }
 }

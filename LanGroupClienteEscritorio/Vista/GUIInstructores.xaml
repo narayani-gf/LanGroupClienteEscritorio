@@ -38,7 +38,7 @@
         <Label x:Name="labelMensaje" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{DynamicResource LabelStyle2}" FontSize="20" Visibility="Hidden"/>
 
         <Image x:Name="imagenDataGrid" Source="Recursos\Imagenes\Fondo-tabla-instructor.png" Grid.Column="1" HorizontalAlignment="Center" Height="296" VerticalAlignment="Center" Width="489"/>
-        <DataGrid FontSize="16" x:Name="dataGridCreditPolicies" ItemsSource="{Binding CreditPolicies}" Margin="75,94,80,93" AutoGenerateColumns="False" Background="Transparent" 
+        <DataGrid x:Name="dataGridAgregarInstructor" FontSize="16" Margin="75,94,80,93" AutoGenerateColumns="False" Background="Transparent" 
     GridLinesVisibility="None" BorderBrush="Transparent" Grid.Column="1" >
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridRow}" >
@@ -58,15 +58,32 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Descripción" Binding="{Binding Description}" Width="*" FontSize="16"/>
-                <DataGridTextColumn Header="Fecha" Binding="{Binding EffectiveDate}" Width="*" FontSize="16"/>
-                <DataGridTextColumn Header="Estatus" Binding="{Binding Status}" Width="*" FontSize="16"/>
+                <DataGridTextColumn Header="Contenido" Binding="{Binding contenido}" Width="*" FontSize="16"/>
+                <DataGridTextColumn Header="Estado" Binding="{Binding estado}" Width="*" FontSize="16"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid x:Name="dataGridEliminarInstructor" Grid.Column="1"  Margin="66,94,66,79" Visibility="Hidden">
+        <DataGrid x:Name="dataGridEliminarInstructor" FontSize="16" Grid.Column="1" Visibility="Hidden" Margin="75,94,80,93" AutoGenerateColumns="False" Background="Transparent" 
+    GridLinesVisibility="None" BorderBrush="Transparent">
+            <DataGrid.Resources>
+            <Style TargetType="{x:Type DataGridRow}" >
+                <Setter Property="Margin" Value="0,0,0,10"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+            <Style TargetType="{x:Type DataGridColumnHeader}" >
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+            <Style TargetType="{x:Type DataGridCell}"  >
+                <Setter Property="Margin" Value="0,12,0,12"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Usuario" Width="*" FontSize="16"/>
+                <DataGridTextColumn Header="Usuario" Binding="{Binding usuario}" Width="*" FontSize="16"/>
             </DataGrid.Columns>
         </DataGrid>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,11 +35,11 @@ namespace LanGroupClienteEscritorio.Vista
             this.rolUsuario = rolUsuario;
         }
 
-        public void IniciarVentanaAdministrador(string rolUsuario, int idUsuarioSolicitante)
+        public void IniciarVentanaAdministrador(string rolUsuario, Solicitud solicitud)
         {
             this.rolUsuario = rolUsuario;
             ModificarVisibilidadObjetos();
-            CargarDatosSolicitud(idUsuarioSolicitante);
+            CargarDatosSolicitud(solicitud);
         }
 
         private void ModificarVisibilidadObjetos()
@@ -57,7 +58,7 @@ namespace LanGroupClienteEscritorio.Vista
             textBoxTipoContenido.IsReadOnly = true;
         }
 
-        private void CargarDatosSolicitud(int idUsuarioSolicitante)
+        private void CargarDatosSolicitud(Solicitud solicitud)
         {
             //TODO obtener los datos de la solicitud del usuario que el administrador está revisando.
         }

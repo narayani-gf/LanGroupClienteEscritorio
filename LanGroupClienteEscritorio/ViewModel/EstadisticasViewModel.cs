@@ -15,18 +15,19 @@ namespace LanGroupClienteEscritorio.ViewModel
      */
     internal class EstadisticasViewModel
     {
+        //TODO cargar las publicaciones del usuario de la sesión
         public List<Estadisticas> estadisticas { get; set; }
         
-        public EstadisticasViewModel(int idUsuario) 
-            
+        public EstadisticasViewModel() 
         {
-            estadisticas = new List<Estadisticas>();
-            obtenerTotalPublicacionesPorPromedio(idUsuario);
-        }
-
-        private void obtenerTotalPublicacionesPorPromedio(int idUsuario)
-        {
-            //TODO obtener de bd el total de publicaciones por promedio (5 listas, una por promedio)
+            estadisticas = new List<Estadisticas>()
+            {
+                new Estadisticas{ totalPublicaciones=10, promedio="1 estrella" },
+                new Estadisticas{ totalPublicaciones= 15, promedio="2 estrellas"},
+                new Estadisticas{ totalPublicaciones= 5, promedio="3 estrellas"},
+                new Estadisticas{ totalPublicaciones=20, promedio="4 estrellas"},
+                new Estadisticas{ totalPublicaciones=1, promedio="5 estrellas"}
+            };
         }
     }
 }
