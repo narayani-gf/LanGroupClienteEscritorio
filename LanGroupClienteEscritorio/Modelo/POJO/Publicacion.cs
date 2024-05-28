@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,20 +15,31 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     */
     internal class Publicacion
     {
-        private string idPublicacion { get; set; }
+        [JsonProperty("id")]
+        private string id { get; set; }
+
+        [JsonProperty("colaboradorid")]
         private string idColaborador { get; set; }
+
+        [JsonProperty("grupoid")]
         private string idGrupo { get; set; }
+
+        [JsonProperty("titulo")]
         private string titulo { get; set; }
+
+        [JsonProperty("descripcion")]
         private string descripcion { get; set; }
+
+        [JsonProperty("fecha")]
         private DateTime fecha { get; set; }
 
         public Publicacion()
         {
         }
 
-        public Publicacion(string idPublicacion, string idColaborador, string idGrupo, string titulo, string descripcion, DateTime fecha)
+        public Publicacion(string id, string idColaborador, string idGrupo, string titulo, string descripcion, DateTime fecha)
         {
-            this.idPublicacion = idPublicacion;
+            this.id = id;
             this.idColaborador = idColaborador;
             this.idGrupo = idGrupo;
             this.titulo = titulo;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,16 +15,19 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     */
     internal class Idioma
     {
-        private string idIdioma {  get; set; }
+        [JsonProperty("id")]
+        private string id {  get; set; }
+
+        [JsonProperty("nombre")]
         private string nombre { get; set; }
 
         public Idioma()
         {
         }
 
-        public Idioma(string idIdioma, string nombre)
+        public Idioma(string id, string nombre)
         {
-            this.idIdioma = idIdioma;
+            this.id = id;
             this.nombre = nombre;
         }
     }

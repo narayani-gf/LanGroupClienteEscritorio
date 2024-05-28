@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,16 +15,19 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     */
     internal class Rol
     {
-        private string idRol { get; set; }
+        [JsonProperty("id")]
+        private string id { get; set; }
+
+        [JsonProperty("nombre")]
         private string nombre { get; set; }
 
         public Rol()
         {
         }
 
-        public Rol(string idRol, string nombre)
+        public Rol(string id, string nombre)
         {
-            this.idRol = idRol;
+            this.id = id;
             this.nombre = nombre;
         }
     }

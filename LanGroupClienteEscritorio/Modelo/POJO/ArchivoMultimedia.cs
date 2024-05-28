@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,27 +15,40 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     */
     internal class ArchivoMultimedia
     {
-        private string idArchivoMultimedia { get; set; }
+        [JsonProperty("id")]
+        private string id { get; set; }
+
+        [JsonProperty("publicacionid")]
         private string idPublicacion { get; set; }
+
+        [JsonProperty("nombre")]
         private string nombre { get; set; }
+
+        [JsonProperty("mime")]
         private string mime { get; set; }
+
+        [JsonProperty("tamanio")]
         private int tamanio { get; set; }
+
+        [JsonProperty("indb")]
         private bool enBaseDatos { get; set; }
-        private string rutaArchivo { get; set; }
+
+        [JsonProperty("archivo")]
+        private byte[] archivo { get; set; }
 
         public ArchivoMultimedia()
         {
         }
 
-        public ArchivoMultimedia(string idArchivoMultimedia, string idPublicacion, string nombre, string mime, int tamanio, bool enBaseDatos, string rutaArchivo)
+        public ArchivoMultimedia(string id, string idPublicacion, string nombre, string mime, int tamanio, bool enBaseDatos, byte[] archivo)
         {
-            this.idArchivoMultimedia = idArchivoMultimedia;
+            this.id = id;
             this.idPublicacion = idPublicacion;
             this.nombre = nombre;
             this.mime = mime;
             this.tamanio = tamanio;
             this.enBaseDatos = enBaseDatos;
-            this.rutaArchivo = rutaArchivo;
+            this.archivo = archivo;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,25 +15,40 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     */
     internal class Solicitud
     {
-        private string idSolicitud { get; set; }
-        private string idUsuarioColaborador { get; set; }
+        [JsonProperty("id")]
+        private string id { get; set; }
+
+        [JsonProperty("colaboradorid")]
+        private string idColaborador { get; set; }
+
+        [JsonProperty("idiomaid")]
         private string idIdioma { get; set; }
-        private string rutaConstancia { get; set; }
+
+        [JsonProperty("constancia")]
+        private byte[] constancia { get; set; }
+
+        [JsonProperty("contenido")]
         private string contenido { get; set; }
+
+        [JsonProperty("motivo")]
         private string motivo { get; set; }
+
+        [JsonProperty("estado")]
         private string estado { get; set; }
+
+        [JsonProperty("profesion")]
         private string profesion { get; set; }
 
         public Solicitud()
         {
         }
 
-        public Solicitud(string idSolicitud, string idUsuarioColaborador, string idIdioma, string rutaConstancia, string contenido, string motivo, string estado, string profesion)
+        public Solicitud(string id, string idColaborador, string idIdioma, byte[] constancia, string contenido, string motivo, string estado, string profesion)
         {
-            this.idSolicitud = idSolicitud;
-            this.idUsuarioColaborador = idUsuarioColaborador;
+            this.id = id;
+            this.idColaborador = idColaborador;
             this.idIdioma = idIdioma;
-            this.rutaConstancia = rutaConstancia;
+            this.constancia = constancia;
             this.contenido = contenido;
             this.motivo = motivo;
             this.estado = estado;

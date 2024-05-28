@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +15,19 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     */
     internal class Grupo
     {
+        [JsonProperty("id")]
         private string idGrupo { get; set; }
+
+        [JsonProperty("idiomaid")]
         private string idIdioma { get; set; }
+
+        [JsonProperty("nombre")]
         private string nombre { get; set; }
+
+        [JsonProperty("descripcion")]
         private string descripcion { get; set; }
+
+        [JsonProperty("icono")]
         private string icono { get; set; }
 
         public Grupo()
