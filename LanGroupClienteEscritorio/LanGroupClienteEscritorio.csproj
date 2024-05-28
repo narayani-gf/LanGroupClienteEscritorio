@@ -66,9 +66,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Modelo\Auth.cs" />
+    <Compile Include="Modelo\Estadisticas.cs" />
+    <Compile Include="Modelo\POJO\ArchivoMultimedia.cs" />
+    <Compile Include="Modelo\POJO\Colaborador.cs" />
+    <Compile Include="Modelo\POJO\Grupo.cs" />
+    <Compile Include="Modelo\POJO\Idioma.cs" />
+    <Compile Include="Modelo\POJO\Interaccion.cs" />
+    <Compile Include="Modelo\POJO\Publicacion.cs" />
+    <Compile Include="Modelo\POJO\Rol.cs" />
+    <Compile Include="Modelo\POJO\Solicitud.cs" />
     <Compile Include="Modelo\Response.cs" />
     <Compile Include="Servicio\AuthServicio.cs" />
     <Compile Include="Utils\AdministrarNavegacion.cs" />
+    <Compile Include="ViewModel\EstadisticasViewModel.cs" />
     <Compile Include="Vista\GUIAnadirInteraccion.xaml.cs">
       <DependentUpon>GUIAnadirInteraccion.xaml</DependentUpon>
     </Compile>
