@@ -81,6 +81,7 @@
     <Compile Include="Servicio\InteraccionServicio.cs" />
     <Compile Include="Servicio\PublicacionServicio.cs" />
     <Compile Include="Servicio\RolServicio.cs" />
+    <Compile Include="Servicio\SolicitudServicio.cs" />
     <Compile Include="Utils\AdministrarNavegacion.cs" />
     <Compile Include="ViewModel\EstadisticasViewModel.cs" />
     <Compile Include="ViewModel\InstructoresViewModel.cs" />
