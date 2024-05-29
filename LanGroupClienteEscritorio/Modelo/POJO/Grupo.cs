@@ -13,22 +13,22 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     * == Descripción:                                                      ==
     * =======================================================================
     */
-    internal class Grupo
+    public class Grupo
     {
         [JsonProperty("id")]
-        private string idGrupo { get; set; }
+        public string idGrupo { get; set; }
 
         [JsonProperty("idiomaid")]
-        private string idIdioma { get; set; }
+        public string idIdioma { get; set; }
 
         [JsonProperty("nombre")]
-        private string nombre { get; set; }
+        public string nombre { get; set; }
 
         [JsonProperty("descripcion")]
-        private string descripcion { get; set; }
+        public string descripcion { get; set; }
 
         [JsonProperty("icono")]
-        private string icono { get; set; }
+        public string icono { get; set; }
 
         public Grupo()
         {

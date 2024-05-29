@@ -8,34 +8,34 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
      * == Descripción:                                                      ==
      * =======================================================================
      */
-    internal class Colaborador
+    public class Colaborador
     {
         [JsonProperty("id")] 
-        private string id { get; set; }
+        public string id { get; set; }
 
         [JsonProperty("usuario")] 
-        private string usuario { get; set; }
+        public string usuario { get; set; }
 
         [JsonProperty("correo")] 
-        private string correo { get; set; }
+        public string correo { get; set; }
 
         [JsonProperty("contrasenia")] 
-        private string contrasenia { get; set; }
+        public string contrasenia { get; set; }
 
         [JsonProperty("nombre")] 
-        private string nombre { get; set; }
+        public string nombre { get; set; }
 
         [JsonProperty("apellido")] 
-        private string apellido { get; set; }
+        public string apellido { get; set; }
 
-        [JsonProperty("descripcion")] 
-        private string descripcion { get; set;}
+        [JsonProperty("descripcion")]
+        public string descripcion { get; set;}
 
         [JsonProperty("rolid")]
-        private string idRol { get; set; }
+        public string idRol { get; set; }
 
         [JsonProperty("icono")]
-        private string icono { get; set; }
+        public string icono { get; set; }
 
         public Colaborador()
         {

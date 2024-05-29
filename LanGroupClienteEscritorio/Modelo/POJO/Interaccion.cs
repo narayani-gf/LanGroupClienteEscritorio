@@ -13,25 +13,25 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     * == Descripción:                                                      ==
     * =======================================================================
     */
-    internal class Interaccion
+    public class Interaccion
     {
         [JsonProperty("id")]
-        private string id { get; set; }
+        public string id { get; set; }
 
         [JsonProperty("colaboradorid")]
-        private string idColaborador { get; set; }
+        public string idColaborador { get; set; }
 
         [JsonProperty("publicacionid")]
-        private string idPublicacion { get; set; }
+        public string idPublicacion { get; set; }
 
         [JsonProperty("valoracion")]
-        private int valoracion { get; set; }
+        public int valoracion { get; set; }
 
         [JsonProperty("comentario")]
-        private string comentario { get; set; }
+        public string comentario { get; set; }
 
         [JsonProperty("fecha")]
-        private DateTime fecha { get; set; }
+        public DateTime fecha { get; set; }
 
         public Interaccion()
         {

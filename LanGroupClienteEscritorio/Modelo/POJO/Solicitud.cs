@@ -16,28 +16,28 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     public class Solicitud
     {
         [JsonProperty("id")]
-        private string id { get; set; }
+        public string id { get; set; }
 
         [JsonProperty("colaboradorid")]
-        private string idColaborador { get; set; }
+        public string idColaborador { get; set; }
 
         [JsonProperty("idiomaid")]
-        private string idIdioma { get; set; }
+        public string idIdioma { get; set; }
 
         [JsonProperty("constancia")]
-        private byte[] constancia { get; set; }
+        public byte[] constancia { get; set; }
 
         [JsonProperty("contenido")]
-        private string contenido { get; set; }
+        public string contenido { get; set; }
 
         [JsonProperty("motivo")]
-        private string motivo { get; set; }
+        public string motivo { get; set; }
 
         [JsonProperty("estado")]
-        private string estado { get; set; }
+        public string estado { get; set; }
 
         [JsonProperty("profesion")]
-        private string profesion { get; set; }
+        public string profesion { get; set; }
 
         public Solicitud()
         {

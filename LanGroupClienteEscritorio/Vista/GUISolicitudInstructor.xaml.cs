@@ -18,28 +18,31 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =========================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                       ==
-     * == Fecha de actualización: 21/05/2024                                  ==
+     * == Fecha de actualización: 29/05/2024                                  ==
      * == Descripción: Logica de interacción para GUISolicitudInstructor.xaml ==
      * =========================================================================
      */
     public partial class GUISolicitudInstructor : Page
     {
+        private string idUsuario;
         private string rolUsuario;
         public GUISolicitudInstructor()
         {
             InitializeComponent();
         } 
 
-        public void IniciarVentanaColaborador(string rolUsuario)
+        public void IniciarVentanaColaborador(string idUsuario, string rolUsuario)
         {
+            this.idUsuario = idUsuario;
             this.rolUsuario = rolUsuario;
         }
 
-        public void IniciarVentanaAdministrador(string rolUsuario, Solicitud solicitud)
+        public void IniciarVentanaAdministrador(string idUsuario, string rolUsuario, Solicitud solicitud, string usuarioSolicitante)
         {
-            this.rolUsuario = rolUsuario;
+            this.idUsuario = idUsuario;
+            this.rolUsuario= rolUsuario;
             ModificarVisibilidadObjetos();
-            CargarDatosSolicitud(solicitud);
+            CargarDatosSolicitud(solicitud, usuarioSolicitante);
         }
 
         private void ModificarVisibilidadObjetos()
@@ -58,9 +61,15 @@ namespace LanGroupClienteEscritorio.Vista
             textBoxTipoContenido.IsReadOnly = true;
         }
 
-        private void CargarDatosSolicitud(Solicitud solicitud)
+        private void CargarDatosSolicitud(Solicitud solicitud, string usuarioSolicitante)
         {
             //TODO obtener los datos de la solicitud del usuario que el administrador está revisando.
+            labelSolicitudDe.Content = "Solicitud de " + usuarioSolicitante;
+            labelNombreArchivo.Content = "TODO";
+            labelIdioma.Content = "TODO";
+            textBoxProfesion.Text = "TODO";
+            textBoxRazon.Text = solicitud.motivo;
+            textBoxTipoContenido.Text = solicitud.contenido;
         }
 
         private void AgregarConstancia(object sender, RoutedEventArgs e)
@@ -87,12 +96,12 @@ namespace LanGroupClienteEscritorio.Vista
             if (rolUsuario.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
             {
                 GUIInstructores guiInstructores = new GUIInstructores();
-                guiInstructores.IniciarVentanaAgregarInstructor(rolUsuario);
+                guiInstructores.IniciarVentanaAgregarInstructor(idUsuario, rolUsuario);
                 NavigationService.Navigate(guiInstructores);
             }
             else
             {
-                //TODO regresar al menu principal
+                Utils.AdministrarNavegacion.RegresarPaginaPrincipal();
             }
 
         }

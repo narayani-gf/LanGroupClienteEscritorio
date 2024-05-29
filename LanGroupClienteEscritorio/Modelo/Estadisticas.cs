@@ -16,6 +16,6 @@ namespace LanGroupClienteEscritorio.Modelo
     internal class Estadisticas
     {
         public int totalPublicaciones { get; set; }
-        public string promedio { get; set; }
+        public string mes { get; set; }
     }
 }

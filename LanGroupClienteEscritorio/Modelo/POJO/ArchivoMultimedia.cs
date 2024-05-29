@@ -13,28 +13,28 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     * == Descripción:                                                      ==
     * =======================================================================
     */
-    internal class ArchivoMultimedia
+    public class ArchivoMultimedia
     {
         [JsonProperty("id")]
-        private string id { get; set; }
+        public string id { get; set; }
 
         [JsonProperty("publicacionid")]
-        private string idPublicacion { get; set; }
+        public string idPublicacion { get; set; }
 
         [JsonProperty("nombre")]
-        private string nombre { get; set; }
+        public string nombre { get; set; }
 
         [JsonProperty("mime")]
-        private string mime { get; set; }
+        public string mime { get; set; }
 
         [JsonProperty("tamanio")]
-        private int tamanio { get; set; }
+        public int tamanio { get; set; }
 
         [JsonProperty("indb")]
-        private bool enBaseDatos { get; set; }
+        public bool enBaseDatos { get; set; }
 
         [JsonProperty("archivo")]
-        private byte[] archivo { get; set; }
+        public byte[] archivo { get; set; }
 
         public ArchivoMultimedia()
         {
