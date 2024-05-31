@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using LanGroupClienteEscritorio.Modelos;
 
 namespace LanGroupClienteEscritorio.Servicio
 {
@@ -14,7 +15,7 @@ namespace LanGroupClienteEscritorio.Servicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "colaboradores");
 
-        public static async Task<List<Colaborador>> obtenerInstructores()
+        public static async Task<List<Colaborador>> ObtenerInstructores()
         {
             List<Colaborador> instructores = null;
             string rol="Instructor";
@@ -47,7 +48,7 @@ namespace LanGroupClienteEscritorio.Servicio
             return instructores;
         }
 
-        public static async Task<List<Colaborador>> obtenerColaboradores()
+        public static async Task<List<Colaborador>> ObtenerColaboradores()
         {
             List<Colaborador> colaboradores = null;
             using (var httpCliente = new HttpClient())
@@ -76,6 +77,57 @@ namespace LanGroupClienteEscritorio.Servicio
             }
 
             return colaboradores;
+        }
+
+        public static async Task<Response> AsignarRolAColaborador(Colaborador colaborador, string nombreRol)
+        {
+            Response response = new Response();
+            using (var httpCliente = new HttpClient())
+            {
+                try
+                {
+                    List<Rol> roles = await RolServicio.ObtenerRoles();
+                    
+                    foreach(Rol rol in roles)
+                    {
+                        if (rol.nombre.Equals(nombreRol, StringComparison.OrdinalIgnoreCase))
+                        {
+                            colaborador.idRol = rol.id;
+                        }
+                    }
+
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Content = new StringContent(JsonConvert.SerializeObject(colaborador), Encoding.UTF8, "application/json"),
+                        Method = HttpMethod.Put,
+                        RequestUri = new Uri(URL)
+                    };
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
+
+                    if (httpResponseMessage != null)
+                    {
+                        if (httpResponseMessage.IsSuccessStatusCode)
+                        {
+                            response.Codigo = (int)HttpStatusCode.OK;
+                        }
+                    }
+                    else
+                    {
+                        response.Codigo = (int)HttpStatusCode.InternalServerError;
+                    }
+                }
+                catch (HttpRequestException ex)
+                {
+                    response.Codigo = (int)HttpStatusCode.InternalServerError;
+                }
+                catch(JsonException e)
+                {
+                    response.Codigo = (int)HttpStatusCode.InternalServerError;
+                }
+            }
+
+            return response;
         }
     }
 }

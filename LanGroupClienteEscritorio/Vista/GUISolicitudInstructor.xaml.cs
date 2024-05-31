@@ -1,4 +1,6 @@
 ﻿using LanGroupClienteEscritorio.Modelo.POJO;
+using LanGroupClienteEscritorio.Modelos;
+using LanGroupClienteEscritorio.Servicio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,8 @@ namespace LanGroupClienteEscritorio.Vista
     {
         private string idUsuario;
         private string rolUsuario;
+        Solicitud solicitud;
+
         public GUISolicitudInstructor()
         {
             InitializeComponent();
@@ -56,18 +60,18 @@ namespace LanGroupClienteEscritorio.Vista
             comboBoxIdioma.Visibility = Visibility.Hidden;
             labelSeleccionarIdioma.Visibility = Visibility.Hidden;
             labelIdioma.Visibility = Visibility.Visible;
-            textBoxProfesion.IsReadOnly = true;
             textBoxRazon.IsReadOnly = true;
             textBoxTipoContenido.IsReadOnly = true;
         }
 
-        private void CargarDatosSolicitud(Solicitud solicitud, string usuarioSolicitante)
+        private async void CargarDatosSolicitud(Solicitud solicitud, string usuarioSolicitante)
         {
+            this.solicitud = solicitud;
             //TODO obtener los datos de la solicitud del usuario que el administrador está revisando.
             labelSolicitudDe.Content = "Solicitud de " + usuarioSolicitante;
             labelNombreArchivo.Content = "TODO";
-            labelIdioma.Content = "TODO";
-            textBoxProfesion.Text = "TODO";
+            Idioma idiomaSolicitud = await IdiomaServicio.ObtenerIdiomaPorId(solicitud.idIdioma);
+            labelIdioma.Content = idiomaSolicitud.nombre;
             textBoxRazon.Text = solicitud.motivo;
             textBoxTipoContenido.Text = solicitud.contenido;
         }
@@ -82,12 +86,21 @@ namespace LanGroupClienteEscritorio.Vista
             //TODO obtener el archivo que subio el usuario
         }
 
-        private void GuardarSolicitud(object sender, RoutedEventArgs e)
+        private async void GuardarSolicitud(object sender, RoutedEventArgs e)
         {
             limpiarErrores();
             if (CamposValidos())
             {
-                //TODO 
+                Response response = await SolicitudServicio.GuardarSolicitud(solicitud);
+
+                if(response.Codigo == 200)
+                {
+                    MessageBox.Show("Se subió la solicitud con éxito.", "Solicitud enviada", MessageBoxButton.OK);
+                }
+                else
+                {
+                    MostrarMensajeError();
+                }
             }
         }
 
@@ -109,13 +122,6 @@ namespace LanGroupClienteEscritorio.Vista
         private bool CamposValidos()
         {
             bool validos = true;
-
-            if(String.IsNullOrEmpty(textBoxProfesion.Text))
-            {
-                validos = false;
-                labelErrorProfesion.Content = "No se puede dejar vacío.";
-                textBoxProfesion.BorderBrush = Brushes.Red;
-            }
 
             if(String.IsNullOrEmpty(textBoxRazon.Text)) 
             { 
@@ -143,12 +149,16 @@ namespace LanGroupClienteEscritorio.Vista
         private void limpiarErrores()
         {
             labelErrorProfesion.Content = String.Empty;
-            textBoxProfesion.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
             labelErrorRazon.Content = String.Empty;
             textBoxRazon.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
             labelErrorTipoContenido.Content = String.Empty;
             textBoxTipoContenido.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
             labelErrorConstancia.Content= String.Empty;
+        }
+
+        private void MostrarMensajeError()
+        {
+            MessageBox.Show("Algo salió mal.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

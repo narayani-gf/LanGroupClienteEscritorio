@@ -14,7 +14,7 @@ namespace LanGroupClienteEscritorio.Servicio
 {
     public class PublicacionServicio
     {
-        private static readonly string URL = string.Concat(Properties.Resources.API_URL, "publicaciones"); // /colaborador?=usuario
+        private static readonly string URL = string.Concat(Properties.Resources.API_URL, "publicaciones");
 
         public static async Task<List<Publicacion>> ObtenerPublicacionesPorColaborador(string usuario)
         {
@@ -23,14 +23,7 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    //var httpMensaje = new HttpRequestMessage()
-                    //{
-                    //    Content = new StringContent(JsonConvert.SerializeObject(publicaciones), Encoding.UTF8, "application/json"),
-                    //    Method = HttpMethod.Get,
-                    //    RequestUri = new Uri(URL)
-                    //};
-
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync($"api/publicaciones/colaborador?={usuario}");
+                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync($"/colaborador?={usuario}");
 
                     if (httpResponseMessage != null)
                     {

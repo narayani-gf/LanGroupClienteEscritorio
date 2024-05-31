@@ -42,7 +42,7 @@ namespace LanGroupClienteEscritorio.ViewModel
                     }
                 }
 
-                List<Colaborador> colaboradores = await ColaboradorServicio.obtenerColaboradores();
+                List<Colaborador> colaboradores = await ColaboradorServicio.ObtenerColaboradores();
                 colaboradoresConSolicitudPendiente = new ObservableCollection<Colaborador>();
 
                 foreach(Colaborador colaborador in colaboradores)

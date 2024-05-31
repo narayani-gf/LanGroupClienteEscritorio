@@ -78,6 +78,7 @@
     <Compile Include="Modelo\Response.cs" />
     <Compile Include="Servicio\AuthServicio.cs" />
     <Compile Include="Servicio\ColaboradorServicio.cs" />
+    <Compile Include="Servicio\IdiomaServicio.cs" />
     <Compile Include="Servicio\InteraccionServicio.cs" />
     <Compile Include="Servicio\PublicacionServicio.cs" />
     <Compile Include="Servicio\RolServicio.cs" />

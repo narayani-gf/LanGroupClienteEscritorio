@@ -26,15 +26,15 @@ namespace LanGroupClienteEscritorio.ViewModel
         
         public EstadisticasViewModel() 
         {
-            //ObtenerPublicaciones();
-            estadisticas = new List<Estadisticas>()
-            {
-                new Estadisticas{ totalPublicaciones=10, mes="Enero" },
-                new Estadisticas{ totalPublicaciones= 15, mes="Febrero"},
-                new Estadisticas{ totalPublicaciones= 5, mes="Marzo"},
-                new Estadisticas{ totalPublicaciones=20, mes="Abril"},
-                new Estadisticas{ totalPublicaciones=1, mes="Mayo"}
-            };
+            ObtenerPublicaciones();
+            //estadisticas = new List<Estadisticas>()
+            //{
+            //    new Estadisticas{ totalPublicaciones=10, mes="Enero" },
+            //    new Estadisticas{ totalPublicaciones= 15, mes="Febrero"},
+            //    new Estadisticas{ totalPublicaciones= 5, mes="Marzo"},
+            //    new Estadisticas{ totalPublicaciones=20, mes="Abril"},
+            //    new Estadisticas{ totalPublicaciones=1, mes="Mayo"}
+            //};
         }
 
         private async void ObtenerPublicaciones()

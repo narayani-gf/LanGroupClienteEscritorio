@@ -9,39 +9,44 @@ using System.Threading.Tasks;
 
 namespace LanGroupClienteEscritorio.Servicio
 {
-    public class RolServicio
+    internal class IdiomaServicio
     {
-        private static readonly string URL = string.Concat(Properties.Resources.API_URL, "roles");
+        private static readonly string URL = string.Concat(Properties.Resources.API_URL, "idiomas");
 
-        public static async Task<List<Rol>> ObtenerRoles()
+        public static async Task<Idioma> ObtenerIdiomaPorId(string idIdioma)
         {
-            List<Rol> roles = null;
-
+            Idioma idioma = null;
             using (var httpCliente = new HttpClient())
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL);
+                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"/{idIdioma}");
+
                     if (httpResponseMessage != null)
                     {
                         if (httpResponseMessage.IsSuccessStatusCode)
                         {
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
-                            roles = JsonConvert.DeserializeObject<List<Rol>>(json);
+                            idioma = JsonConvert.DeserializeObject<Idioma>(json);
                         }
+
+                    }
+                    else
+                    {
+                        idioma = null;
                     }
                 }
                 catch (HttpRequestException ex)
                 {
-                    roles = null;
+                    idioma = null;
                 }
                 catch (JsonException ex)
                 {
-                    roles = null;
+                    idioma = null;
                 }
             }
 
-            return roles;
+            return idioma;
         }
     }
 }

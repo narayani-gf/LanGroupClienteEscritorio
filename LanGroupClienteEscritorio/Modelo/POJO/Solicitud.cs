@@ -36,14 +36,11 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
         [JsonProperty("estado")]
         public string estado { get; set; }
 
-        [JsonProperty("profesion")]
-        public string profesion { get; set; }
-
         public Solicitud()
         {
         }
 
-        public Solicitud(string id, string idColaborador, string idIdioma, byte[] constancia, string contenido, string motivo, string estado, string profesion)
+        public Solicitud(string id, string idColaborador, string idIdioma, byte[] constancia, string contenido, string motivo, string estado)
         {
             this.id = id;
             this.idColaborador = idColaborador;
@@ -52,7 +49,6 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
             this.contenido = contenido;
             this.motivo = motivo;
             this.estado = estado;
-            this.profesion = profesion;
         }
     }
 }

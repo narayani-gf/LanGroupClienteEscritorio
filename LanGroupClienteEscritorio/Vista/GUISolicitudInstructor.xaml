@@ -29,12 +29,10 @@
         <Label x:Name="labelNombreArchivo" Content="Nombre de archivo" HorizontalAlignment="Left" Margin="198,81,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Width="211" Grid.Column="1" FontSize="14"/>
         <Label x:Name="labelSeleccionarIdioma" Grid.Column="1" Content="Seleccionar idioma" HorizontalAlignment="Left" Margin="448,59,0,0" VerticalAlignment="Top" FontWeight="Bold" />
         <ComboBox x:Name="comboBoxIdioma" ItemsSource="{Binding nombre}"  Grid.Column="1" HorizontalAlignment="Left" Margin="448,85,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Profesión actual" HorizontalAlignment="Left" Margin="52,123,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
-        <TextBox x:Name="textBoxProfesion" HorizontalAlignment="Center" Margin="0,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Grid.Column="1"/>
-        <Label Content="Explica, ¿Por qué quieres ser instructor?" HorizontalAlignment="Left" Margin="52,196,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
-        <TextBox x:Name="textBoxRazon" HorizontalAlignment="Center" Margin="0,233,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Height="58" Grid.Column="1"/>
-        <Label Content="Explica, ¿Qué tipo de contenido publicarás?" HorizontalAlignment="Left" Margin="52,307,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
-        <TextBox x:Name="textBoxTipoContenido" HorizontalAlignment="Center" Margin="0,339,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Height="58" Grid.Column="1"/>
+        <Label Content="Explica, ¿Por qué quieres ser instructor?" HorizontalAlignment="Left" Margin="52,153,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
+        <TextBox x:Name="textBoxRazon" HorizontalAlignment="Center" Margin="0,189,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Height="58" Grid.Column="1"/>
+        <Label Content="Explica, ¿Qué tipo de contenido publicarás?" HorizontalAlignment="Left" Margin="52,271,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
+        <TextBox x:Name="textBoxTipoContenido" HorizontalAlignment="Center" Margin="0,307,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Height="58" Grid.Column="1"/>
         <Button x:Name="buttonGuardar" Content="Guardar" HorizontalAlignment="Left" Margin="490,415,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Width="78" Height="25" Click="GuardarSolicitud" Grid.Column="1"/>
 
         <Label x:Name="labelSolicitudDe" Content="Solicitud de XXX" HorizontalAlignment="Left" Margin="52,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Visibility="Hidden" Grid.Column="1"/>
