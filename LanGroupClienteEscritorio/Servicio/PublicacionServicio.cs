@@ -23,7 +23,7 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync($"/colaborador?={usuario}");
+                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"/colaborador?={usuario}");
 
                     if (httpResponseMessage != null)
                     {

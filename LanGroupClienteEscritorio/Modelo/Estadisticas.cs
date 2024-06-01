@@ -17,5 +17,11 @@ namespace LanGroupClienteEscritorio.Modelo
     {
         public int totalPublicaciones { get; set; }
         public string mes { get; set; }
+
+        public Estadisticas(int totalPublicaciones, string mes)
+        {
+            this.totalPublicaciones = totalPublicaciones;
+            this.mes = mes;
+        }
     }
 }

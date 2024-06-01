@@ -27,14 +27,6 @@ namespace LanGroupClienteEscritorio.ViewModel
         public EstadisticasViewModel() 
         {
             ObtenerPublicaciones();
-            //estadisticas = new List<Estadisticas>()
-            //{
-            //    new Estadisticas{ totalPublicaciones=10, mes="Enero" },
-            //    new Estadisticas{ totalPublicaciones= 15, mes="Febrero"},
-            //    new Estadisticas{ totalPublicaciones= 5, mes="Marzo"},
-            //    new Estadisticas{ totalPublicaciones=20, mes="Abril"},
-            //    new Estadisticas{ totalPublicaciones=1, mes="Mayo"}
-            //};
         }
 
         private async void ObtenerPublicaciones()
@@ -42,22 +34,20 @@ namespace LanGroupClienteEscritorio.ViewModel
             publicaciones = await PublicacionServicio.ObtenerPublicacionesPorColaborador(usuario);
             if (publicaciones != null)
             {
-                List<int> publicacionesPorMes = ContarPublicacionesPorMes(publicaciones);
-                estadisticas = new List<Estadisticas>()
+                if(publicaciones.Count() > 0)
                 {
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[0], mes="Enero"},
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[1], mes="Febrero"},
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[2], mes="Marzo"},
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[3], mes="Abril"},
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[4], mes="Mayo"},
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[5], mes="Junio"},
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[6], mes="Julio"},
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[7], mes="Agosto"},
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[8], mes="Septiembre"},
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[9], mes="Octubre"},
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[10], mes="Noviembre"},
-                    new Estadisticas{totalPublicaciones=publicacionesPorMes[11], mes="Diciembre"}
-                };
+                    List<int> publicacionesPorMes = ContarPublicacionesPorMes(publicaciones);
+                    List<string> meses = EnlistarMeses();
+                    Estadisticas estadistica;
+                    estadisticas = new List<Estadisticas>();
+
+                    for(int i = 0; i < 12; i++)
+                    {
+                        estadistica = new Estadisticas(publicacionesPorMes[i], meses[i]);
+                        estadisticas.Add(estadistica);
+                    }
+                }
+                
             }
         }
 
@@ -74,10 +64,36 @@ namespace LanGroupClienteEscritorio.ViewModel
 
             for(int i = 0; i < 12; i++)
             {
-                publicacionesPorMes.Add(fechas.Count(fecha => fecha.Month == i + 1));
+                publicacionesPorMes.Add(0);
+            }
+
+            foreach(DateTime fecha in fechas)
+            {
+                publicacionesPorMes[fecha.Month - 1] = publicacionesPorMes[fecha.Month - 1] + 1;
             }
 
             return publicacionesPorMes;
+        }
+
+        private List<string> EnlistarMeses()
+        {
+            List<string> meses = new List<string>
+            {
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Septiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
+            };
+
+            return meses;
         }
     }
 }
