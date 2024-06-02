@@ -1,14 +1,9 @@
-﻿using LanGroupClienteEscritorio.Modelo.POJO;
-using LanGroupClienteEscritorio.Modelos;
+﻿using LanGroupClienteEscritorio.Modelo;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LanGroupClienteEscritorio.Servicio

@@ -32,7 +32,7 @@ namespace LanGroupClienteEscritorio.ViewModel
 
         private async void ObtenerPublicaciones()
         {
-            (Colaborador colaborador, int codigo) = await ColaboradorServicio.RecuperarColaborador(Correo);
+            (Colaborador colaborador, int codigo) = await ColaboradorServicio.ObtenerColaborador(Correo);
 
             if(colaborador != null)
             {

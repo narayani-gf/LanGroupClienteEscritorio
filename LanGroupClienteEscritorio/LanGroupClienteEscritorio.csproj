@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -82,14 +82,11 @@
     <Compile Include="Servicio\PublicacionServicio.cs" />
     <Compile Include="Utils\AdministrarNavegacion.cs" />
     <Compile Include="Utils\SesionSingleton.cs" />
-    <Compile Include="Vista\GUIMenuPrincipal.xaml.cs">
-      <DependentUpon>GUIMenuPrincipal.xaml</DependentUpon>
     <Compile Include="Servicio\IdiomaServicio.cs" />
     <Compile Include="Servicio\InteraccionServicio.cs" />
     <Compile Include="Servicio\PublicacionServicio.cs" />
     <Compile Include="Servicio\RolServicio.cs" />
     <Compile Include="Servicio\SolicitudServicio.cs" />
-    <Compile Include="Utils\AdministrarNavegacion.cs" />
     <Compile Include="ViewModel\EstadisticasViewModel.cs" />
     <Compile Include="ViewModel\IdiomasViewModel.cs" />
     <Compile Include="ViewModel\InstructoresViewModel.cs" />
@@ -111,6 +108,9 @@
     </Compile>
     <Compile Include="Vista\GUIIniciarSesion.xaml.cs">
       <DependentUpon>GUIIniciarSesion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GUIMenuPrincipal.xaml.cs">
+      <DependentUpon>GUIMenuPrincipal.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

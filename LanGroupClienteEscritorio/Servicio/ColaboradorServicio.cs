@@ -130,48 +130,8 @@ namespace LanGroupClienteEscritorio.Servicio
 
             return response;
         }
-
-        public static async Task<Colaborador> ObtenerColaboradorPorCorreo(string correo)
-        {
-            Colaborador colaborador = null;
-            using (var httpCliente = new HttpClient())
-            {
-                try
-                {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"/{correo}");
-
-                    if (httpResponseMessage != null)
-                    {
-                        if (httpResponseMessage.IsSuccessStatusCode)
-                        {
-                            string json = await httpResponseMessage.Content.ReadAsStringAsync();
-                            colaborador = JsonConvert.DeserializeObject<Colaborador>(json);
-                        }
-                        codigo = (int)httpResponseMessage.StatusCode;
-                    }
-                    else
-                    {
-                        codigo = (int)HttpStatusCode.InternalServerError;
-                    }
-                    else
-                    {
-                        colaborador = null;
-                    }
-                }
-                catch (HttpRequestException ex)
-                {
-                    colaborador = null;
-                }
-                catch (JsonException ex) 
-                {
-                    colaborador = null;
-                }
-            }
-
-            return colaborador;
-        }
       
-        public static async Task<(Colaborador, int)> RecuperarColaborador(string correo)
+        public static async Task<(Colaborador, int)> ObtenerColaborador(string correo)
         {
             Colaborador colaborador = new Colaborador();
             int codigo = 500;
