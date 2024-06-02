@@ -1,6 +1,7 @@
 ﻿using LanGroupClienteEscritorio.Modelo.POJO;
 using LanGroupClienteEscritorio.Modelos;
 using LanGroupClienteEscritorio.Servicio;
+using LanGroupClienteEscritorio.ViewModel;
 using Microsoft.Win32;
 using System;
 using System.Collections;
@@ -27,7 +28,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =========================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                       ==
-     * == Fecha de actualización: 01/05/2024                                  ==
+     * == Fecha de actualización: 02/05/2024                                  ==
      * == Descripción: Logica de interacción para GUISolicitudInstructor.xaml ==
      * =========================================================================
      */
@@ -46,6 +47,7 @@ namespace LanGroupClienteEscritorio.Vista
         {
             this.idUsuario = idUsuario;
             this.rolUsuario = rolUsuario;
+            CargarComboBox();
         }
 
         public void IniciarVentanaAdministrador(string idUsuario, string rolUsuario, Solicitud solicitud, string usuarioSolicitante)
@@ -82,15 +84,31 @@ namespace LanGroupClienteEscritorio.Vista
             textBoxTipoContenido.Text = solicitud.Contenido;
         }
 
-        private void AgregarConstancia(object sender, RoutedEventArgs e)
+        private void CargarComboBox()
+        {
+            IdiomasViewModel idiomasViewModel = new IdiomasViewModel();
+            comboBoxIdioma.ItemsSource = idiomasViewModel.Idiomas;
+            comboBoxIdioma.SelectedIndex = 0;
+        }
+
+        private async void AgregarConstancia(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Imagenes (*.jpg;*.png)|*jpg;*.png|Documentos (*.pdf)|*.pdf";
+            openFileDialog.Filter = "Documentos (*.pdf)|*.pdf";
             if (DialogResult.OK == openFileDialog.ShowDialog())
             {
                 if(openFileDialog.FileName != string.Empty)
                 {
                     solicitud.Constancia = File.ReadAllBytes(openFileDialog.FileName);
+                    Response response = await SolicitudServicio.GuardarSolicitud(solicitud);
+                    if(response.Codigo == 200)
+                    {
+                        MessageBox.Show("La solicitud ha sido guardada.", "Solicitud guardada", MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        MostrarMensajeError();
+                    }
                 }
                 else
                 {
@@ -106,11 +124,11 @@ namespace LanGroupClienteEscritorio.Vista
             {
                 if(folderBrowserDialog.SelectedPath != string.Empty)
                 {
-                    File.WriteAllBytes(folderBrowserDialog.SelectedPath, solicitud.Constancia);
+                    File.WriteAllBytes(folderBrowserDialog.SelectedPath + ".pdf", solicitud.Constancia);
+                    MessageBox.Show("La solicitud ha sido descargada en " + folderBrowserDialog.SelectedPath + ".", "Solicitud descargada", MessageBoxButton.OK);
                 }
                 else
                 {
-                    //TODO mensaje debe seleccionar una carpeta de destino
                     MessageBox.Show("Debe seleccionar una carpeta de destino.", "Carpeta no seleccionada", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 
@@ -168,7 +186,7 @@ namespace LanGroupClienteEscritorio.Vista
                 textBoxTipoContenido.BorderBrush = Brushes.Red;
             }
 
-            if (String.IsNullOrEmpty(labelNombreArchivo.Content.ToString()))
+            if (solicitud.Constancia == null)
             {
                 validos = false;
                 labelErrorConstancia.Content = "Debe de subir una constancia.";

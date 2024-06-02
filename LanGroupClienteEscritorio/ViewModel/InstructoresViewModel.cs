@@ -11,15 +11,14 @@ namespace LanGroupClienteEscritorio.ViewModel
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 29/05/2024                                ==
+     * == Fecha de actualización: 02/06/2024                                ==
      * == Descripción: Clase para mostrar a los instructores activos en el  ==
      * ==              datagrid.                                            ==
      * =======================================================================
      */
     internal class InstructoresViewModel
     {
-        //TODO cargar los instructores activos
-        public ObservableCollection<Colaborador> instructores { get; set; }
+        public ObservableCollection<Colaborador> Instructores { get; set; }
 
         public InstructoresViewModel() 
         {

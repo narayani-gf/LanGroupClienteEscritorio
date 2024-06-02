@@ -48,5 +48,41 @@ namespace LanGroupClienteEscritorio.Servicio
 
             return idioma;
         }
+
+        public static async Task<List<Idioma>> ObtenerIdiomas()
+        {
+            List<Idioma> idiomas = null;
+
+            using (var httpCliente = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL);
+                    if (httpResponseMessage != null)
+                    {
+                        if (httpResponseMessage.IsSuccessStatusCode)
+                        {
+                            string json = await httpResponseMessage.Content.ReadAsStringAsync();
+                            idiomas = JsonConvert.DeserializeObject<List<Idioma>>(json);
+                        }
+
+                    }
+                    else
+                    {
+                        idiomas = null;
+                    }
+                }
+                catch (HttpRequestException ex)
+                {
+                    idiomas = null;
+                }
+                catch (JsonException ex)
+                {
+                    idiomas = null;
+                }
+            }
+
+            return idiomas;
+        }
     }
 }
