@@ -5,14 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanGroupClienteEscritorio.Modelo.POJO
+namespace LanGroupClienteEscritorio.Modelo
 {
-    /* ======================================================================
-    * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-    * == Fecha de actualización: 01/06/2024                                ==
-    * == Descripción:                                                      ==
-    * =======================================================================
-    */
     public class Interaccion
     {
         [JsonProperty("id")]
@@ -33,18 +27,11 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
         [JsonProperty("fecha")]
         public DateTime Fecha { get; set; }
 
+        public string Colaborador { get; set; }
+
+
         public Interaccion()
         {
-        }
-
-        public Interaccion(string id, string idColaborador, string idPublicacion, int valoracion, string comentario, DateTime fecha)
-        {
-            Id = id;
-            IdColaborador = idColaborador;
-            IdPublicacion = idPublicacion;
-            Valoracion = valoracion;
-            Comentario = comentario;
-            Fecha = fecha;
         }
     }
 }

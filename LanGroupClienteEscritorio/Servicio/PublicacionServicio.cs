@@ -1,21 +1,19 @@
-﻿using LanGroupClienteEscritorio.Modelo.POJO;
-using LanGroupClienteEscritorio.Modelos;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using LanGroupClienteEscritorio.Modelo;
+using Newtonsoft.Json;
 
 namespace LanGroupClienteEscritorio.Servicio
 {
     public class PublicacionServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "publicaciones");
-
+      
         public static async Task<List<Publicacion>> ObtenerPublicacionesPorColaborador(string idUsuario)
         {
             List<Publicacion> publicaciones = new List<Publicacion>();
@@ -32,7 +30,6 @@ namespace LanGroupClienteEscritorio.Servicio
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
                             publicaciones = JsonConvert.DeserializeObject<List<Publicacion>>(json);
                         }
-
                     }
                     else
                     {

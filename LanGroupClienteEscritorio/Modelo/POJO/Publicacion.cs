@@ -1,20 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanGroupClienteEscritorio.Modelo.POJO
+namespace LanGroupClienteEscritorio.Modelo
 {
-    /* ======================================================================
-    * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-    * == Fecha de actualización: 01/06/2024                                ==
-    * == Descripción:                                                      ==
-    * =======================================================================
-    */
     public class Publicacion
     {
+        private List<Interaccion> interacciones;
+
         [JsonProperty("id")]
         public string Id { get; set; }
 
@@ -33,6 +30,14 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
         [JsonProperty("fecha")]
         public DateTime Fecha { get; set; }
 
+        public float Valoracion {  get; set; }
+        public string Colaborador { get; set; }
+        public string Grupo { get; set; }
+
+        public int Codigo { get; set; }
+
+        public List<Interaccion> Interacciones { get; set; }
+      
         public Publicacion()
         {
         }

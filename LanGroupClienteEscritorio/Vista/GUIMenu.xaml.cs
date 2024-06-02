@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LanGroupClienteEscritorio.Utils;
 
 namespace LanGroupClienteEscritorio.Vista
 {
@@ -27,8 +28,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void BtnPublicaciones_Click(object sender, RoutedEventArgs e)
         {
-            GUIAnadirInteraccion gUIAnadirInteraccion= new GUIAnadirInteraccion();
-            NavigationService.Navigate(gUIAnadirInteraccion);
+            AdministrarNavegacion.MostrarMenuPrincipal();
         }
 
         private void BtnIdiomas_Click(object sender, RoutedEventArgs e)

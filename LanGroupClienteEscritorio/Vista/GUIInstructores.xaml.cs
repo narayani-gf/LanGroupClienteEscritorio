@@ -214,7 +214,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void Regresar(object sender, RoutedEventArgs e)
         {
-            Utils.AdministrarNavegacion.RegresarPaginaPrincipal();
+            Utils.AdministrarNavegacion.MostrarMenuPrincipal();
         }
     }
 }

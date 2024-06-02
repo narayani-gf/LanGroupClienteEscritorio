@@ -1,13 +1,7 @@
 ﻿using Newtonsoft.Json;
 
-namespace LanGroupClienteEscritorio.Modelo.POJO
+namespace LanGroupClienteEscritorio.Modelo
 {
-    /* =======================================================================
-     * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 01/06/2024                                 ==
-     * == Descripción:                                                      ==
-     * =======================================================================
-     */
     public class Colaborador
     {
         [JsonProperty("id")] 
@@ -40,19 +34,6 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
         public Colaborador()
         {
 
-        }
-
-        public Colaborador(string id, string usuario, string correo, string contrasenia, string nombre, string apellido, string descripcion, string idRol, string icono)
-        {
-            Id = id;
-            Usuario = usuario;
-            Correo = correo;
-            Contrasenia = contrasenia;
-            Nombre = nombre;
-            Apellido = apellido;
-            Descripcion = descripcion;
-            IdRol = idRol;
-            Icono = icono;
         }
     }
 }

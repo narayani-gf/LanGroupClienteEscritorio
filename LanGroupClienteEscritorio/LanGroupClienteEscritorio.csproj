@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -79,6 +79,11 @@
     <Compile Include="Modelo\POJO\Response.cs" />
     <Compile Include="Servicio\AuthServicio.cs" />
     <Compile Include="Servicio\ColaboradorServicio.cs" />
+    <Compile Include="Servicio\PublicacionServicio.cs" />
+    <Compile Include="Utils\AdministrarNavegacion.cs" />
+    <Compile Include="Utils\SesionSingleton.cs" />
+    <Compile Include="Vista\GUIMenuPrincipal.xaml.cs">
+      <DependentUpon>GUIMenuPrincipal.xaml</DependentUpon>
     <Compile Include="Servicio\IdiomaServicio.cs" />
     <Compile Include="Servicio\InteraccionServicio.cs" />
     <Compile Include="Servicio\PublicacionServicio.cs" />
@@ -129,7 +134,7 @@
     <Compile Include="Vista\GUISolicitudInstructor.xaml.cs">
       <DependentUpon>GUISolicitudInstructor.xaml</DependentUpon>
     </Compile>
-    <Page Include="Vista\GUIAnadirInteraccion.xaml">
+    <Page Include="Vista\GUIMenuPrincipal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -192,6 +197,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\Recursos\Diccionarios\PasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Recursos\Diccionarios\TextBoxContenido.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -235,8 +244,10 @@
     <Resource Include="Vista\Recursos\Imagenes\lanGroupIcono.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Vista\Recursos\Imagenes\regresarIcono.png" />
     <Resource Include="Vista\Recursos\Imagenes\Img-contraseña.png" />
     <Resource Include="Vista\Recursos\Imagenes\icon-estadisticas.png" />
+    <Resource Include="Vista\Recursos\Imagenes\español.png" />
     <Content Include="Vista\Recursos\Imagenes\flechaDerecha.png" />
     <Content Include="Vista\Recursos\Imagenes\flechaIzquierda.png" />
     <Resource Include="Vista\Recursos\Imagenes\iconoMensaje.png" />
@@ -249,6 +260,9 @@
     <Resource Include="Vista\Recursos\Imagenes\icon-administrar.png" />
     <Resource Include="Vista\Recursos\Imagenes\Fondo-tabla-instructor.png" />
     <Resource Include="Vista\Recursos\Imagenes\img-regresar.png" />
+    <Resource Include="Vista\Recursos\Imagenes\ingles.png" />
+    <Resource Include="Vista\Recursos\Imagenes\frances.png" />
+    <Resource Include="Vista\Recursos\Imagenes\Perfiles\perfil1.png" />
     <Content Include="Vista\Recursos\Imagenes\perfilPlaceHolder.png" />
   </ItemGroup>
   <ItemGroup />

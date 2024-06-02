@@ -5,14 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanGroupClienteEscritorio.Modelo.POJO
+namespace LanGroupClienteEscritorio.Modelo
 {
-    /* ======================================================================
-    * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-    * == Fecha de actualización: 01/06/2024                                ==
-    * == Descripción:                                                      ==
-    * =======================================================================
-    */
     public class ArchivoMultimedia
     {
         [JsonProperty("id")]
@@ -38,17 +32,6 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 
         public ArchivoMultimedia()
         {
-        }
-
-        public ArchivoMultimedia(string id, string idPublicacion, string nombre, string mime, int tamanio, bool enBaseDatos, byte[] archivo)
-        {
-            Id = id;
-            IdPublicacion = idPublicacion;
-            Nombre = nombre;
-            Mime = mime;
-            Tamanio = tamanio;
-            EnBaseDatos = enBaseDatos;
-            Archivo = archivo;
         }
     }
 }

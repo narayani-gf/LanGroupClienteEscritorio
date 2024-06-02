@@ -1,4 +1,4 @@
-﻿using LanGroupClienteEscritorio.Modelos;
+﻿using LanGroupClienteEscritorio.Modelo;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
