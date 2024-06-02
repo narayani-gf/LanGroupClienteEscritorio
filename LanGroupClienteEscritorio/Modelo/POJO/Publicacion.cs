@@ -13,25 +13,25 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     * == Descripción:                                                      ==
     * =======================================================================
     */
-    internal class Publicacion
+    public class Publicacion
     {
         [JsonProperty("id")]
-        private string id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("colaboradorid")]
-        private string idColaborador { get; set; }
+        public string IdColaborador { get; set; }
 
         [JsonProperty("grupoid")]
-        private string idGrupo { get; set; }
+        public string IdGrupo { get; set; }
 
         [JsonProperty("titulo")]
-        private string titulo { get; set; }
+        public string Titulo { get; set; }
 
         [JsonProperty("descripcion")]
-        private string descripcion { get; set; }
+        public string Descripcion { get; set; }
 
         [JsonProperty("fecha")]
-        private DateTime fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
         public Publicacion()
         {
@@ -39,12 +39,12 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 
         public Publicacion(string id, string idColaborador, string idGrupo, string titulo, string descripcion, DateTime fecha)
         {
-            this.id = id;
-            this.idColaborador = idColaborador;
-            this.idGrupo = idGrupo;
-            this.titulo = titulo;
-            this.descripcion = descripcion;
-            this.fecha = fecha;
+            Id = id;
+            IdColaborador = idColaborador;
+            IdGrupo = idGrupo;
+            Titulo = titulo;
+            Descripcion = descripcion;
+            Fecha = fecha;
         }
     }
 }

@@ -13,13 +13,13 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     * == Descripción:                                                      ==
     * =======================================================================
     */
-    internal class Rol
+    public class Rol
     {
         [JsonProperty("id")]
-        private string id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("nombre")]
-        private string nombre { get; set; }
+        public string Nombre { get; set; }
 
         public Rol()
         {
@@ -27,8 +27,8 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 
         public Rol(string id, string nombre)
         {
-            this.id = id;
-            this.nombre = nombre;
+            Id = id;
+            Nombre = nombre;
         }
     }
 }

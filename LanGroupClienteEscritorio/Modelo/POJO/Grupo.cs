@@ -9,26 +9,26 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 {
     /* ======================================================================
     * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-    * == Fecha de actualización: 27/05/2024                                ==
+    * == Fecha de actualización: 28/05/2024                                ==
     * == Descripción:                                                      ==
     * =======================================================================
     */
-    internal class Grupo
+    public class Grupo
     {
         [JsonProperty("id")]
-        private string idGrupo { get; set; }
+        public string IdGrupo { get; set; }
 
         [JsonProperty("idiomaid")]
-        private string idIdioma { get; set; }
+        public string IdIdioma { get; set; }
 
         [JsonProperty("nombre")]
-        private string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [JsonProperty("descripcion")]
-        private string descripcion { get; set; }
+        public string Descripcion { get; set; }
 
         [JsonProperty("icono")]
-        private string icono { get; set; }
+        public string Icono { get; set; }
 
         public Grupo()
         {
@@ -36,11 +36,11 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 
         public Grupo(string idGrupo, string idIdioma, string nombre, string descripcion, string icono)
         {
-            this.idGrupo = idGrupo;
-            this.idIdioma = idIdioma;
-            this.nombre = nombre;
-            this.descripcion = descripcion;
-            this.icono = icono;
+            IdGrupo = idGrupo;
+            IdIdioma = idIdioma;
+            Nombre = nombre;
+            Descripcion = descripcion;
+            Icono = icono;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LanGroupClienteEscritorio.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 14/05/2024                                ==
+     * == Fecha de actualización: 01/06/2024                                ==
      * == Descripción: Logica de interacción para GUIEstadisticas.xaml      ==
      * =======================================================================
      */
@@ -32,17 +33,27 @@ namespace LanGroupClienteEscritorio.Vista
         public void IniciarVentana(string rolUsuario)
         {
             this.rolUsuario = rolUsuario;
-            CargarChart();
-        }
-
-        private void CargarChart()
-        {
-
+            cargarBarChart();
         }
 
         private void Regresar(object sender, RoutedEventArgs e)
         {
             Utils.AdministrarNavegacion.RegresarPaginaPrincipal();
+        }
+
+        private void cargarBarChart()
+        {
+            EstadisticasViewModel estadisticasViewModel = new EstadisticasViewModel();
+
+            if(estadisticasViewModel.estadisticas != null)
+            {
+                columnSeriesPublicaciones.ItemsSource = estadisticasViewModel.estadisticas;
+            }
+            else
+            {
+                barChartPublicaciones.Visibility = Visibility.Hidden;
+                labelSinPublicaciones.Visibility= Visibility.Visible;
+            }
         }
     }
 }

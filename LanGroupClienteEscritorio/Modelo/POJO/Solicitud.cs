@@ -13,46 +13,42 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     * == Descripción:                                                      ==
     * =======================================================================
     */
-    internal class Solicitud
+    public class Solicitud
     {
         [JsonProperty("id")]
-        private string id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("colaboradorid")]
-        private string idColaborador { get; set; }
+        public string IdColaborador { get; set; }
 
         [JsonProperty("idiomaid")]
-        private string idIdioma { get; set; }
+        public string IdIdioma { get; set; }
 
         [JsonProperty("constancia")]
-        private byte[] constancia { get; set; }
+        public byte[] Constancia { get; set; }
 
         [JsonProperty("contenido")]
-        private string contenido { get; set; }
+        public string Contenido { get; set; }
 
         [JsonProperty("motivo")]
-        private string motivo { get; set; }
+        public string Motivo { get; set; }
 
         [JsonProperty("estado")]
-        private string estado { get; set; }
-
-        [JsonProperty("profesion")]
-        private string profesion { get; set; }
+        public string Estado { get; set; }
 
         public Solicitud()
         {
         }
 
-        public Solicitud(string id, string idColaborador, string idIdioma, byte[] constancia, string contenido, string motivo, string estado, string profesion)
+        public Solicitud(string id, string idColaborador, string idIdioma, byte[] constancia, string contenido, string motivo, string estado)
         {
-            this.id = id;
-            this.idColaborador = idColaborador;
-            this.idIdioma = idIdioma;
-            this.constancia = constancia;
-            this.contenido = contenido;
-            this.motivo = motivo;
-            this.estado = estado;
-            this.profesion = profesion;
+            Id = id;
+            IdColaborador = idColaborador;
+            IdIdioma = idIdioma;
+            Constancia = constancia;
+            Contenido = contenido;
+            Motivo = motivo;
+            Estado = estado;
         }
     }
 }
