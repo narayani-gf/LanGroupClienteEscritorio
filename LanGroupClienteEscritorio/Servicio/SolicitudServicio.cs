@@ -16,9 +16,10 @@ namespace LanGroupClienteEscritorio.Servicio
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "solicitudes");
         private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
-        public static async Task<List<Solicitud>> ObtenerSolicitudes()
+        public static async Task<(List<Solicitud>, int)> ObtenerSolicitudes()
         {
             List<Solicitud> solicitudes = null;
+            int codigo = 500;
 
             using (var httpCliente = new HttpClient())
             {
@@ -42,23 +43,33 @@ namespace LanGroupClienteEscritorio.Servicio
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
                             solicitudes = JsonConvert.DeserializeObject<List<Solicitud>>(json);
                         }
+
+                        codigo = (int)httpResponseMessage.StatusCode;
+                    }
+                    else
+                    {
+                        codigo = (int)HttpStatusCode.InternalServerError;
                     }
                 }
                 catch (HttpRequestException ex)
                 {
                     solicitudes = null;
-                }catch(JsonException ex)
+                    codigo = (int)HttpStatusCode.InternalServerError;
+                }
+                catch(JsonException ex)
                 {
                     solicitudes = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
 
-            return solicitudes;
+            return (solicitudes, codigo);
         }
 
-        public static async Task<Solicitud> ObtenerSolicitudPorIdUsuario(string idUsuario)
+        public static async Task<(Solicitud, int)> ObtenerSolicitudPorIdUsuario(string idUsuario)
         {
             Solicitud solicitud = null;
+            int codigo = 500;
 
             using (var httpCliente = new HttpClient())
             {
@@ -67,7 +78,7 @@ namespace LanGroupClienteEscritorio.Servicio
                     var httpMensaje = new HttpRequestMessage()
                     {
                         Method = HttpMethod.Get,
-                        RequestUri = new Uri(URL + $"?colaboradorid={idUsuario}")
+                        RequestUri = new Uri(URL + $"/?colaboradorid={idUsuario}")
                     };
 
                     httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
@@ -82,24 +93,32 @@ namespace LanGroupClienteEscritorio.Servicio
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
                             solicitud = JsonConvert.DeserializeObject<Solicitud>(json);
                         }
+
+                        codigo = (int)httpResponseMessage.StatusCode;
+                    }
+                    else
+                    {
+                        codigo = (int)HttpStatusCode.InternalServerError;
                     }
                 }
                 catch(HttpRequestException ex)
                 {
                     solicitud = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch(JsonException ex)
                 {
                     solicitud = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
 
-            return solicitud;
+            return (solicitud, codigo);
         }
 
-        public static async Task<Response> CambiarEstadoSolicitud(Solicitud solicitud, string estado)
+        public static async Task<int> CambiarEstadoSolicitud(Solicitud solicitud, string estado)
         {
-            Response response = new Response();
+            int codigo = 500;
             using (var httpCliente = new HttpClient())
             {
                 try
@@ -120,30 +139,30 @@ namespace LanGroupClienteEscritorio.Servicio
                     {
                         if (httpResponseMessage.IsSuccessStatusCode)
                         {
-                            response.Codigo = (int)HttpStatusCode.OK;
+                            codigo = (int)HttpStatusCode.OK;
                         }
                     }
                     else
                     {
-                        response.Codigo = (int)HttpStatusCode.InternalServerError;
+                        codigo = (int)HttpStatusCode.InternalServerError;
                     }
                 }
                 catch (HttpRequestException ex)
                 {
-                    response.Codigo = (int)HttpStatusCode.InternalServerError;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch (JsonException ex)
                 {
-                    response.Codigo = (int)HttpStatusCode.InternalServerError;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
 
-            return response;
+            return codigo;
         }
 
-        public static async Task<Response> GuardarSolicitud(Solicitud solicitud)
+        public static async Task<int> GuardarSolicitud(Solicitud solicitud)
         {
-            Response response = new Response();
+            int codigo = 500;
             using (var httpCliente = new HttpClient())
             {
                 try
@@ -163,25 +182,25 @@ namespace LanGroupClienteEscritorio.Servicio
                     {
                         if (httpResponseMessage.IsSuccessStatusCode)
                         {
-                            response.Codigo = (int)HttpStatusCode.OK;
+                            codigo = (int)HttpStatusCode.OK;
                         }
                     }
                     else
                     {
-                        response.Codigo = (int)HttpStatusCode.InternalServerError;
+                        codigo = (int)HttpStatusCode.InternalServerError;
                     }
                 }
                 catch (HttpRequestException ex)
                 {
-                    response.Codigo = (int)HttpStatusCode.InternalServerError;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch (JsonException ex)
                 {
-                    response.Codigo = (int)HttpStatusCode.InternalServerError;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
 
-            return response;
+            return codigo;
         }
     }
 }

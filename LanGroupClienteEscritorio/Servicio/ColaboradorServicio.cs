@@ -16,9 +16,10 @@ namespace LanGroupClienteEscritorio.Servicio
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "colaboradores");
         private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
-        public static async Task<List<Colaborador>> ObtenerInstructores()
+        public static async Task<(List<Colaborador>, int)> ObtenerInstructores()
         {
             List<Colaborador> instructores = null;
+            int codigo = 500;
             string rol="Instructor";
             using (var httpCliente = new HttpClient())
             {
@@ -34,24 +35,33 @@ namespace LanGroupClienteEscritorio.Servicio
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
                             instructores = JsonConvert.DeserializeObject<List<Colaborador>>(json);
                         }
+
+                        codigo = (int)httpResponseMessage.StatusCode;
+                    }
+                    else
+                    {
+                        codigo = (int)HttpStatusCode.InternalServerError;
                     }
                 }
                 catch (HttpRequestException ex)
                 {
                     instructores = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch (JsonException ex)
                 {
                     instructores = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
 
-            return instructores;
+            return (instructores, codigo);
         }
 
-        public static async Task<List<Colaborador>> ObtenerColaboradores()
+        public static async Task<(List<Colaborador>, int)> ObtenerColaboradores()
         {
             List<Colaborador> colaboradores = null;
+            int codigo = 500;
             using (var httpCliente = new HttpClient())
             {
                 try
@@ -65,70 +75,81 @@ namespace LanGroupClienteEscritorio.Servicio
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
                             colaboradores = JsonConvert.DeserializeObject<List<Colaborador>>(json);
                         }
+
+                        codigo = (int)httpResponseMessage.StatusCode;
+                    }
+                    else
+                    {
+                        codigo = (int)HttpStatusCode.InternalServerError;
                     }
                 }
                 catch (HttpRequestException ex)
                 {
                     colaboradores = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch(JsonException ex)
                 {
                     colaboradores = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
 
-            return colaboradores;
+            return (colaboradores, codigo);
         }
 
-        public static async Task<Response> AsignarRolAColaborador(Colaborador colaborador, string nombreRol)
+        public static async Task<int> AsignarRolAColaborador(Colaborador colaborador, string nombreRol)
         {
-            Response response = new Response();
+            int codigo = 500;
             using (var httpCliente = new HttpClient())
             {
                 try
                 {
-                    List<Rol> roles = await RolServicio.ObtenerRoles();
-                    
-                    foreach(Rol rol in roles)
-                    {
-                        if (rol.Nombre.Equals(nombreRol, StringComparison.OrdinalIgnoreCase))
-                        {
-                            colaborador.IdRol = rol.Id;
-                        }
-                    }
+                    (List<Rol> roles, int codigoRoles) = await RolServicio.ObtenerRoles();
 
-                    var httpMensaje = new HttpRequestMessage()
+                    if(roles != null)
                     {
-                        Content = new StringContent(JsonConvert.SerializeObject(colaborador), Encoding.UTF8, "application/json"),
-                        Method = HttpMethod.Put,
-                        RequestUri = new Uri(URL)
-                    };
-                  
-                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
-
-                    if (httpResponseMessage != null)
-                    {
-                        if (httpResponseMessage.IsSuccessStatusCode)
+                        foreach (Rol rol in roles)
                         {
-                            response.Codigo = (int)HttpStatusCode.OK;
+                            if (rol.Nombre.Equals(nombreRol, StringComparison.OrdinalIgnoreCase))
+                            {
+                                colaborador.IdRol = rol.Id;
+                            }
                         }
-                    }
-                    else
-                    {
-                        response.Codigo = (int)HttpStatusCode.InternalServerError;
+
+                        var httpMensaje = new HttpRequestMessage()
+                        {
+                            Content = new StringContent(JsonConvert.SerializeObject(colaborador), Encoding.UTF8, "application/json"),
+                            Method = HttpMethod.Put,
+                            RequestUri = new Uri(URL)
+                        };
+
+                        HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
+
+                        if (httpResponseMessage != null)
+                        {
+                            if (httpResponseMessage.IsSuccessStatusCode)
+                            {
+                                codigo = (int)httpResponseMessage.StatusCode;
+                            }
+                        }
+                        else
+                        {
+                            codigo = (int)HttpStatusCode.InternalServerError;
+                        }
                     }
                 }
                 catch (HttpRequestException ex)
                 {
-                    response.Codigo = (int)HttpStatusCode.InternalServerError;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch(JsonException e)
                 {
-                    response.Codigo = (int)HttpStatusCode.InternalServerError;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
 
-            return response;
+            return codigo;
         }
       
         public static async Task<(Colaborador, int)> ObtenerColaborador(string correo)

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,9 +17,10 @@ namespace LanGroupClienteEscritorio.Servicio
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "idiomas");
         private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
-        public static async Task<Idioma> ObtenerIdiomaPorId(string idIdioma)
+        public static async Task<(Idioma, int)> ObtenerIdiomaPorId(string idIdioma)
         {
             Idioma idioma = null;
+            int codigo = 500;
             using (var httpCliente = new HttpClient())
             {
                 try
@@ -40,28 +42,34 @@ namespace LanGroupClienteEscritorio.Servicio
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
                             idioma = JsonConvert.DeserializeObject<Idioma>(json);
                         }
+
+                        codigo = (int)httpResponseMessage.StatusCode;
                     }
                     else
                     {
                         idioma = null;
+                        codigo = (int)HttpStatusCode.InternalServerError;
                     }
                 }
                 catch (HttpRequestException ex)
                 {
                     idioma = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch (JsonException ex)
                 {
                     idioma = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
 
-            return idioma;
+            return (idioma, codigo);
         }
 
-        public static async Task<List<Idioma>> ObtenerIdiomas()
+        public static async Task<(List<Idioma>, int)> ObtenerIdiomas()
         {
             List<Idioma> idiomas = null;
+            int codigo = 500;
 
             using (var httpCliente = new HttpClient())
             {
@@ -85,23 +93,27 @@ namespace LanGroupClienteEscritorio.Servicio
                             idiomas = JsonConvert.DeserializeObject<List<Idioma>>(json);
                         }
 
+                        codigo = (int)httpResponseMessage.StatusCode;
                     }
                     else
                     {
                         idiomas = null;
+                        codigo = (int)HttpStatusCode.InternalServerError;
                     }
                 }
                 catch (HttpRequestException ex)
                 {
                     idiomas = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch (JsonException ex)
                 {
                     idiomas = null;
+                    codigo = (int)HttpStatusCode.InternalServerError; codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
 
-            return idiomas;
+            return (idiomas, codigo);
         }
     }
 }

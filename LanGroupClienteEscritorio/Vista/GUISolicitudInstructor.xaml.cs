@@ -65,7 +65,7 @@ namespace LanGroupClienteEscritorio.Vista
             Solicitud = solicitud;
             labelSolicitudDe.Content = "Solicitud de " + usuarioSolicitante;
             labelNombreArchivo.Content = "";
-            Idioma idiomaSolicitud = await IdiomaServicio.ObtenerIdiomaPorId(solicitud.IdIdioma);
+            (Idioma idiomaSolicitud, int codigo) = await IdiomaServicio.ObtenerIdiomaPorId(solicitud.IdIdioma);
             labelIdioma.Content = idiomaSolicitud.Nombre;
             textBoxRazon.Text = solicitud.Motivo;
             textBoxTipoContenido.Text = solicitud.Contenido;
@@ -87,8 +87,8 @@ namespace LanGroupClienteEscritorio.Vista
                 if(openFileDialog.FileName != string.Empty)
                 {
                     Solicitud.Constancia = File.ReadAllBytes(openFileDialog.FileName);
-                    Response response = await SolicitudServicio.GuardarSolicitud(Solicitud);
-                    if(response.Codigo == 200)
+                    int codigo = await SolicitudServicio.GuardarSolicitud(Solicitud);
+                    if(codigo == 200)
                     {
                         MessageBox.Show("La solicitud ha sido guardada.", "Solicitud guardada", MessageBoxButton.OK);
                     }
@@ -127,9 +127,9 @@ namespace LanGroupClienteEscritorio.Vista
             LimpiarErrores();
             if (CamposValidos())
             {
-                Response response = await SolicitudServicio.GuardarSolicitud(Solicitud);
+                int codigo = await SolicitudServicio.GuardarSolicitud(Solicitud);
 
-                if(response.Codigo == 200)
+                if(codigo == 200)
                 {
                     MessageBox.Show("Se subió la solicitud con éxito.", "Solicitud enviada", MessageBoxButton.OK);
                 }

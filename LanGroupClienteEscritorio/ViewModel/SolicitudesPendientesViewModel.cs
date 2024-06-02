@@ -28,7 +28,7 @@ namespace LanGroupClienteEscritorio.ViewModel
 
         private async void ObtenerSolicitudesPendientes()
         {
-            List<Solicitud> solicitudes = await SolicitudServicio.ObtenerSolicitudes();
+            (List<Solicitud> solicitudes, int codigoSolicitudes) = await SolicitudServicio.ObtenerSolicitudes();
 
             if(solicitudes != null)
             {
@@ -41,7 +41,7 @@ namespace LanGroupClienteEscritorio.ViewModel
                     }
                 }
 
-                List<Colaborador> colaboradores = await ColaboradorServicio.ObtenerColaboradores();
+                (List<Colaborador> colaboradores, int codigoColaboradores) = await ColaboradorServicio.ObtenerColaboradores();
                 ColaboradoresConSolicitudPendiente = new ObservableCollection<Colaborador>();
 
                 if(colaboradores != null)

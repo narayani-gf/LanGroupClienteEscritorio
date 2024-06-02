@@ -28,7 +28,7 @@ namespace LanGroupClienteEscritorio.ViewModel
 
         private async void obtenerInstructores()
         {
-            List<Colaborador> colaboradores = await ColaboradorServicio.ObtenerInstructores();
+            (List<Colaborador> colaboradores, int codigo) = await ColaboradorServicio.ObtenerInstructores();
 
             if(colaboradores != null )
             {

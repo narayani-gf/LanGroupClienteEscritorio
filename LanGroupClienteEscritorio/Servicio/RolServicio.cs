@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +16,10 @@ namespace LanGroupClienteEscritorio.Servicio
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "roles");
         private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
-        public static async Task<List<Rol>> ObtenerRoles()
+        public static async Task<(List<Rol>, int)> ObtenerRoles()
         {
             List<Rol> roles = null;
+            int codigo = 500;
 
             using (var httpCliente = new HttpClient())
             {
@@ -40,19 +42,27 @@ namespace LanGroupClienteEscritorio.Servicio
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
                             roles = JsonConvert.DeserializeObject<List<Rol>>(json);
                         }
+
+                        codigo = (int)httpResponseMessage.StatusCode;
+                    }
+                    else
+                    {
+                        codigo = (int)HttpStatusCode.InternalServerError;
                     }
                 }
                 catch (HttpRequestException ex)
                 {
                     roles = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch (JsonException ex)
                 {
                     roles = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
 
-            return roles;
+            return (roles, codigo);
         }
     }
 }

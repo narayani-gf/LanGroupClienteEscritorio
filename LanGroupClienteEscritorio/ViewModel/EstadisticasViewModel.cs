@@ -17,7 +17,6 @@ namespace LanGroupClienteEscritorio.ViewModel
      */
     internal class EstadisticasViewModel
     {
-        //TODO cargar las publicaciones del usuario de la sesión
         public List<Estadisticas> Estadisticas { get; set; }
 
         public string Correo { get; set; }
@@ -36,7 +35,7 @@ namespace LanGroupClienteEscritorio.ViewModel
 
             if(colaborador != null)
             {
-                Publicaciones = await PublicacionServicio.ObtenerPublicacionesPorColaborador(colaborador.Id);
+                (Publicaciones, codigo) = await PublicacionServicio.ObtenerPublicacionesPorColaborador(colaborador.Id);
                 if (Publicaciones != null)
                 {
                     if (Publicaciones.Count() > 0)
