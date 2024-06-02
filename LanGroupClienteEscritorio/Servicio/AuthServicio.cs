@@ -1,4 +1,4 @@
-﻿using LanGroupClienteEscritorio.Modelo;
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanGroupClienteEscritorio.Servicios
+namespace LanGroupClienteEscritorio.Servicio
 {
     public class AuthServicio
     {

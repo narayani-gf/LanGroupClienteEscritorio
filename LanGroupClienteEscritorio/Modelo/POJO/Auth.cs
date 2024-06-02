@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace LanGroupClienteEscritorio.Modelo
+namespace LanGroupClienteEscritorio.Modelo.POJO
 {
     public class Auth
     {

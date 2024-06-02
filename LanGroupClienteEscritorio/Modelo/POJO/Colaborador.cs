@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace LanGroupClienteEscritorio.Modelo
+namespace LanGroupClienteEscritorio.Modelo.POJO
 {
     public class Colaborador
     {
