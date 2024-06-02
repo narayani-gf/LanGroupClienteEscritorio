@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -47,6 +47,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -66,6 +67,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Modelo\POJO\Auth.cs" />
+    <Compile Include="Modelo\POJO\Estadisticas.cs" />
     <Compile Include="Modelo\POJO\ArchivoMultimedia.cs" />
     <Compile Include="Modelo\POJO\Colaborador.cs" />
     <Compile Include="Modelo\POJO\Grupo.cs" />
@@ -82,6 +84,18 @@
     <Compile Include="Utils\SesionSingleton.cs" />
     <Compile Include="Vista\GUIMenuPrincipal.xaml.cs">
       <DependentUpon>GUIMenuPrincipal.xaml</DependentUpon>
+    <Compile Include="Servicio\IdiomaServicio.cs" />
+    <Compile Include="Servicio\InteraccionServicio.cs" />
+    <Compile Include="Servicio\PublicacionServicio.cs" />
+    <Compile Include="Servicio\RolServicio.cs" />
+    <Compile Include="Servicio\SolicitudServicio.cs" />
+    <Compile Include="Utils\AdministrarNavegacion.cs" />
+    <Compile Include="ViewModel\EstadisticasViewModel.cs" />
+    <Compile Include="ViewModel\IdiomasViewModel.cs" />
+    <Compile Include="ViewModel\InstructoresViewModel.cs" />
+    <Compile Include="ViewModel\SolicitudesPendientesViewModel.cs" />
+    <Compile Include="Vista\GUIAnadirInteraccion.xaml.cs">
+      <DependentUpon>GUIAnadirInteraccion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\GUICrearGrupo.xaml.cs">
       <DependentUpon>GUICrearGrupo.xaml</DependentUpon>

@@ -22,7 +22,7 @@ namespace LanGroupClienteEscritorio.Modelo
         [JsonProperty("apellido")] 
         public string Apellido { get; set; }
 
-        [JsonProperty("descripcion")] 
+        [JsonProperty("descripcion")]
         public string Descripcion { get; set;}
 
         [JsonProperty("rolid")]
@@ -34,19 +34,6 @@ namespace LanGroupClienteEscritorio.Modelo
         public Colaborador()
         {
 
-        }
-
-        public Colaborador(string id, string usuario, string correo, string contrasenia, string nombre, string apellido, string descripcion, string idRol, string icono)
-        {
-            this.Id = id;
-            this.Usuario = usuario;
-            this.Correo = correo;
-            this.Contrasenia = contrasenia;
-            this.Nombre = nombre;
-            this.Apellido = apellido;
-            this.Descripcion = descripcion;
-            this.IdRol = idRol;
-            this.Icono = icono;
         }
     }
 }

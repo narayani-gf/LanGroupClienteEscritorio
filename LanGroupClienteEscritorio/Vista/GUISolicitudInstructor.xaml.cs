@@ -1,44 +1,61 @@
-﻿using System;
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
+using LanGroupClienteEscritorio.Modelos;
+using LanGroupClienteEscritorio.Servicio;
+using LanGroupClienteEscritorio.ViewModel;
+using Microsoft.Win32;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace LanGroupClienteEscritorio.Vista
 {
     /* =========================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                       ==
-     * == Fecha de actualización: 21/05/2024                                  ==
+     * == Fecha de actualización: 02/05/2024                                  ==
      * == Descripción: Logica de interacción para GUISolicitudInstructor.xaml ==
      * =========================================================================
      */
     public partial class GUISolicitudInstructor : Page
     {
+        private string idUsuario;
         private string rolUsuario;
+        Solicitud solicitud;
+
         public GUISolicitudInstructor()
         {
             InitializeComponent();
         } 
 
-        public void IniciarVentanaColaborador(string rolUsuario)
+        public void IniciarVentanaColaborador(string idUsuario, string rolUsuario)
         {
+            this.idUsuario = idUsuario;
             this.rolUsuario = rolUsuario;
+            CargarComboBox();
         }
 
-        public void IniciarVentanaAdministrador(string rolUsuario, int idUsuarioSolicitante)
+        public void IniciarVentanaAdministrador(string idUsuario, string rolUsuario, Solicitud solicitud, string usuarioSolicitante)
         {
-            this.rolUsuario = rolUsuario;
+            this.idUsuario = idUsuario;
+            this.rolUsuario= rolUsuario;
             ModificarVisibilidadObjetos();
-            CargarDatosSolicitud(idUsuarioSolicitante);
+            CargarDatosSolicitud(solicitud, usuarioSolicitante);
         }
 
         private void ModificarVisibilidadObjetos()
@@ -52,32 +69,87 @@ namespace LanGroupClienteEscritorio.Vista
             comboBoxIdioma.Visibility = Visibility.Hidden;
             labelSeleccionarIdioma.Visibility = Visibility.Hidden;
             labelIdioma.Visibility = Visibility.Visible;
-            textBoxProfesion.IsReadOnly = true;
             textBoxRazon.IsReadOnly = true;
             textBoxTipoContenido.IsReadOnly = true;
         }
 
-        private void CargarDatosSolicitud(int idUsuarioSolicitante)
+        private async void CargarDatosSolicitud(Solicitud solicitud, string usuarioSolicitante)
         {
-            //TODO obtener los datos de la solicitud del usuario que el administrador está revisando.
+            this.solicitud = solicitud;
+            labelSolicitudDe.Content = "Solicitud de " + usuarioSolicitante;
+            labelNombreArchivo.Content = "";
+            Idioma idiomaSolicitud = await IdiomaServicio.ObtenerIdiomaPorId(solicitud.IdIdioma);
+            labelIdioma.Content = idiomaSolicitud.Nombre;
+            textBoxRazon.Text = solicitud.Motivo;
+            textBoxTipoContenido.Text = solicitud.Contenido;
         }
 
-        private void AgregarConstancia(object sender, RoutedEventArgs e)
+        private void CargarComboBox()
         {
-            //TODO subir archivo
+            IdiomasViewModel idiomasViewModel = new IdiomasViewModel();
+            comboBoxIdioma.ItemsSource = idiomasViewModel.Idiomas;
+            comboBoxIdioma.SelectedIndex = 0;
+        }
+
+        private async void AgregarConstancia(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Documentos (*.pdf)|*.pdf";
+            if (DialogResult.OK == openFileDialog.ShowDialog())
+            {
+                if(openFileDialog.FileName != string.Empty)
+                {
+                    solicitud.Constancia = File.ReadAllBytes(openFileDialog.FileName);
+                    Response response = await SolicitudServicio.GuardarSolicitud(solicitud);
+                    if(response.Codigo == 200)
+                    {
+                        MessageBox.Show("La solicitud ha sido guardada.", "Solicitud guardada", MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        MostrarMensajeError();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un archivo.", "Archivo no seleccionado", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
 
         private void DescargarConstancia(object sender, RoutedEventArgs e)
         {
-            //TODO obtener el archivo que subio el usuario
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if(DialogResult.OK == folderBrowserDialog.ShowDialog())
+            {
+                if(folderBrowserDialog.SelectedPath != string.Empty)
+                {
+                    File.WriteAllBytes(folderBrowserDialog.SelectedPath + ".pdf", solicitud.Constancia);
+                    MessageBox.Show("La solicitud ha sido descargada en " + folderBrowserDialog.SelectedPath + ".", "Solicitud descargada", MessageBoxButton.OK);
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar una carpeta de destino.", "Carpeta no seleccionada", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                
+            }
         }
 
-        private void GuardarSolicitud(object sender, RoutedEventArgs e)
+        private async void GuardarSolicitud(object sender, RoutedEventArgs e)
         {
-            limpiarErrores();
+            LimpiarErrores();
             if (CamposValidos())
             {
-                //TODO 
+                Response response = await SolicitudServicio.GuardarSolicitud(solicitud);
+
+                if(response.Codigo == 200)
+                {
+                    MessageBox.Show("Se subió la solicitud con éxito.", "Solicitud enviada", MessageBoxButton.OK);
+                }
+                else
+                {
+                    MostrarMensajeError();
+                }
             }
         }
 
@@ -86,12 +158,12 @@ namespace LanGroupClienteEscritorio.Vista
             if (rolUsuario.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
             {
                 GUIInstructores guiInstructores = new GUIInstructores();
-                guiInstructores.IniciarVentanaAgregarInstructor(rolUsuario);
+                guiInstructores.IniciarVentanaAgregarInstructor(idUsuario, rolUsuario);
                 NavigationService.Navigate(guiInstructores);
             }
             else
             {
-                //TODO regresar al menu principal
+                Utils.AdministrarNavegacion.RegresarPaginaPrincipal();
             }
 
         }
@@ -99,13 +171,6 @@ namespace LanGroupClienteEscritorio.Vista
         private bool CamposValidos()
         {
             bool validos = true;
-
-            if(String.IsNullOrEmpty(textBoxProfesion.Text))
-            {
-                validos = false;
-                labelErrorProfesion.Content = "No se puede dejar vacío.";
-                textBoxProfesion.BorderBrush = Brushes.Red;
-            }
 
             if(String.IsNullOrEmpty(textBoxRazon.Text)) 
             { 
@@ -121,7 +186,7 @@ namespace LanGroupClienteEscritorio.Vista
                 textBoxTipoContenido.BorderBrush = Brushes.Red;
             }
 
-            if (String.IsNullOrEmpty(labelNombreArchivo.Content.ToString()))
+            if (solicitud.Constancia == null)
             {
                 validos = false;
                 labelErrorConstancia.Content = "Debe de subir una constancia.";
@@ -130,15 +195,19 @@ namespace LanGroupClienteEscritorio.Vista
             return validos;
         }
 
-        private void limpiarErrores()
+        private void LimpiarErrores()
         {
             labelErrorProfesion.Content = String.Empty;
-            textBoxProfesion.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
             labelErrorRazon.Content = String.Empty;
             textBoxRazon.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
             labelErrorTipoContenido.Content = String.Empty;
             textBoxTipoContenido.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
             labelErrorConstancia.Content= String.Empty;
+        }
+
+        private void MostrarMensajeError()
+        {
+            MessageBox.Show("Algo salió mal.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

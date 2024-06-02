@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LanGroupClienteEscritorio.Vista"
-      xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="LanGroupClienteEscritorio.Vista.GUIEstadisticas"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:ViewModel="clr-namespace:LanGroupClienteEscritorio.ViewModel" x:Class="LanGroupClienteEscritorio.Vista.GUIEstadisticas"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Estadisticas">
@@ -32,9 +32,8 @@
 
 
         <Label x:Name="labelSinPublicaciones" Content="Aun no tienes publicaciones creadas, &#xA;regresa cuando hayas creado una." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Visibility="Hidden" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
-        <Label x:Name="labelPublicacionesSinValoracion" Content="Aun no tienes publicaciones con valoración :(" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Visibility="Hidden" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
         <Label Content="Mis estadísticas" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Grid.Column="1"/>
-        <syncfusion:SfChart x:Name="barChartPublicaciones" Header="Promedio de valoración de publicaciones" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Height="350" Width="500" Grid.Column="1">
+        <syncfusion:SfChart x:Name="barChartPublicaciones" Header="Publicaciones creadas por mes" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Height="350" Width="500" Grid.Column="1">
             <syncfusion:SfChart.PrimaryAxis>
                 <syncfusion:CategoryAxis/>
             </syncfusion:SfChart.PrimaryAxis>
@@ -43,27 +42,7 @@
                 <syncfusion:NumericalAxis/>
             </syncfusion:SfChart.SecondaryAxis>
 
-            <syncfusion:SfChart.Legend>
-                <syncfusion:ChartLegend/>
-            </syncfusion:SfChart.Legend>
-
-            <syncfusion:ColumnSeries Label="1 *" XBindingPath="" YBindingPath="">
-
-            </syncfusion:ColumnSeries>
-            
-            <syncfusion:ColumnSeries Label="2 *" XBindingPath="" YBindingPath="">
-
-            </syncfusion:ColumnSeries>
-
-            <syncfusion:ColumnSeries Label="3 *" XBindingPath="" YBindingPath="">
-
-            </syncfusion:ColumnSeries>
-
-            <syncfusion:ColumnSeries Label="4 *" XBindingPath="" YBindingPath="">
-
-            </syncfusion:ColumnSeries>
-
-            <syncfusion:ColumnSeries Label="5 *" XBindingPath="" YBindingPath="">
+            <syncfusion:ColumnSeries x:Name="columnSeriesPublicaciones" XBindingPath="{Binding mes}" YBindingPath="{Binding totalPublicaciones}">
 
             </syncfusion:ColumnSeries>
         </syncfusion:SfChart>

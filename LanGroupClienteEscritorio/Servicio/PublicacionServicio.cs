@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,23 +13,15 @@ namespace LanGroupClienteEscritorio.Servicio
     public class PublicacionServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "publicaciones");
-
-        public static async Task<(List<Publicacion>, int)> RecuperarPublicaciones()
+      
+        public static async Task<List<Publicacion>> ObtenerPublicacionesPorColaborador(string idUsuario)
         {
             List<Publicacion> publicaciones = new List<Publicacion>();
-            int codigo = 500;
-
-            using (var httpCliente = new HttpClient())
+            using(var httpCliente = new HttpClient())
             {
                 try
                 {
-                    var httpMensaje = new HttpRequestMessage()
-                    {
-                        Method = HttpMethod.Get,
-                        RequestUri = new Uri(URL)
-                    };
-
-                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
+                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"/colaborador?={idUsuario}");
 
                     if (httpResponseMessage != null)
                     {
@@ -38,25 +30,23 @@ namespace LanGroupClienteEscritorio.Servicio
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
                             publicaciones = JsonConvert.DeserializeObject<List<Publicacion>>(json);
                         }
-
-                        codigo = (int)httpResponseMessage.StatusCode;
                     }
                     else
                     {
-                        codigo = (int)HttpStatusCode.InternalServerError;
+                        publicaciones = null;
                     }
                 }
                 catch (HttpRequestException ex)
                 {
-                    codigo = (int)HttpStatusCode.InternalServerError;
+                    publicaciones = null;
                 }
-                catch (JsonException ex)
+                catch(JsonException ex)
                 {
-                    codigo = (int)HttpStatusCode.InternalServerError;
+                    publicaciones = null;
                 }
             }
 
-            return (publicaciones, codigo);
+            return publicaciones;
         }
     }
 }

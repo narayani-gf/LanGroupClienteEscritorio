@@ -33,16 +33,5 @@ namespace LanGroupClienteEscritorio.Modelo
         public ArchivoMultimedia()
         {
         }
-
-        public ArchivoMultimedia(string id, string idPublicacion, string nombre, string mime, int tamanio, bool enBaseDatos, byte[] archivo)
-        {
-            this.Id = id;
-            this.IdPublicacion = idPublicacion;
-            this.Nombre = nombre;
-            this.Mime = mime;
-            this.Tamanio = tamanio;
-            this.EnBaseDatos = enBaseDatos;
-            this.Archivo = archivo;
-        }
     }
 }

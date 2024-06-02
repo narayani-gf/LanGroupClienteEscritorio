@@ -37,5 +37,19 @@ namespace LanGroupClienteEscritorio.Modelo
         public int Codigo { get; set; }
 
         public List<Interaccion> Interacciones { get; set; }
+      
+        public Publicacion()
+        {
+        }
+
+        public Publicacion(string id, string idColaborador, string idGrupo, string titulo, string descripcion, DateTime fecha)
+        {
+            Id = id;
+            IdColaborador = idColaborador;
+            IdGrupo = idGrupo;
+            Titulo = titulo;
+            Descripcion = descripcion;
+            Fecha = fecha;
+        }
     }
 }

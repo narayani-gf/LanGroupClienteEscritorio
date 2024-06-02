@@ -29,18 +29,9 @@ namespace LanGroupClienteEscritorio.Modelo
 
         public string Colaborador { get; set; }
 
+
         public Interaccion()
         {
-        }
-
-        public Interaccion(string id, string idColaborador, string idPublicacion, int valoracion, string comentario, DateTime fecha)
-        {
-            this.Id = id;
-            this.IdColaborador = idColaborador;
-            this.IdPublicacion = idPublicacion;
-            this.Valoracion = valoracion;
-            this.Comentario = comentario;
-            this.Fecha = fecha;
         }
     }
 }
