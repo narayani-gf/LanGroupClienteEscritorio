@@ -16,25 +16,22 @@ namespace LanGroupClienteEscritorio.Vista
      */
     public partial class GUIInstructores : Page
     {
-        private string IdUsuario;
-        private string RolUsuario;
+        private Response Usuario;
 
         public GUIInstructores()
         {
             InitializeComponent();
         }
 
-        public void IniciarVentanaAgregarInstructor(string idUsuario, string rolUsuario)
+        public void IniciarVentanaAgregarInstructor(Response usuario)
         {
-            IdUsuario = idUsuario;
-            RolUsuario = rolUsuario;
+            Usuario = usuario;
             CargarDataGridAgregacion();
         }
 
-        public void IniciarVentanaEliminarInstructor(string idUsuario, string rolUsaurio)
+        public void IniciarVentanaEliminarInstructor(Response usuario)
         {
-            IdUsuario = idUsuario;
-            RolUsuario= rolUsaurio;
+            Usuario = usuario;
             ModificarVisibilidadObjetos();
             CargarDataGridEliminacion();
         }
@@ -111,7 +108,7 @@ namespace LanGroupClienteEscritorio.Vista
                 Solicitud solicitud = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaboradorSeleccionado.Id);
 
                 GUISolicitudInstructor guiSolicitudInstructor = new GUISolicitudInstructor();
-                guiSolicitudInstructor.IniciarVentanaAdministrador(IdUsuario, RolUsuario, solicitud, colaboradorSeleccionado.Usuario);
+                guiSolicitudInstructor.IniciarVentanaAdministrador(Usuario, solicitud, colaboradorSeleccionado.Usuario);
                 NavigationService.Navigate(guiSolicitudInstructor);
             }
             else

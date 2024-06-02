@@ -1,6 +1,7 @@
 ﻿using LanGroupClienteEscritorio.Modelo;
 using LanGroupClienteEscritorio.Modelo.POJO;
 using LanGroupClienteEscritorio.Servicio;
+using LanGroupClienteEscritorio.Utils;
 using LanGroupClienteEscritorio.ViewModel;
 using System;
 using System.IO;
@@ -23,26 +24,23 @@ namespace LanGroupClienteEscritorio.Vista
      */
     public partial class GUISolicitudInstructor : Page
     {
-        private string idUsuario;
-        private string rolUsuario;
-        Solicitud solicitud;
+        private Response Usuario;
+        private Solicitud Solicitud;
 
         public GUISolicitudInstructor()
         {
             InitializeComponent();
         } 
 
-        public void IniciarVentanaColaborador(string idUsuario, string rolUsuario)
+        public void IniciarVentanaColaborador(Response usuario)
         {
-            this.idUsuario = idUsuario;
-            this.rolUsuario = rolUsuario;
+            Usuario = usuario;
             CargarComboBox();
         }
 
-        public void IniciarVentanaAdministrador(string idUsuario, string rolUsuario, Solicitud solicitud, string usuarioSolicitante)
+        public void IniciarVentanaAdministrador(Response usuario, Solicitud solicitud, string usuarioSolicitante)
         {
-            this.idUsuario = idUsuario;
-            this.rolUsuario= rolUsuario;
+            Usuario = usuario;
             ModificarVisibilidadObjetos();
             CargarDatosSolicitud(solicitud, usuarioSolicitante);
         }
@@ -64,7 +62,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private async void CargarDatosSolicitud(Solicitud solicitud, string usuarioSolicitante)
         {
-            this.solicitud = solicitud;
+            Solicitud = solicitud;
             labelSolicitudDe.Content = "Solicitud de " + usuarioSolicitante;
             labelNombreArchivo.Content = "";
             Idioma idiomaSolicitud = await IdiomaServicio.ObtenerIdiomaPorId(solicitud.IdIdioma);
@@ -88,8 +86,8 @@ namespace LanGroupClienteEscritorio.Vista
             {
                 if(openFileDialog.FileName != string.Empty)
                 {
-                    solicitud.Constancia = File.ReadAllBytes(openFileDialog.FileName);
-                    Response response = await SolicitudServicio.GuardarSolicitud(solicitud);
+                    Solicitud.Constancia = File.ReadAllBytes(openFileDialog.FileName);
+                    Response response = await SolicitudServicio.GuardarSolicitud(Solicitud);
                     if(response.Codigo == 200)
                     {
                         MessageBox.Show("La solicitud ha sido guardada.", "Solicitud guardada", MessageBoxButton.OK);
@@ -113,7 +111,7 @@ namespace LanGroupClienteEscritorio.Vista
             {
                 if(folderBrowserDialog.SelectedPath != string.Empty)
                 {
-                    File.WriteAllBytes(folderBrowserDialog.SelectedPath + ".pdf", solicitud.Constancia);
+                    File.WriteAllBytes(folderBrowserDialog.SelectedPath + ".pdf", Solicitud.Constancia);
                     MessageBox.Show("La solicitud ha sido descargada en " + folderBrowserDialog.SelectedPath + ".", "Solicitud descargada", MessageBoxButton.OK);
                 }
                 else
@@ -129,7 +127,7 @@ namespace LanGroupClienteEscritorio.Vista
             LimpiarErrores();
             if (CamposValidos())
             {
-                Response response = await SolicitudServicio.GuardarSolicitud(solicitud);
+                Response response = await SolicitudServicio.GuardarSolicitud(Solicitud);
 
                 if(response.Codigo == 200)
                 {
@@ -144,11 +142,15 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void Regresar(object sender, MouseButtonEventArgs e)
         {            
-            if (rolUsuario.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
+            if (Usuario.Rol.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
             {
                 GUIInstructores guiInstructores = new GUIInstructores();
-                guiInstructores.IniciarVentanaAgregarInstructor(idUsuario, rolUsuario);
+                guiInstructores.IniciarVentanaAgregarInstructor(Usuario);
                 NavigationService.Navigate(guiInstructores);
+            }
+            else
+            {
+                AdministrarNavegacion.MostrarMenuPrincipal();
             }
         }
 
@@ -170,7 +172,7 @@ namespace LanGroupClienteEscritorio.Vista
                 textBoxTipoContenido.BorderBrush = Brushes.Red;
             }
 
-            if (solicitud.Constancia == null)
+            if (Solicitud.Constancia == null)
             {
                 validos = false;
                 labelErrorConstancia.Content = "Debe de subir una constancia.";
