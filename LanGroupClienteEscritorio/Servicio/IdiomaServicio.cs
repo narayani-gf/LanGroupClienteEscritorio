@@ -1,7 +1,9 @@
 ﻿using LanGroupClienteEscritorio.Modelo.POJO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -12,6 +14,7 @@ namespace LanGroupClienteEscritorio.Servicio
     internal class IdiomaServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "idiomas");
+        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
         public static async Task<Idioma> ObtenerIdiomaPorId(string idIdioma)
         {
@@ -20,7 +23,15 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"/{idIdioma}");
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL + $"/{idIdioma}")
+                    };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
 
                     if (httpResponseMessage != null)
                     {
@@ -29,7 +40,6 @@ namespace LanGroupClienteEscritorio.Servicio
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
                             idioma = JsonConvert.DeserializeObject<Idioma>(json);
                         }
-
                     }
                     else
                     {
@@ -57,7 +67,16 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL);
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL)
+                    };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
+
                     if (httpResponseMessage != null)
                     {
                         if (httpResponseMessage.IsSuccessStatusCode)

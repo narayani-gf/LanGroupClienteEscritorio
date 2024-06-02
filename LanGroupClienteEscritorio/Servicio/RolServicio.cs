@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -12,6 +13,7 @@ namespace LanGroupClienteEscritorio.Servicio
     public class RolServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "roles");
+        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
         public static async Task<List<Rol>> ObtenerRoles()
         {
@@ -21,7 +23,16 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL);
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL)
+                    };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
+
                     if (httpResponseMessage != null)
                     {
                         if (httpResponseMessage.IsSuccessStatusCode)

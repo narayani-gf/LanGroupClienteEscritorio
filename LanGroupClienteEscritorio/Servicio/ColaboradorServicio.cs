@@ -8,12 +8,14 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using LanGroupClienteEscritorio.Modelos;
+using System.Configuration;
 
 namespace LanGroupClienteEscritorio.Servicio
 {
     public class ColaboradorServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "colaboradores");
+        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
         public static async Task<List<Colaborador>> ObtenerInstructores()
         {
@@ -23,7 +25,15 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"?rol={rol}");
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL + $"?rol={rol}")
+                    };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
 
                     if(httpResponseMessage != null)
                     {
@@ -55,8 +65,17 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL);
-                    if(httpResponseMessage != null)
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL)
+                    };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
+
+                    if (httpResponseMessage != null)
                     {
                         if(httpResponseMessage.IsSuccessStatusCode)
                         {
@@ -103,6 +122,8 @@ namespace LanGroupClienteEscritorio.Servicio
                         RequestUri = new Uri(URL)
                     };
 
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
                     HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
 
                     if (httpResponseMessage != null)
@@ -130,40 +151,9 @@ namespace LanGroupClienteEscritorio.Servicio
             return response;
         }
 
-        public static async Task<Colaborador> ObtenerColaboradorPorCorreo(string correo)
+        public static async Task<(Colaborador, int)> RecuperarColaborador(string correo)
         {
-            Colaborador colaborador = null;
-            using (var httpCliente = new HttpClient())
-            {
-                try
-                {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"/{correo}");
-
-                    if (httpResponseMessage != null)
-                    {
-                        if (httpResponseMessage.IsSuccessStatusCode)
-                        {
-                            string json = await httpResponseMessage.Content.ReadAsStringAsync();
-                            colaborador = JsonConvert.DeserializeObject<Colaborador>(json);
-                        }
-
-                    }
-                    else
-                    {
-                        colaborador = null;
-                    }
-                }
-                catch (HttpRequestException ex)
-                {
-                    colaborador = null;
-                }
-                catch (JsonException ex) 
-                {
-                    colaborador = null;
-                }
-            }
-
-            return colaborador;
+            
         }
     }
 }

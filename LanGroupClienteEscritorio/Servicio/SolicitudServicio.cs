@@ -3,6 +3,7 @@ using LanGroupClienteEscritorio.Modelos;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -15,6 +16,7 @@ namespace LanGroupClienteEscritorio.Servicio
     internal class SolicitudServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "solicitudes");
+        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
         public static async Task<List<Solicitud>> ObtenerSolicitudes()
         {
@@ -24,7 +26,15 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL);
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL)
+                    };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
 
                     if (httpResponseMessage != null)
                     {
@@ -56,7 +66,15 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"?colaboradorid={idUsuario}");
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL + $"?colaboradorid={idUsuario}")
+                    };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
 
                     if(httpResponseMessage != null)
                     {
@@ -95,6 +113,8 @@ namespace LanGroupClienteEscritorio.Servicio
                         Method = HttpMethod.Put,
                         RequestUri = new Uri(URL)
                     };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
 
                     HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
 
@@ -136,6 +156,8 @@ namespace LanGroupClienteEscritorio.Servicio
                         Method = HttpMethod.Post,
                         RequestUri = new Uri(URL)
                     };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
 
                     HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
 

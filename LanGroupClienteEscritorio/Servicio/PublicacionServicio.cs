@@ -3,6 +3,7 @@ using LanGroupClienteEscritorio.Modelos;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -15,6 +16,7 @@ namespace LanGroupClienteEscritorio.Servicio
     public class PublicacionServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "publicaciones");
+        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
         public static async Task<List<Publicacion>> ObtenerPublicacionesPorColaborador(string idUsuario)
         {
@@ -23,7 +25,15 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"/colaborador?={idUsuario}");
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL + $"/colaborador?={idUsuario}")
+                    };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
 
                     if (httpResponseMessage != null)
                     {
