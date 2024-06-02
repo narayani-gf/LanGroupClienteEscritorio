@@ -16,14 +16,14 @@ namespace LanGroupClienteEscritorio.Servicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "publicaciones");
 
-        public static async Task<List<Publicacion>> ObtenerPublicacionesPorColaborador(string usuario)
+        public static async Task<List<Publicacion>> ObtenerPublicacionesPorColaborador(string idUsuario)
         {
             List<Publicacion> publicaciones = new List<Publicacion>();
             using(var httpCliente = new HttpClient())
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"/colaborador?={usuario}");
+                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"/colaborador?={idUsuario}");
 
                     if (httpResponseMessage != null)
                     {

@@ -44,16 +44,19 @@ namespace LanGroupClienteEscritorio.ViewModel
                 List<Colaborador> colaboradores = await ColaboradorServicio.ObtenerColaboradores();
                 ColaboradoresConSolicitudPendiente = new ObservableCollection<Colaborador>();
 
-                foreach(Colaborador colaborador in colaboradores)
+                if(colaboradores != null)
                 {
-                    foreach(Solicitud solicitudPendiente in solicitudesPendientes)
+                    foreach (Colaborador colaborador in colaboradores)
                     {
-                        if(colaborador.Id.Equals(solicitudPendiente.IdColaborador, StringComparison.OrdinalIgnoreCase))
+                        foreach (Solicitud solicitudPendiente in solicitudesPendientes)
                         {
-                            ColaboradoresConSolicitudPendiente.Add(colaborador);
+                            if (colaborador.Id.Equals(solicitudPendiente.IdColaborador, StringComparison.OrdinalIgnoreCase))
+                            {
+                                ColaboradoresConSolicitudPendiente.Add(colaborador);
+                            }
                         }
                     }
-                }
+                }               
             }          
         }
     }

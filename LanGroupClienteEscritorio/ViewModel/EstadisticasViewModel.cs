@@ -20,35 +20,41 @@ namespace LanGroupClienteEscritorio.ViewModel
         //TODO cargar las publicaciones del usuario de la sesión
         public List<Estadisticas> Estadisticas { get; set; }
 
-        public string Usuario { get; set; }
+        public string Correo { get; set; }
 
         public List<Publicacion> Publicaciones { get; set; }
         
-        public EstadisticasViewModel() 
+        public EstadisticasViewModel(string correo) 
         {
+            Correo = correo;
             ObtenerPublicaciones();
         }
 
         private async void ObtenerPublicaciones()
         {
-            Publicaciones = await PublicacionServicio.ObtenerPublicacionesPorColaborador(Usuario);
-            if (Publicaciones != null)
-            {
-                if(Publicaciones.Count() > 0)
-                {
-                    List<int> publicacionesPorMes = ContarPublicacionesPorMes(Publicaciones);
-                    List<string> meses = EnlistarMeses();
-                    Estadisticas estadistica;
-                    Estadisticas = new List<Estadisticas>();
+            Colaborador colaborador = await ColaboradorServicio.ObtenerColaboradorPorCorreo(Correo);
 
-                    for(int i = 0; i < 12; i++)
+            if(colaborador != null)
+            {
+                Publicaciones = await PublicacionServicio.ObtenerPublicacionesPorColaborador(colaborador.Id);
+                if (Publicaciones != null)
+                {
+                    if (Publicaciones.Count() > 0)
                     {
-                        estadistica = new Estadisticas(publicacionesPorMes[i], meses[i]);
-                        Estadisticas.Add(estadistica);
+                        List<int> publicacionesPorMes = ContarPublicacionesPorMes(Publicaciones);
+                        List<string> meses = EnlistarMeses();
+                        Estadisticas estadistica;
+                        Estadisticas = new List<Estadisticas>();
+
+                        for (int i = 0; i < 12; i++)
+                        {
+                            estadistica = new Estadisticas(publicacionesPorMes[i], meses[i]);
+                            Estadisticas.Add(estadistica);
+                        }
                     }
+
                 }
-                
-            }
+            }          
         }
 
         private List<int> ContarPublicacionesPorMes(List<Publicacion> publicaciones)

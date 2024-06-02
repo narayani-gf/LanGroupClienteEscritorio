@@ -1,4 +1,5 @@
-﻿using LanGroupClienteEscritorio.ViewModel;
+﻿using LanGroupClienteEscritorio.Modelos;
+using LanGroupClienteEscritorio.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,15 +25,15 @@ namespace LanGroupClienteEscritorio.Vista
      */
     public partial class GUIEstadisticas : Page
     {
-        private string RolUsuario;
+        private Response Usuario;
         public GUIEstadisticas()
         {
             InitializeComponent();
         }
 
-        public void IniciarVentana(string rolUsuario)
+        public void IniciarVentana(Response usuario)
         {
-            RolUsuario = rolUsuario;
+            Usuario = usuario;
             cargarBarChart();
         }
 
@@ -43,7 +44,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void cargarBarChart()
         {
-            EstadisticasViewModel estadisticasViewModel = new EstadisticasViewModel();
+            EstadisticasViewModel estadisticasViewModel = new EstadisticasViewModel(Usuario.Correo);
 
             if(estadisticasViewModel.Estadisticas != null)
             {
