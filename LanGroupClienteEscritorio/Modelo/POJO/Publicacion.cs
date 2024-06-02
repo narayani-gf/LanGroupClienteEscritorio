@@ -1,50 +1,41 @@
-﻿using Newtonsoft.Json;
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanGroupClienteEscritorio.Modelo.POJO
+namespace LanGroupClienteEscritorio.Modelo
 {
-    /* ======================================================================
-    * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-    * == Fecha de actualización: 28/05/2024                                ==
-    * == Descripción:                                                      ==
-    * =======================================================================
-    */
-    internal class Publicacion
+    public class Publicacion
     {
+        private List<Interaccion> interacciones;
+
         [JsonProperty("id")]
-        private string id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("colaboradorid")]
-        private string idColaborador { get; set; }
+        public string IdColaborador { get; set; }
 
         [JsonProperty("grupoid")]
-        private string idGrupo { get; set; }
+        public string IdGrupo { get; set; }
 
         [JsonProperty("titulo")]
-        private string titulo { get; set; }
+        public string Titulo { get; set; }
 
         [JsonProperty("descripcion")]
-        private string descripcion { get; set; }
+        public string Descripcion { get; set; }
 
         [JsonProperty("fecha")]
-        private DateTime fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
-        public Publicacion()
-        {
-        }
+        public float Valoracion {  get; set; }
+        public string Colaborador { get; set; }
+        public string Grupo { get; set; }
 
-        public Publicacion(string id, string idColaborador, string idGrupo, string titulo, string descripcion, DateTime fecha)
-        {
-            this.id = id;
-            this.idColaborador = idColaborador;
-            this.idGrupo = idGrupo;
-            this.titulo = titulo;
-            this.descripcion = descripcion;
-            this.fecha = fecha;
-        }
+        public int Codigo { get; set; }
+
+        public List<Interaccion> Interacciones { get; set; }
     }
 }

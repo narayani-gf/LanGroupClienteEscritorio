@@ -1,5 +1,7 @@
-﻿using LanGroupClienteEscritorio.Modelos;
+﻿using LanGroupClienteEscritorio.Modelo;
+using LanGroupClienteEscritorio.Servicio;
 using LanGroupClienteEscritorio.Servicios;
+using LanGroupClienteEscritorio.Utils;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -32,19 +34,24 @@ namespace LanGroupClienteEscritorio.Vista
 
         private async void IniciarSesion(Auth auth)
         {
-            Response authResponse = await AuthServicio.IniciarSesion(auth);
-            switch(authResponse.Codigo)
+            Response response = await AuthServicio.IniciarSesion(auth);
+            switch(response.Codigo)
             {
                 case (int)HttpStatusCode.OK:
-                    GuardarToken(authResponse.Jwt);
-                    GUIAnadirInteraccion gUIAnadirInteraccion = new GUIAnadirInteraccion();
-                    NavigationService.Navigate(gUIAnadirInteraccion);
+                    GuardarToken(response.Jwt);
+                    int codigo = await GuardarSingletonAsync();
+
+                    if ((int)HttpStatusCode.OK == codigo)
+                        MostrarMenuPrincipal();
+                    else
+                        MessageBox.Show("Ocurrió un problema con el servidor. Intenta más tarde.");
+
                     break;
                 case (int)HttpStatusCode.Unauthorized:
-                    Console.Write("401");
+                    MessageBox.Show("Verifica tus credenciales.");
                     break;
                 default:
-                    Console.WriteLine("500");
+                    MessageBox.Show("Ocurrió un problema con el servidor. Intenta más tarde.");
                     break;
             }
         }
@@ -56,6 +63,13 @@ namespace LanGroupClienteEscritorio.Vista
             token.Value = jwt;
             configuration.Save();
             ConfigurationManager.RefreshSection("appSettings");
+        }
+
+        private async Task<int> GuardarSingletonAsync()
+        {
+            var (colaborador, codigo) = await ColaboradorServicio.RecuperarColaborador(txtUsername.Text);
+            SesionSingleton.Instance.SetColaborador(colaborador);
+            return codigo;
         }
 
         private void LblRegistrarCuenta_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -75,12 +89,16 @@ namespace LanGroupClienteEscritorio.Vista
             var auth = new Auth()
             {
                 Correo = txtUsername.Text,
-                Contrasenia = txtContraseña.Text
+                Contrasenia = pwbContraseña.Password,
             };
 
             IniciarSesion(auth);
+        }
 
-           
+        private void MostrarMenuPrincipal()
+        {
+            GUIMenuPrincipal gUIMenuPrincipal = new GUIMenuPrincipal();
+            NavigationService.Navigate(gUIMenuPrincipal);
         }
     }
 }

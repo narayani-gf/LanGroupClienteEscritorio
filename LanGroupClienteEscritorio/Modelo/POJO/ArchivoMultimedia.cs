@@ -5,36 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanGroupClienteEscritorio.Modelo.POJO
+namespace LanGroupClienteEscritorio.Modelo
 {
-    /* ======================================================================
-    * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-    * == Fecha de actualización: 27/05/2024                                ==
-    * == Descripción:                                                      ==
-    * =======================================================================
-    */
-    internal class ArchivoMultimedia
+    public class ArchivoMultimedia
     {
         [JsonProperty("id")]
-        private string id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("publicacionid")]
-        private string idPublicacion { get; set; }
+        public string IdPublicacion { get; set; }
 
         [JsonProperty("nombre")]
-        private string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [JsonProperty("mime")]
-        private string mime { get; set; }
+        public string Mime { get; set; }
 
         [JsonProperty("tamanio")]
-        private int tamanio { get; set; }
+        public int Tamanio { get; set; }
 
         [JsonProperty("indb")]
-        private bool enBaseDatos { get; set; }
+        public bool EnBaseDatos { get; set; }
 
         [JsonProperty("archivo")]
-        private byte[] archivo { get; set; }
+        public byte[] Archivo { get; set; }
 
         public ArchivoMultimedia()
         {
@@ -42,13 +36,13 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 
         public ArchivoMultimedia(string id, string idPublicacion, string nombre, string mime, int tamanio, bool enBaseDatos, byte[] archivo)
         {
-            this.id = id;
-            this.idPublicacion = idPublicacion;
-            this.nombre = nombre;
-            this.mime = mime;
-            this.tamanio = tamanio;
-            this.enBaseDatos = enBaseDatos;
-            this.archivo = archivo;
+            this.Id = id;
+            this.IdPublicacion = idPublicacion;
+            this.Nombre = nombre;
+            this.Mime = mime;
+            this.Tamanio = tamanio;
+            this.EnBaseDatos = enBaseDatos;
+            this.Archivo = archivo;
         }
     }
 }

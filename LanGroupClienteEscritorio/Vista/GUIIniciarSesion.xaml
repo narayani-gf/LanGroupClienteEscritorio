@@ -40,7 +40,7 @@
                 <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="txtUsername"/>
 
                 <Label Content="Contraseña" Style="{DynamicResource LabelStyle2}" Foreground="White"/>
-                <TextBox x:Name="txtContraseña" Style="{DynamicResource TextBoxStyle1}"/>
+                <PasswordBox Style="{DynamicResource PasswordBoxStyle1}" x:Name="pwbContraseña"/>
 
                 <Label x:Name="lblContraseñaOlvidada" Content="¿Olvidaste tu contraseña? Recupérala aquí" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle2}" FontSize="12" Foreground="White" Cursor="Hand" MouseDown="Label_MouseDown"/>
                 <Label x:Name="lblRegistrarCuenta" Content="Regístrate aquí" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle2}" FontSize="12" Foreground="White" Cursor="Hand" MouseLeftButtonDown="LblRegistrarCuenta_MouseLeftButtonDown"/>

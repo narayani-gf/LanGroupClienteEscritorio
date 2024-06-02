@@ -45,6 +45,7 @@
       <HintPath>packages\Syncfusion.SfChart.WPF.25.1.42\lib\net462\Syncfusion.SfChart.WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Modelo\POJO\Auth.cs" />
     <Compile Include="Modelo\POJO\ArchivoMultimedia.cs" />
     <Compile Include="Modelo\POJO\Colaborador.cs" />
     <Compile Include="Modelo\POJO\Grupo.cs" />
@@ -72,9 +74,14 @@
     <Compile Include="Modelo\POJO\Publicacion.cs" />
     <Compile Include="Modelo\POJO\Rol.cs" />
     <Compile Include="Modelo\POJO\Solicitud.cs" />
+    <Compile Include="Modelo\POJO\Response.cs" />
+    <Compile Include="Servicio\AuthServicio.cs" />
+    <Compile Include="Servicio\ColaboradorServicio.cs" />
+    <Compile Include="Servicio\PublicacionServicio.cs" />
     <Compile Include="Utils\AdministrarNavegacion.cs" />
-    <Compile Include="Vista\GUIAnadirInteraccion.xaml.cs">
-      <DependentUpon>GUIAnadirInteraccion.xaml</DependentUpon>
+    <Compile Include="Utils\SesionSingleton.cs" />
+    <Compile Include="Vista\GUIMenuPrincipal.xaml.cs">
+      <DependentUpon>GUIMenuPrincipal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\GUICrearGrupo.xaml.cs">
       <DependentUpon>GUICrearGrupo.xaml</DependentUpon>
@@ -113,7 +120,7 @@
     <Compile Include="Vista\GUISolicitudInstructor.xaml.cs">
       <DependentUpon>GUISolicitudInstructor.xaml</DependentUpon>
     </Compile>
-    <Page Include="Vista\GUIAnadirInteraccion.xaml">
+    <Page Include="Vista\GUIMenuPrincipal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -176,6 +183,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\Recursos\Diccionarios\PasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Recursos\Diccionarios\TextBoxContenido.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,8 +230,10 @@
     <Resource Include="Vista\Recursos\Imagenes\lanGroupIcono.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Vista\Recursos\Imagenes\regresarIcono.png" />
     <Resource Include="Vista\Recursos\Imagenes\Img-contraseña.png" />
     <Resource Include="Vista\Recursos\Imagenes\icon-estadisticas.png" />
+    <Resource Include="Vista\Recursos\Imagenes\español.png" />
     <Content Include="Vista\Recursos\Imagenes\flechaDerecha.png" />
     <Content Include="Vista\Recursos\Imagenes\flechaIzquierda.png" />
     <Resource Include="Vista\Recursos\Imagenes\iconoMensaje.png" />
@@ -233,10 +246,11 @@
     <Resource Include="Vista\Recursos\Imagenes\icon-administrar.png" />
     <Resource Include="Vista\Recursos\Imagenes\Fondo-tabla-instructor.png" />
     <Resource Include="Vista\Recursos\Imagenes\img-regresar.png" />
+    <Resource Include="Vista\Recursos\Imagenes\ingles.png" />
+    <Resource Include="Vista\Recursos\Imagenes\frances.png" />
+    <Resource Include="Vista\Recursos\Imagenes\Perfiles\perfil1.png" />
     <Content Include="Vista\Recursos\Imagenes\perfilPlaceHolder.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modelo\DAO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

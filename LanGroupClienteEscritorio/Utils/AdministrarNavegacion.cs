@@ -13,10 +13,10 @@ namespace LanGroupClienteEscritorio.Utils
 {
     public class AdministrarNavegacion
     {
-        public static void RegresarPaginaPrincipal()
+        public static void MostrarMenuPrincipal()
         {
-            GUIAnadirInteraccion gUIAnadirInteraccion = new GUIAnadirInteraccion();
-            NavigationService.GetNavigationService(gUIAnadirInteraccion);
+            GUIMenuPrincipal gUIMenuPrincipal = new GUIMenuPrincipal();
+            NavigationService.GetNavigationService(gUIMenuPrincipal);
         }
 
     }
