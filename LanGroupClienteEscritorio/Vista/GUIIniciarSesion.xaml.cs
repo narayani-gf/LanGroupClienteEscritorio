@@ -1,6 +1,5 @@
-﻿using LanGroupClienteEscritorio.Modelo;
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
 using LanGroupClienteEscritorio.Servicio;
-using LanGroupClienteEscritorio.Servicios;
 using LanGroupClienteEscritorio.Utils;
 using System;
 using System.Collections.Generic;
@@ -67,7 +66,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private async Task<int> GuardarSingletonAsync()
         {
-            var (colaborador, codigo) = await ColaboradorServicio.RecuperarColaborador(txtUsername.Text);
+            var (colaborador, codigo) = await ColaboradorServicio.ObtenerColaborador(txtUsername.Text);
             SesionSingleton.Instance.SetColaborador(colaborador);
             return codigo;
         }

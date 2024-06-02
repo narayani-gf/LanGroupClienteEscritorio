@@ -1,4 +1,4 @@
-﻿using LanGroupClienteEscritorio.Modelo;
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
 using LanGroupClienteEscritorio.ViewModel;
 using System.Windows;
 using System.Windows.Controls;

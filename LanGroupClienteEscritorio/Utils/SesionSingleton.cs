@@ -1,4 +1,4 @@
-﻿using LanGroupClienteEscritorio.Modelo;
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
