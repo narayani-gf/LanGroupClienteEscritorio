@@ -1,26 +1,33 @@
 ﻿using LanGroupClienteEscritorio.Modelo.POJO;
 using LanGroupClienteEscritorio.Modelos;
 using LanGroupClienteEscritorio.Servicio;
+using Microsoft.Win32;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace LanGroupClienteEscritorio.Vista
 {
     /* =========================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                       ==
-     * == Fecha de actualización: 29/05/2024                                  ==
+     * == Fecha de actualización: 01/05/2024                                  ==
      * == Descripción: Logica de interacción para GUISolicitudInstructor.xaml ==
      * =========================================================================
      */
@@ -68,7 +75,7 @@ namespace LanGroupClienteEscritorio.Vista
         {
             this.solicitud = solicitud;
             labelSolicitudDe.Content = "Solicitud de " + usuarioSolicitante;
-            labelNombreArchivo.Content = "TODO";
+            labelNombreArchivo.Content = "";
             Idioma idiomaSolicitud = await IdiomaServicio.ObtenerIdiomaPorId(solicitud.IdIdioma);
             labelIdioma.Content = idiomaSolicitud.Nombre;
             textBoxRazon.Text = solicitud.Motivo;
@@ -77,17 +84,42 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void AgregarConstancia(object sender, RoutedEventArgs e)
         {
-            //TODO subir archivo
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Imagenes (*.jpg;*.png)|*jpg;*.png|Documentos (*.pdf)|*.pdf";
+            if (DialogResult.OK == openFileDialog.ShowDialog())
+            {
+                if(openFileDialog.FileName != string.Empty)
+                {
+                    solicitud.Constancia = File.ReadAllBytes(openFileDialog.FileName);
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un archivo.", "Archivo no seleccionado", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
 
         private void DescargarConstancia(object sender, RoutedEventArgs e)
         {
-            //TODO obtener el archivo que subio el usuario
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if(DialogResult.OK == folderBrowserDialog.ShowDialog())
+            {
+                if(folderBrowserDialog.SelectedPath != string.Empty)
+                {
+                    File.WriteAllBytes(folderBrowserDialog.SelectedPath, solicitud.Constancia);
+                }
+                else
+                {
+                    //TODO mensaje debe seleccionar una carpeta de destino
+                    MessageBox.Show("Debe seleccionar una carpeta de destino.", "Carpeta no seleccionada", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                
+            }
         }
 
         private async void GuardarSolicitud(object sender, RoutedEventArgs e)
         {
-            limpiarErrores();
+            LimpiarErrores();
             if (CamposValidos())
             {
                 Response response = await SolicitudServicio.GuardarSolicitud(solicitud);
@@ -145,7 +177,7 @@ namespace LanGroupClienteEscritorio.Vista
             return validos;
         }
 
-        private void limpiarErrores()
+        private void LimpiarErrores()
         {
             labelErrorProfesion.Content = String.Empty;
             labelErrorRazon.Content = String.Empty;
