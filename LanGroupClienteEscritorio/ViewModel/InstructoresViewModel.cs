@@ -31,10 +31,10 @@ namespace LanGroupClienteEscritorio.ViewModel
 
             if(colaboradores != null )
             {
-                instructores = new ObservableCollection<Colaborador>();
+                Instructores = new ObservableCollection<Colaborador>();
                 foreach (Colaborador instructor in colaboradores)
                 {
-                    instructores.Add(instructor);
+                    Instructores.Add(instructor);
                 }
             }          
         }

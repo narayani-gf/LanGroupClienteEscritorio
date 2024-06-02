@@ -29,13 +29,13 @@ namespace LanGroupClienteEscritorio.ViewModel
         {
             List<Idioma> idiomasApi = await IdiomaServicio.ObtenerIdiomas();
 
-            if(idiomas != null)
+            if(Idiomas != null)
             {
-                idiomas = new ObservableCollection<Idioma>();
+                Idiomas = new ObservableCollection<Idioma>();
 
                 foreach(Idioma idioma in idiomasApi)
                 {
-                    idiomas.Add(idioma);
+                    Idiomas.Add(idioma);
                 }
             }
         }

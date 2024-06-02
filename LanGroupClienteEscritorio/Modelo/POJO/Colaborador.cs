@@ -4,7 +4,7 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 27/05/2024                                ==
+     * == Fecha de actualización: 01/06/2024                                 ==
      * == Descripción:                                                      ==
      * =======================================================================
      */

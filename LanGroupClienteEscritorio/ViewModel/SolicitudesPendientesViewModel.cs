@@ -12,14 +12,14 @@ namespace LanGroupClienteEscritorio.ViewModel
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 29/05/2024                                ==
+     * == Fecha de actualización: 02/06/2024                                ==
      * == Descripción: Clase para mostrar las solicitudes pendientes en el  ==
      * ==              datagrid.                                            ==
      * =======================================================================
      */
     internal class SolicitudesPendientesViewModel
     {
-        public ObservableCollection<Colaborador> colaboradoresConSolicitudPendiente { get; set; }
+        public ObservableCollection<Colaborador> ColaboradoresConSolicitudPendiente { get; set; }
 
         public SolicitudesPendientesViewModel() 
         {
@@ -28,7 +28,6 @@ namespace LanGroupClienteEscritorio.ViewModel
 
         private async void ObtenerSolicitudesPendientes()
         {
-            colaboradoresConSolicitudPendiente = null;
             List<Solicitud> solicitudes = await SolicitudServicio.ObtenerSolicitudes();
 
             if(solicitudes != null)
@@ -43,7 +42,7 @@ namespace LanGroupClienteEscritorio.ViewModel
                 }
 
                 List<Colaborador> colaboradores = await ColaboradorServicio.ObtenerColaboradores();
-                colaboradoresConSolicitudPendiente = new ObservableCollection<Colaborador>();
+                ColaboradoresConSolicitudPendiente = new ObservableCollection<Colaborador>();
 
                 foreach(Colaborador colaborador in colaboradores)
                 {
@@ -51,7 +50,7 @@ namespace LanGroupClienteEscritorio.ViewModel
                     {
                         if(colaborador.Id.Equals(solicitudPendiente.IdColaborador, StringComparison.OrdinalIgnoreCase))
                         {
-                            colaboradoresConSolicitudPendiente.Add(colaborador);
+                            ColaboradoresConSolicitudPendiente.Add(colaborador);
                         }
                     }
                 }

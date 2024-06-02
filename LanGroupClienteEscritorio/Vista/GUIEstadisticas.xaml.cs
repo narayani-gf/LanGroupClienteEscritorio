@@ -18,13 +18,13 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 01/06/2024                                ==
+     * == Fecha de actualización: 02/06/2024                                ==
      * == Descripción: Logica de interacción para GUIEstadisticas.xaml      ==
      * =======================================================================
      */
     public partial class GUIEstadisticas : Page
     {
-        private string rolUsuario;
+        private string RolUsuario;
         public GUIEstadisticas()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         public void IniciarVentana(string rolUsuario)
         {
-            this.rolUsuario = rolUsuario;
+            RolUsuario = rolUsuario;
             cargarBarChart();
         }
 
@@ -45,9 +45,9 @@ namespace LanGroupClienteEscritorio.Vista
         {
             EstadisticasViewModel estadisticasViewModel = new EstadisticasViewModel();
 
-            if(estadisticasViewModel.estadisticas != null)
+            if(estadisticasViewModel.Estadisticas != null)
             {
-                columnSeriesPublicaciones.ItemsSource = estadisticasViewModel.estadisticas;
+                columnSeriesPublicaciones.ItemsSource = estadisticasViewModel.Estadisticas;
             }
             else
             {

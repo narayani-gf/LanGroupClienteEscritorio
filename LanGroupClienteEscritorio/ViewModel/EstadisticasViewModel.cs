@@ -11,18 +11,18 @@ namespace LanGroupClienteEscritorio.ViewModel
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 29/05/2024                                ==
+     * == Fecha de actualización: 02/06/2024                                ==
      * == Descripción: Clase para mostrar las publicaciones en el bar chart ==
      * =======================================================================
      */
     internal class EstadisticasViewModel
     {
         //TODO cargar las publicaciones del usuario de la sesión
-        public List<Estadisticas> estadisticas { get; set; }
+        public List<Estadisticas> Estadisticas { get; set; }
 
-        public string usuario { get; set; }
+        public string Usuario { get; set; }
 
-        public List<Publicacion> publicaciones { get; set; }
+        public List<Publicacion> Publicaciones { get; set; }
         
         public EstadisticasViewModel() 
         {
@@ -31,20 +31,20 @@ namespace LanGroupClienteEscritorio.ViewModel
 
         private async void ObtenerPublicaciones()
         {
-            publicaciones = await PublicacionServicio.ObtenerPublicacionesPorColaborador(usuario);
-            if (publicaciones != null)
+            Publicaciones = await PublicacionServicio.ObtenerPublicacionesPorColaborador(Usuario);
+            if (Publicaciones != null)
             {
-                if(publicaciones.Count() > 0)
+                if(Publicaciones.Count() > 0)
                 {
-                    List<int> publicacionesPorMes = ContarPublicacionesPorMes(publicaciones);
+                    List<int> publicacionesPorMes = ContarPublicacionesPorMes(Publicaciones);
                     List<string> meses = EnlistarMeses();
                     Estadisticas estadistica;
-                    estadisticas = new List<Estadisticas>();
+                    Estadisticas = new List<Estadisticas>();
 
                     for(int i = 0; i < 12; i++)
                     {
                         estadistica = new Estadisticas(publicacionesPorMes[i], meses[i]);
-                        estadisticas.Add(estadistica);
+                        Estadisticas.Add(estadistica);
                     }
                 }
                 

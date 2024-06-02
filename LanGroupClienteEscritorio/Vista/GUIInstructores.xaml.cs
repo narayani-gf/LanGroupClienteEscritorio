@@ -21,14 +21,14 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 31/05/2024                                ==
+     * == Fecha de actualización: 02/06/2024                                ==
      * == Descripción: Logica de interacción para GUIInstructores.xaml      ==
      * =======================================================================
      */
     public partial class GUIInstructores : Page
     {
-        private string idUsuario;
-        private string rolUsuario;
+        private string IdUsuario;
+        private string RolUsuario;
 
         public GUIInstructores()
         {
@@ -37,15 +37,15 @@ namespace LanGroupClienteEscritorio.Vista
 
         public void IniciarVentanaAgregarInstructor(string idUsuario, string rolUsuario)
         {
-            this.idUsuario = idUsuario;
-            this.rolUsuario = rolUsuario;
+            IdUsuario = idUsuario;
+            RolUsuario = rolUsuario;
             CargarDataGridAgregacion();
         }
 
         public void IniciarVentanaEliminarInstructor(string idUsuario, string rolUsaurio)
         {
-            this.idUsuario = idUsuario;
-            this.rolUsuario= rolUsaurio;
+            IdUsuario = idUsuario;
+            RolUsuario= rolUsaurio;
             ModificarVisibilidadObjetos();
             CargarDataGridEliminacion();
         }
@@ -122,7 +122,7 @@ namespace LanGroupClienteEscritorio.Vista
                 Solicitud solicitud = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaboradorSeleccionado.Id);
 
                 GUISolicitudInstructor guiSolicitudInstructor = new GUISolicitudInstructor();
-                guiSolicitudInstructor.IniciarVentanaAdministrador(idUsuario, rolUsuario, solicitud, colaboradorSeleccionado.Usuario);
+                guiSolicitudInstructor.IniciarVentanaAdministrador(IdUsuario, RolUsuario, solicitud, colaboradorSeleccionado.Usuario);
                 NavigationService.Navigate(guiSolicitudInstructor);
             }
             else
@@ -172,9 +172,9 @@ namespace LanGroupClienteEscritorio.Vista
         {
             SolicitudesPendientesViewModel solicitudesPendientes = new SolicitudesPendientesViewModel();
 
-            if (solicitudesPendientes.colaboradoresConSolicitudPendiente != null)
+            if (solicitudesPendientes.ColaboradoresConSolicitudPendiente != null)
             {
-                dataGridAgregarInstructor.ItemsSource = solicitudesPendientes.colaboradoresConSolicitudPendiente;
+                dataGridAgregarInstructor.ItemsSource = solicitudesPendientes.ColaboradoresConSolicitudPendiente;
             }
             else
             {
@@ -189,9 +189,9 @@ namespace LanGroupClienteEscritorio.Vista
         {
             InstructoresViewModel instructores = new InstructoresViewModel();
 
-            if (instructores.instructores != null)
+            if (instructores.Instructores != null)
             {
-                dataGridEliminarInstructor.ItemsSource = instructores.instructores;
+                dataGridEliminarInstructor.ItemsSource = instructores.Instructores;
             }
             else
             {
