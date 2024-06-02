@@ -55,7 +55,7 @@ namespace LanGroupClienteEscritorio.Vista
             if(dataGridAgregarInstructor.SelectedItem != null)
             { 
                 Colaborador colaboradorSeleccionado = dataGridAgregarInstructor.SelectedItem as Colaborador;
-                if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas agregar como instructor a " + colaboradorSeleccionado.usuario + "?", "Aceptar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas agregar como instructor a " + colaboradorSeleccionado.Usuario + "?", "Aceptar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
                     Response responseColaborador = new Response();
                     responseColaborador = await ColaboradorServicio.AsignarRolAColaborador(colaboradorSeleccionado, "Instructor");               
@@ -63,12 +63,12 @@ namespace LanGroupClienteEscritorio.Vista
                     if(responseColaborador.Codigo == 200)
                     {
                         Response responseSolicitud = new Response();
-                        Solicitud solicitud = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaboradorSeleccionado.id);
+                        Solicitud solicitud = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaboradorSeleccionado.Id);
                         responseSolicitud = await SolicitudServicio.CambiarEstadoSolicitud(solicitud, "Aceptado");
 
                         if(responseSolicitud.Codigo == 200)
                         {
-                            MessageBox.Show("Se agregó a " + colaboradorSeleccionado.usuario + " como instructor.", "Solicitud Aceptada", MessageBoxButton.OK);
+                            MessageBox.Show("Se agregó a " + colaboradorSeleccionado.Usuario + " como instructor.", "Solicitud Aceptada", MessageBoxButton.OK);
                         }
                         else
                         {
@@ -92,15 +92,15 @@ namespace LanGroupClienteEscritorio.Vista
             if (dataGridAgregarInstructor.SelectedItem != null)
             {
                 Colaborador colaboradorSeleccionado = dataGridAgregarInstructor.SelectedItem as Colaborador;
-                if (MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas rechazar como instructor a " + colaboradorSeleccionado.usuario + "?", "Rechazar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                if (MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas rechazar como instructor a " + colaboradorSeleccionado.Usuario + "?", "Rechazar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
                     Response responseSolicitud = new Response();
-                    Solicitud solicitud = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaboradorSeleccionado.id);
+                    Solicitud solicitud = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaboradorSeleccionado.Id);
                     responseSolicitud = await SolicitudServicio.CambiarEstadoSolicitud(solicitud, "Rechazado");
 
                     if(responseSolicitud.Codigo == 200)
                     {
-                        MessageBox.Show("Se rechazó a " + colaboradorSeleccionado.usuario + " como instructor.", "Solicitud Rechazada", MessageBoxButton.OK);
+                        MessageBox.Show("Se rechazó a " + colaboradorSeleccionado.Usuario + " como instructor.", "Solicitud Rechazada", MessageBoxButton.OK);
                     }
                     else
                     {
@@ -119,10 +119,10 @@ namespace LanGroupClienteEscritorio.Vista
             if(dataGridAgregarInstructor.SelectedItem != null)
             {
                 Colaborador colaboradorSeleccionado = dataGridAgregarInstructor.SelectedItem as Colaborador;
-                Solicitud solicitud = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaboradorSeleccionado.id);
+                Solicitud solicitud = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaboradorSeleccionado.Id);
 
                 GUISolicitudInstructor guiSolicitudInstructor = new GUISolicitudInstructor();
-                guiSolicitudInstructor.IniciarVentanaAdministrador(idUsuario, rolUsuario, solicitud, colaboradorSeleccionado.usuario);
+                guiSolicitudInstructor.IniciarVentanaAdministrador(idUsuario, rolUsuario, solicitud, colaboradorSeleccionado.Usuario);
                 NavigationService.Navigate(guiSolicitudInstructor);
             }
             else
@@ -136,13 +136,13 @@ namespace LanGroupClienteEscritorio.Vista
             if(dataGridEliminarInstructor.SelectedItem != null)
             {
                 Colaborador colaboradorSeleccionado = dataGridEliminarInstructor.SelectedItem as Colaborador;
-                if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas eliminar como instructor a " + colaboradorSeleccionado.usuario + "?", "Eliminar instructor", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas eliminar como instructor a " + colaboradorSeleccionado.Usuario + "?", "Eliminar instructor", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
                     Response responseColaborador = new Response();
                     responseColaborador = await ColaboradorServicio.AsignarRolAColaborador(colaboradorSeleccionado, "Aprendiz");
                     if (responseColaborador.Codigo == 200)
                     {
-                        MessageBox.Show("Se eliminó como instructor a " + colaboradorSeleccionado.usuario, "Instructor eliminado", MessageBoxButton.OK);
+                        MessageBox.Show("Se eliminó como instructor a " + colaboradorSeleccionado.Usuario, "Instructor eliminado", MessageBoxButton.OK);
                     }
                     else
                     {

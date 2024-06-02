@@ -16,19 +16,19 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     public class Grupo
     {
         [JsonProperty("id")]
-        public string idGrupo { get; set; }
+        public string IdGrupo { get; set; }
 
         [JsonProperty("idiomaid")]
-        public string idIdioma { get; set; }
+        public string IdIdioma { get; set; }
 
         [JsonProperty("nombre")]
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [JsonProperty("descripcion")]
-        public string descripcion { get; set; }
+        public string Descripcion { get; set; }
 
         [JsonProperty("icono")]
-        public string icono { get; set; }
+        public string Icono { get; set; }
 
         public Grupo()
         {
@@ -36,11 +36,11 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 
         public Grupo(string idGrupo, string idIdioma, string nombre, string descripcion, string icono)
         {
-            this.idGrupo = idGrupo;
-            this.idIdioma = idIdioma;
-            this.nombre = nombre;
-            this.descripcion = descripcion;
-            this.icono = icono;
+            IdGrupo = idGrupo;
+            IdIdioma = idIdioma;
+            Nombre = nombre;
+            Descripcion = descripcion;
+            Icono = icono;
         }
     }
 }

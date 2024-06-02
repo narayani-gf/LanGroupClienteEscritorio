@@ -67,13 +67,12 @@ namespace LanGroupClienteEscritorio.Vista
         private async void CargarDatosSolicitud(Solicitud solicitud, string usuarioSolicitante)
         {
             this.solicitud = solicitud;
-            //TODO obtener los datos de la solicitud del usuario que el administrador está revisando.
             labelSolicitudDe.Content = "Solicitud de " + usuarioSolicitante;
             labelNombreArchivo.Content = "TODO";
-            Idioma idiomaSolicitud = await IdiomaServicio.ObtenerIdiomaPorId(solicitud.idIdioma);
-            labelIdioma.Content = idiomaSolicitud.nombre;
-            textBoxRazon.Text = solicitud.motivo;
-            textBoxTipoContenido.Text = solicitud.contenido;
+            Idioma idiomaSolicitud = await IdiomaServicio.ObtenerIdiomaPorId(solicitud.IdIdioma);
+            labelIdioma.Content = idiomaSolicitud.Nombre;
+            textBoxRazon.Text = solicitud.Motivo;
+            textBoxTipoContenido.Text = solicitud.Contenido;
         }
 
         private void AgregarConstancia(object sender, RoutedEventArgs e)

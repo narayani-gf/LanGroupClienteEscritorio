@@ -88,7 +88,7 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    solicitud.estado = estado;
+                    solicitud.Estado = estado;
                     var httpMensaje = new HttpRequestMessage()
                     {
                         Content = new StringContent(JsonConvert.SerializeObject(solicitud), Encoding.UTF8, "application/json"),

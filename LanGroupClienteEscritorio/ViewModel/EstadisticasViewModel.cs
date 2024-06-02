@@ -57,7 +57,7 @@ namespace LanGroupClienteEscritorio.ViewModel
 
             foreach (Publicacion publicacion in publicaciones)
             {
-                fechas.Add(publicacion.fecha);
+                fechas.Add(publicacion.Fecha);
             }
 
             List<int> publicacionesPorMes = new List<int>();

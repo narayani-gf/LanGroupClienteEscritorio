@@ -16,25 +16,25 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     public class ArchivoMultimedia
     {
         [JsonProperty("id")]
-        public string id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("publicacionid")]
-        public string idPublicacion { get; set; }
+        public string IdPublicacion { get; set; }
 
         [JsonProperty("nombre")]
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [JsonProperty("mime")]
-        public string mime { get; set; }
+        public string Mime { get; set; }
 
         [JsonProperty("tamanio")]
-        public int tamanio { get; set; }
+        public int Tamanio { get; set; }
 
         [JsonProperty("indb")]
-        public bool enBaseDatos { get; set; }
+        public bool EnBaseDatos { get; set; }
 
         [JsonProperty("archivo")]
-        public byte[] archivo { get; set; }
+        public byte[] Archivo { get; set; }
 
         public ArchivoMultimedia()
         {
@@ -42,13 +42,13 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 
         public ArchivoMultimedia(string id, string idPublicacion, string nombre, string mime, int tamanio, bool enBaseDatos, byte[] archivo)
         {
-            this.id = id;
-            this.idPublicacion = idPublicacion;
-            this.nombre = nombre;
-            this.mime = mime;
-            this.tamanio = tamanio;
-            this.enBaseDatos = enBaseDatos;
-            this.archivo = archivo;
+            Id = id;
+            IdPublicacion = idPublicacion;
+            Nombre = nombre;
+            Mime = mime;
+            Tamanio = tamanio;
+            EnBaseDatos = enBaseDatos;
+            Archivo = archivo;
         }
     }
 }

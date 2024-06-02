@@ -11,31 +11,31 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     public class Colaborador
     {
         [JsonProperty("id")] 
-        public string id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("usuario")] 
-        public string usuario { get; set; }
+        public string Usuario { get; set; }
 
         [JsonProperty("correo")] 
-        public string correo { get; set; }
+        public string Correo { get; set; }
 
         [JsonProperty("contrasenia")] 
-        public string contrasenia { get; set; }
+        public string Contrasenia { get; set; }
 
         [JsonProperty("nombre")] 
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [JsonProperty("apellido")] 
-        public string apellido { get; set; }
+        public string Apellido { get; set; }
 
         [JsonProperty("descripcion")]
-        public string descripcion { get; set;}
+        public string Descripcion { get; set;}
 
         [JsonProperty("rolid")]
-        public string idRol { get; set; }
+        public string IdRol { get; set; }
 
         [JsonProperty("icono")]
-        public string icono { get; set; }
+        public string Icono { get; set; }
 
         public Colaborador()
         {
@@ -44,15 +44,15 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 
         public Colaborador(string id, string usuario, string correo, string contrasenia, string nombre, string apellido, string descripcion, string idRol, string icono)
         {
-            this.id = id;
-            this.usuario = usuario;
-            this.correo = correo;
-            this.contrasenia = contrasenia;
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.descripcion = descripcion;
-            this.idRol = idRol;
-            this.icono = icono;
+            Id = id;
+            Usuario = usuario;
+            Correo = correo;
+            Contrasenia = contrasenia;
+            Nombre = nombre;
+            Apellido = apellido;
+            Descripcion = descripcion;
+            IdRol = idRol;
+            Icono = icono;
         }
     }
 }

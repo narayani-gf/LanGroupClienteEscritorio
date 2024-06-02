@@ -90,9 +90,9 @@ namespace LanGroupClienteEscritorio.Servicio
                     
                     foreach(Rol rol in roles)
                     {
-                        if (rol.nombre.Equals(nombreRol, StringComparison.OrdinalIgnoreCase))
+                        if (rol.Nombre.Equals(nombreRol, StringComparison.OrdinalIgnoreCase))
                         {
-                            colaborador.idRol = rol.id;
+                            colaborador.IdRol = rol.Id;
                         }
                     }
 

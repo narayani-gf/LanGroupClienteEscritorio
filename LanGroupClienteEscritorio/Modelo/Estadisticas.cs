@@ -15,13 +15,13 @@ namespace LanGroupClienteEscritorio.Modelo
      */
     internal class Estadisticas
     {
-        public int totalPublicaciones { get; set; }
-        public string mes { get; set; }
+        public int TotalPublicaciones { get; set; }
+        public string Mes { get; set; }
 
-        public Estadisticas(int totalPublicaciones, string mes)
+        public Estadisticas(int TotalPublicaciones, string Mes)
         {
-            this.totalPublicaciones = totalPublicaciones;
-            this.mes = mes;
+            this.TotalPublicaciones = TotalPublicaciones;
+            this.Mes = Mes;
         }
     }
 }

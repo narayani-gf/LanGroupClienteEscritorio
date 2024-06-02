@@ -36,7 +36,7 @@ namespace LanGroupClienteEscritorio.ViewModel
                 List<Solicitud> solicitudesPendientes = new List<Solicitud>();
                 foreach (Solicitud solicitud in solicitudes)
                 {
-                    if (solicitud.estado.Equals("pendiente", StringComparison.OrdinalIgnoreCase))
+                    if (solicitud.Estado.Equals("pendiente", StringComparison.OrdinalIgnoreCase))
                     {
                         solicitudesPendientes.Add(solicitud);
                     }
@@ -47,9 +47,9 @@ namespace LanGroupClienteEscritorio.ViewModel
 
                 foreach(Colaborador colaborador in colaboradores)
                 {
-                    for(int i = 0; i < solicitudesPendientes.Count; i++)
+                    foreach(Solicitud solicitudPendiente in solicitudesPendientes)
                     {
-                        if (colaborador.id.Equals(solicitudesPendientes[i].idColaborador, StringComparison.OrdinalIgnoreCase))
+                        if(colaborador.Id.Equals(solicitudPendiente.IdColaborador, StringComparison.OrdinalIgnoreCase))
                         {
                             colaboradoresConSolicitudPendiente.Add(colaborador);
                         }

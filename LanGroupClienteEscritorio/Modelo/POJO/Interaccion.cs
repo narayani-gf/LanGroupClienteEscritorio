@@ -16,22 +16,22 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     public class Interaccion
     {
         [JsonProperty("id")]
-        public string id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("colaboradorid")]
-        public string idColaborador { get; set; }
+        public string IdColaborador { get; set; }
 
         [JsonProperty("publicacionid")]
-        public string idPublicacion { get; set; }
+        public string IdPublicacion { get; set; }
 
         [JsonProperty("valoracion")]
-        public int valoracion { get; set; }
+        public int Valoracion { get; set; }
 
         [JsonProperty("comentario")]
-        public string comentario { get; set; }
+        public string Comentario { get; set; }
 
         [JsonProperty("fecha")]
-        public DateTime fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
         public Interaccion()
         {
@@ -39,12 +39,12 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 
         public Interaccion(string id, string idColaborador, string idPublicacion, int valoracion, string comentario, DateTime fecha)
         {
-            this.id = id;
-            this.idColaborador = idColaborador;
-            this.idPublicacion = idPublicacion;
-            this.valoracion = valoracion;
-            this.comentario = comentario;
-            this.fecha = fecha;
+            Id = id;
+            IdColaborador = idColaborador;
+            IdPublicacion = idPublicacion;
+            Valoracion = valoracion;
+            Comentario = comentario;
+            Fecha = fecha;
         }
     }
 }

@@ -28,12 +28,12 @@ namespace LanGroupClienteEscritorio.ViewModel
 
         private async void obtenerInstructores()
         {
-            List<Colaborador> colaboradoresApi = await ColaboradorServicio.ObtenerInstructores();
+            List<Colaborador> colaboradores = await ColaboradorServicio.ObtenerInstructores();
 
-            if( colaboradoresApi != null )
+            if(colaboradores != null )
             {
                 instructores = new ObservableCollection<Colaborador>();
-                foreach (Colaborador instructor in colaboradoresApi)
+                foreach (Colaborador instructor in colaboradores)
                 {
                     instructores.Add(instructor);
                 }
