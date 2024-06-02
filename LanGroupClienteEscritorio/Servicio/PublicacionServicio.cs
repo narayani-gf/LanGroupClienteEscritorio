@@ -1,19 +1,23 @@
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
+using LanGroupClienteEscritorio.Modelos;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using LanGroupClienteEscritorio.Modelo;
-using Newtonsoft.Json;
 
 namespace LanGroupClienteEscritorio.Servicio
 {
     public class PublicacionServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "publicaciones");
-      
+        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
+
         public static async Task<List<Publicacion>> ObtenerPublicacionesPorColaborador(string idUsuario)
         {
             List<Publicacion> publicaciones = new List<Publicacion>();
@@ -21,7 +25,15 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"/colaborador?={idUsuario}");
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL + $"/colaborador?={idUsuario}")
+                    };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
 
                     if (httpResponseMessage != null)
                     {
@@ -30,6 +42,7 @@ namespace LanGroupClienteEscritorio.Servicio
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
                             publicaciones = JsonConvert.DeserializeObject<List<Publicacion>>(json);
                         }
+
                     }
                     else
                     {
