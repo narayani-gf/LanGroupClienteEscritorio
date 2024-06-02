@@ -86,6 +86,7 @@
     <Compile Include="Servicio\SolicitudServicio.cs" />
     <Compile Include="Utils\AdministrarNavegacion.cs" />
     <Compile Include="ViewModel\EstadisticasViewModel.cs" />
+    <Compile Include="ViewModel\IdiomasViewModel.cs" />
     <Compile Include="ViewModel\InstructoresViewModel.cs" />
     <Compile Include="ViewModel\SolicitudesPendientesViewModel.cs" />
     <Compile Include="Vista\GUIAnadirInteraccion.xaml.cs">
