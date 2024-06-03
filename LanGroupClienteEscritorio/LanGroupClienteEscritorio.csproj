@@ -230,6 +230,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="proto\archivos.proto" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
