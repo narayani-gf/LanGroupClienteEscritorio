@@ -109,7 +109,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Cliente gRPC\Cliente.cs" />
     <Compile Include="Modelo\POJO\Auth.cs" />
     <Compile Include="Modelo\POJO\Estadisticas.cs" />
     <Compile Include="Modelo\POJO\ArchivoMultimedia.cs" />
