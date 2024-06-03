@@ -1,4 +1,5 @@
 using LanGroupClienteEscritorio.Modelo.POJO;
+using LanGroupClienteEscritorio.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -45,11 +46,13 @@ namespace LanGroupClienteEscritorio.Servicio
                 }
                 catch (HttpRequestException ex)
                 {
+                    Logger.Log(ex);
                     instructores = null;
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch (JsonException ex)
                 {
+                    Logger.Log(ex);
                     instructores = null;
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
@@ -85,11 +88,13 @@ namespace LanGroupClienteEscritorio.Servicio
                 }
                 catch (HttpRequestException ex)
                 {
+                    Logger.Log(ex);
                     colaboradores = null;
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch(JsonException ex)
                 {
+                    Logger.Log(ex);
                     colaboradores = null;
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
@@ -141,10 +146,12 @@ namespace LanGroupClienteEscritorio.Servicio
                 }
                 catch (HttpRequestException ex)
                 {
+                    Logger.Log(ex);
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch(JsonException e)
                 {
+                    Logger.Log(ex);
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
@@ -188,10 +195,12 @@ namespace LanGroupClienteEscritorio.Servicio
                 }
                 catch (HttpRequestException ex)
                 {
+                    Logger.Log(ex);
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch (JsonException ex)
                 {
+                    Logger.Log(ex);
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
             }
