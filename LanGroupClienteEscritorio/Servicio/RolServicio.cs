@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,6 +39,20 @@ namespace LanGroupClienteEscritorio.Servicio
 
                     if (httpResponseMessage != null)
                     {
+                        if (httpResponseMessage.Headers.Contains("Set-Authorization"))
+                        {
+                            IEnumerable<string> valores;
+
+                            if (httpResponseMessage.Headers.TryGetValues("Set-Authorization", out valores))
+                            {
+                                string nuevoToken = valores.FirstOrDefault();
+                                if (!string.IsNullOrEmpty(nuevoToken))
+                                {
+                                    GuardarToken(nuevoToken);
+                                }
+                            }
+                        }
+
                         if (httpResponseMessage.IsSuccessStatusCode)
                         {
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
@@ -66,6 +81,15 @@ namespace LanGroupClienteEscritorio.Servicio
             }
 
             return (roles, codigo);
+        }
+
+        private static void GuardarToken(string jwt)
+        {
+            Configuration configuration = ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location);
+            KeyValueConfigurationElement token = configuration.AppSettings.Settings["TOKEN"];
+            token.Value = jwt;
+            configuration.Save();
+            ConfigurationManager.RefreshSection("appSettings");
         }
     }
 }

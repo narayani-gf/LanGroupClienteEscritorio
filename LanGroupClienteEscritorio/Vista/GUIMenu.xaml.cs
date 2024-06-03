@@ -40,6 +40,7 @@ namespace LanGroupClienteEscritorio.Vista
         private void BtnInstructor_Click(object sender, RoutedEventArgs e)
         {
             GUISolicitudInstructor gUIInstructor = new GUISolicitudInstructor();
+            //gUIInstructor.IniciarVentanaColaborador(Usuario);
             NavigationService.Navigate(gUIInstructor);
         }
 
@@ -52,6 +53,7 @@ namespace LanGroupClienteEscritorio.Vista
         private void BtnEstadisticas_Click(object sender, RoutedEventArgs e)
         {
             GUIEstadisticas gUIEstadisticas = new GUIEstadisticas();
+            //gUIEstadisticas.IniciarVentana(Usuario);
             NavigationService.Navigate(gUIEstadisticas);
         }
 
