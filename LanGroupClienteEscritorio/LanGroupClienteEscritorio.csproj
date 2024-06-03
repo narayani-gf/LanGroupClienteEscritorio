@@ -36,6 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Protobuf, Version=3.27.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
@@ -120,6 +121,7 @@
     <Compile Include="Modelo\POJO\Rol.cs" />
     <Compile Include="Modelo\POJO\Solicitud.cs" />
     <Compile Include="Modelo\POJO\Response.cs" />
+    <Compile Include="proto\ClienteGrpc.cs" />
     <Compile Include="Servicio\AuthServicio.cs" />
     <Compile Include="Servicio\ColaboradorServicio.cs" />
     <Compile Include="Servicio\PublicacionServicio.cs" />
@@ -273,7 +275,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="proto\archivos.proto" />
+    <Protobuf Include="proto\archivos.proto" GrpcServices="Client"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

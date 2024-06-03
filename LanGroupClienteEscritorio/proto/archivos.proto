@@ -7,7 +7,6 @@ message DescargarArchivoRequest {
 
 message DescargarArchivoResponse {
   oneof request {
-    // string archivoid = 1;
     string nombre = 1;
     bytes archivo = 2;
   }
