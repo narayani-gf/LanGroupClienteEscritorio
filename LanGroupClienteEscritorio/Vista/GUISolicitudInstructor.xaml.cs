@@ -1,5 +1,7 @@
-﻿using LanGroupClienteEscritorio.Modelo;
+﻿using Grpc.Core;
+using LanGroupClienteEscritorio.Modelo;
 using LanGroupClienteEscritorio.Modelo.POJO;
+using LanGroupClienteEscritorio.proto;
 using LanGroupClienteEscritorio.Servicio;
 using LanGroupClienteEscritorio.Utils;
 using LanGroupClienteEscritorio.ViewModel;
@@ -26,6 +28,9 @@ namespace LanGroupClienteEscritorio.Vista
     {
         private Response Usuario;
         private Solicitud Solicitud;
+
+        private static readonly int GRPC_PORT = 3300;
+        private static readonly string GRPC_URL = "http://localhost:" + GRPC_PORT;
 
         public GUISolicitudInstructor()
         {
@@ -86,7 +91,15 @@ namespace LanGroupClienteEscritorio.Vista
             {
                 if(openFileDialog.FileName != string.Empty)
                 {
-                    Solicitud.Constancia = File.ReadAllBytes(openFileDialog.FileName);
+                    FileInfo file = new FileInfo(openFileDialog.FileName);
+                    string nombreArchivo = file.Name;
+                    string extension = file.Extension;
+                    byte[] bytesArchivo = File.ReadAllBytes(openFileDialog.FileName);
+                    Solicitud.Constancia = bytesArchivo;
+
+                    ClienteGrpc clienteGrpc = new ClienteGrpc(GRPC_URL);
+                    await clienteGrpc.SubirConstancia("uploads/" + nombreArchivo + extension, bytesArchivo);
+
                     int codigo = await SolicitudServicio.GuardarSolicitud(Solicitud);
                     if(codigo == 200)
                     {
@@ -99,6 +112,7 @@ namespace LanGroupClienteEscritorio.Vista
                 }
                 else
                 {
+                    Solicitud.Constancia = null;
                     MessageBox.Show("Debe seleccionar un archivo.", "Archivo no seleccionado", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
@@ -107,18 +121,23 @@ namespace LanGroupClienteEscritorio.Vista
         private void DescargarConstancia(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if(DialogResult.OK == folderBrowserDialog.ShowDialog())
+            if (DialogResult.OK == folderBrowserDialog.ShowDialog())
             {
-                if(folderBrowserDialog.SelectedPath != string.Empty)
+                if (folderBrowserDialog.SelectedPath != string.Empty)
                 {
+                    //TODO obtener desde la api                
+                    //ClienteGrpc clienteGrpc = new ClienteGrpc(GRPC_URL);
+                    //await clienteGrpc.DescargarConstancia("uploads/", folderBrowserDialog.SelectedPath);
+
                     File.WriteAllBytes(folderBrowserDialog.SelectedPath + ".pdf", Solicitud.Constancia);
+
                     MessageBox.Show("La solicitud ha sido descargada en " + folderBrowserDialog.SelectedPath + ".", "Solicitud descargada", MessageBoxButton.OK);
                 }
                 else
                 {
                     MessageBox.Show("Debe seleccionar una carpeta de destino.", "Carpeta no seleccionada", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-                
+
             }
         }
 
