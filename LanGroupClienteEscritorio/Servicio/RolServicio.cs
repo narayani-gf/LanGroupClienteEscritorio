@@ -16,7 +16,7 @@ namespace LanGroupClienteEscritorio.Servicio
     public class RolServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "roles");
-        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
+        private static string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
         public static async Task<(List<Rol>, int)> ObtenerRoles()
         {
@@ -49,6 +49,7 @@ namespace LanGroupClienteEscritorio.Servicio
                                 if (!string.IsNullOrEmpty(nuevoToken))
                                 {
                                     GuardarToken(nuevoToken);
+                                    TOKEN = nuevoToken;
                                 }
                             }
                         }

@@ -15,7 +15,7 @@ namespace LanGroupClienteEscritorio.Servicio
     public class PublicacionServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "publicaciones");
-        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
+        private static string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
         public static async Task<(List<Publicacion>, int)> ObtenerPublicacionesPorColaborador(string idUsuario)
         {
@@ -47,6 +47,7 @@ namespace LanGroupClienteEscritorio.Servicio
                                 if (!string.IsNullOrEmpty(nuevoToken))
                                 {
                                     GuardarToken(nuevoToken);
+                                    TOKEN = nuevoToken;
                                 }
                             }
                         }

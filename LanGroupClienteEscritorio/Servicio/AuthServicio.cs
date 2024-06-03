@@ -2,8 +2,6 @@
 using LanGroupClienteEscritorio.Utils;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -33,6 +31,7 @@ namespace LanGroupClienteEscritorio.Servicio
 
                     if (httpResponseMessage != null)
                     {
+
                         if (httpResponseMessage.IsSuccessStatusCode)
                         {
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();

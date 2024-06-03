@@ -17,7 +17,7 @@ namespace LanGroupClienteEscritorio.Servicio
     internal class IdiomaServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "idiomas");
-        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
+        private static string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
         public static async Task<(Idioma, int)> ObtenerIdiomaPorId(string idIdioma)
         {
@@ -48,7 +48,8 @@ namespace LanGroupClienteEscritorio.Servicio
                                 string nuevoToken = valores.FirstOrDefault();
                                 if (!string.IsNullOrEmpty(nuevoToken))
                                 {
-                                    GuardarToken(nuevoToken);
+                                    GuardarToken(nuevoToken); 
+                                    TOKEN = nuevoToken;
                                 }
                             }
                         }
@@ -115,6 +116,7 @@ namespace LanGroupClienteEscritorio.Servicio
                                 if (!string.IsNullOrEmpty(nuevoToken))
                                 {
                                     GuardarToken(nuevoToken);
+                                    TOKEN = nuevoToken;
                                 }
                             }
                         }

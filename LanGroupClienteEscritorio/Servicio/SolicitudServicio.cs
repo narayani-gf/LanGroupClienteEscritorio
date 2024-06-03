@@ -17,7 +17,7 @@ namespace LanGroupClienteEscritorio.Servicio
     internal class SolicitudServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "solicitudes");
-        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
+        private static string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
         public static async Task<(List<Solicitud>, int)> ObtenerSolicitudes()
         {
@@ -50,6 +50,7 @@ namespace LanGroupClienteEscritorio.Servicio
                                 if (!string.IsNullOrEmpty(nuevoToken))
                                 {
                                     GuardarToken(nuevoToken);
+                                    TOKEN = nuevoToken;
                                 }
                             }
                         }
@@ -116,6 +117,7 @@ namespace LanGroupClienteEscritorio.Servicio
                                 if (!string.IsNullOrEmpty(nuevoToken))
                                 {
                                     GuardarToken(nuevoToken);
+                                    TOKEN = nuevoToken;
                                 }
                             }
                         }
@@ -182,6 +184,7 @@ namespace LanGroupClienteEscritorio.Servicio
                                 if (!string.IsNullOrEmpty(nuevoToken))
                                 {
                                     GuardarToken(nuevoToken);
+                                    TOKEN = nuevoToken;
                                 }
                             }
                         }
@@ -241,6 +244,7 @@ namespace LanGroupClienteEscritorio.Servicio
                                 if (!string.IsNullOrEmpty(nuevoToken))
                                 {
                                     GuardarToken(nuevoToken);
+                                    TOKEN = nuevoToken;
                                 }
                             }
                         }

@@ -16,7 +16,7 @@ namespace LanGroupClienteEscritorio.Servicio
     public class ColaboradorServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "colaboradores");
-        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
+        private static string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
         public static async Task<(List<Colaborador>, int)> ObtenerInstructores()
         {
@@ -27,9 +27,17 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL + $"?rol={rol}");
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL + $"?rol={rol}")
+                    };
 
-                    if(httpResponseMessage != null)
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
+
+                    if (httpResponseMessage != null)
                     {
                         if (httpResponseMessage.Headers.Contains("Set-Authorization"))
                         {
@@ -41,6 +49,7 @@ namespace LanGroupClienteEscritorio.Servicio
                                 if (!string.IsNullOrEmpty(nuevoToken))
                                 {
                                     GuardarToken(nuevoToken);
+                                    TOKEN = nuevoToken;
                                 }
                             }
                         }
@@ -84,8 +93,17 @@ namespace LanGroupClienteEscritorio.Servicio
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpCliente.GetAsync(URL);
-                    if(httpResponseMessage != null)
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL)
+                    };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
+
+                    if (httpResponseMessage != null)
                     {
                         if (httpResponseMessage.Headers.Contains("Set-Authorization"))
                         {
@@ -97,6 +115,7 @@ namespace LanGroupClienteEscritorio.Servicio
                                 if (!string.IsNullOrEmpty(nuevoToken))
                                 {
                                     GuardarToken(nuevoToken);
+                                    TOKEN = nuevoToken;
                                 }
                             }
                         }
@@ -158,6 +177,8 @@ namespace LanGroupClienteEscritorio.Servicio
                             RequestUri = new Uri(URL)
                         };
 
+                        httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
                         HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
 
                         if (httpResponseMessage != null)
@@ -172,6 +193,7 @@ namespace LanGroupClienteEscritorio.Servicio
                                     if (!string.IsNullOrEmpty(nuevoToken))
                                     {
                                         GuardarToken(nuevoToken);
+                                        TOKEN = nuevoToken;
                                     }
                                 }
                             }
@@ -233,6 +255,7 @@ namespace LanGroupClienteEscritorio.Servicio
                                 if (!string.IsNullOrEmpty(nuevoToken))
                                 {
                                     GuardarToken(nuevoToken);
+                                    TOKEN = nuevoToken;
                                 }
                             }
                         }
@@ -272,5 +295,4 @@ namespace LanGroupClienteEscritorio.Servicio
             ConfigurationManager.RefreshSection("appSettings");
         }
     }
-}
 }

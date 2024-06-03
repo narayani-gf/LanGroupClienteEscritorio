@@ -11,7 +11,7 @@ namespace LanGroupClienteEscritorio.Servicio
     public class InteraccionServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "interacciones");
-        private static readonly string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
+        private static string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
 
         private static void GuardarToken(string jwt)
         {
