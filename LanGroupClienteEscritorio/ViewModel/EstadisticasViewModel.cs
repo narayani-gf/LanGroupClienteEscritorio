@@ -26,6 +26,7 @@ namespace LanGroupClienteEscritorio.ViewModel
         public EstadisticasViewModel(string correo) 
         {
             Correo = correo;
+            Estadisticas = null;
             ObtenerPublicaciones();
         }
 
@@ -35,6 +36,7 @@ namespace LanGroupClienteEscritorio.ViewModel
 
             if(colaborador != null)
             {
+                Console.WriteLine(colaborador.Id);
                 (Publicaciones, codigo) = await PublicacionServicio.ObtenerPublicacionesPorColaborador(colaborador.Id);
                 if (Publicaciones != null)
                 {

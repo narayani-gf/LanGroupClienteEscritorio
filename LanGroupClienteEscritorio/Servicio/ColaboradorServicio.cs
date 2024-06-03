@@ -149,7 +149,7 @@ namespace LanGroupClienteEscritorio.Servicio
                     Logger.Log(ex);
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
-                catch(JsonException e)
+                catch(JsonException ex)
                 {
                     Logger.Log(ex);
                     codigo = (int)HttpStatusCode.InternalServerError;

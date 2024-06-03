@@ -30,5 +30,9 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
             Id = id;
             Nombre = nombre;
         }
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

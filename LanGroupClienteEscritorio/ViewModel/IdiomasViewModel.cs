@@ -29,7 +29,7 @@ namespace LanGroupClienteEscritorio.ViewModel
         {
             (List<Idioma> idiomasApi, int codigo) = await IdiomaServicio.ObtenerIdiomas();
 
-            if(Idiomas != null)
+            if(idiomasApi != null)
             {
                 Idiomas = new ObservableCollection<Idioma>();
 

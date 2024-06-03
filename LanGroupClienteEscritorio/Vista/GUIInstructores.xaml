@@ -58,7 +58,7 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Usuarios" Binding="{Binding usuario}" Width="*" FontSize="16"/>
+                <DataGridTextColumn Header="Usuarios" Binding="{Binding Usuario}" Width="*" FontSize="16"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -82,7 +82,7 @@
             </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Usuarios" Binding="{Binding usuario}" Width="*" FontSize="16"/>
+                <DataGridTextColumn Header="Usuarios" Binding="{Binding Usuario}" Width="*" FontSize="16"/>
             </DataGrid.Columns>
         </DataGrid>
 

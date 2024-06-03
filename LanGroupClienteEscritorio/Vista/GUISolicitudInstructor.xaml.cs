@@ -1,11 +1,12 @@
 ﻿using Grpc.Core;
 using LanGroupClienteEscritorio.Modelo;
 using LanGroupClienteEscritorio.Modelo.POJO;
-using LanGroupClienteEscritorio.proto;
+//using LanGroupClienteEscritorio.proto;
 using LanGroupClienteEscritorio.Servicio;
 using LanGroupClienteEscritorio.Utils;
 using LanGroupClienteEscritorio.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,6 +41,7 @@ namespace LanGroupClienteEscritorio.Vista
         public void IniciarVentanaColaborador(Response usuario)
         {
             Usuario = usuario;
+            Solicitud = new Solicitud();
             CargarComboBox();
         }
 
@@ -76,10 +78,15 @@ namespace LanGroupClienteEscritorio.Vista
             textBoxTipoContenido.Text = solicitud.Contenido;
         }
 
-        private void CargarComboBox()
+        private async void CargarComboBox()
         {
-            IdiomasViewModel idiomasViewModel = new IdiomasViewModel();
-            comboBoxIdioma.ItemsSource = idiomasViewModel.Idiomas;
+            (List<Idioma> idiomas, int codigo) = await IdiomaServicio.ObtenerIdiomas();
+
+            foreach(Idioma idioma in idiomas)
+            {
+                comboBoxIdioma.Items.Add(idioma);
+            }
+            
             comboBoxIdioma.SelectedIndex = 0;
         }
 
@@ -93,22 +100,9 @@ namespace LanGroupClienteEscritorio.Vista
                 {
                     FileInfo file = new FileInfo(openFileDialog.FileName);
                     string nombreArchivo = file.Name;
-                    string extension = file.Extension;
+                    labelNombreArchivo.Content = nombreArchivo;
                     byte[] bytesArchivo = File.ReadAllBytes(openFileDialog.FileName);
                     Solicitud.Constancia = bytesArchivo;
-
-                    ClienteGrpc clienteGrpc = new ClienteGrpc(GRPC_URL);
-                    await clienteGrpc.SubirConstancia("uploads/" + nombreArchivo + extension, bytesArchivo);
-
-                    int codigo = await SolicitudServicio.GuardarSolicitud(Solicitud);
-                    if(codigo == 200)
-                    {
-                        MessageBox.Show("La solicitud ha sido guardada.", "Solicitud guardada", MessageBoxButton.OK);
-                    }
-                    else
-                    {
-                        MostrarMensajeError();
-                    }
                 }
                 else
                 {
@@ -146,6 +140,8 @@ namespace LanGroupClienteEscritorio.Vista
             LimpiarErrores();
             if (CamposValidos())
             {
+                //ClienteGrpc clienteGrpc = new ClienteGrpc(GRPC_URL);
+                //await clienteGrpc.SubirConstancia("uploads/" + labelNombreArchivo.Content, bytesArchivo);
                 int codigo = await SolicitudServicio.GuardarSolicitud(Solicitud);
 
                 if(codigo == 200)

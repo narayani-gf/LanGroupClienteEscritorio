@@ -42,7 +42,7 @@
                 <syncfusion:NumericalAxis/>
             </syncfusion:SfChart.SecondaryAxis>
 
-            <syncfusion:ColumnSeries x:Name="columnSeriesPublicaciones" XBindingPath="{Binding mes}" YBindingPath="{Binding totalPublicaciones}">
+            <syncfusion:ColumnSeries x:Name="columnSeriesPublicaciones" XBindingPath="{Binding Mes}" YBindingPath="{Binding TotalPublicaciones}">
 
             </syncfusion:ColumnSeries>
         </syncfusion:SfChart>
