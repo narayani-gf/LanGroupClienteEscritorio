@@ -1,4 +1,5 @@
 ﻿using LanGroupClienteEscritorio.Modelo.POJO;
+using LanGroupClienteEscritorio.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -53,11 +54,13 @@ namespace LanGroupClienteEscritorio.Servicio
                 }
                 catch (HttpRequestException ex)
                 {
+                    Logger.Log(ex);
                     idioma = null;
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch (JsonException ex)
                 {
+                    Logger.Log(ex);
                     idioma = null;
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
@@ -103,11 +106,13 @@ namespace LanGroupClienteEscritorio.Servicio
                 }
                 catch (HttpRequestException ex)
                 {
+                    Logger.Log(ex);
                     idiomas = null;
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch (JsonException ex)
                 {
+                    Logger.Log(ex);
                     idiomas = null;
                     codigo = (int)HttpStatusCode.InternalServerError; codigo = (int)HttpStatusCode.InternalServerError;
                 }
