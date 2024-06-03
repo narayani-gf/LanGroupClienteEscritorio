@@ -1,0 +1,5 @@
+﻿03/06/2024 12:55:10 a. m.: Error al enviar la solicitud.
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   en LanGroupClienteEscritorio.Servicio.AuthServicio.<IniciarSesion>d__1.MoveNext() en C:\Users\reneu\Videos\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Servicio\AuthServicio.cs:línea 32

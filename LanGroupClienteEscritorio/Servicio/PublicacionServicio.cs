@@ -1,4 +1,5 @@
 ﻿using LanGroupClienteEscritorio.Modelo;
+using LanGroupClienteEscritorio.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -50,11 +51,13 @@ namespace LanGroupClienteEscritorio.Servicio
                 }
                 catch (HttpRequestException ex)
                 {
+                    Logger.Log(ex);
                     publicaciones = null;
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
                 catch(JsonException ex)
                 {
+                    Logger.Log(ex);
                     publicaciones = null;
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }

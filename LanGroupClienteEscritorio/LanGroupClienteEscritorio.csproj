@@ -50,6 +50,9 @@
     <Reference Include="Grpc.Net.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
       <HintPath>packages\Grpc.Net.Common.2.63.0\lib\netstandard2.0\Grpc.Net.Common.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.17.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>packages\log4net.2.0.17\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -90,6 +93,7 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -124,6 +128,7 @@
     <Compile Include="Servicio\ColaboradorServicio.cs" />
     <Compile Include="Servicio\PublicacionServicio.cs" />
     <Compile Include="Utils\AdministrarNavegacion.cs" />
+    <Compile Include="Utils\logger.cs" />
     <Compile Include="Utils\SesionSingleton.cs" />
     <Compile Include="Servicio\IdiomaServicio.cs" />
     <Compile Include="Servicio\InteraccionServicio.cs" />
@@ -289,6 +294,7 @@
     <Resource Include="Vista\Recursos\Imagenes\Img-contraseña.png" />
     <Resource Include="Vista\Recursos\Imagenes\icon-estadisticas.png" />
     <Resource Include="Vista\Recursos\Imagenes\español.png" />
+    <Resource Include="Utils\log.txt" />
     <Content Include="Vista\Recursos\Imagenes\flechaDerecha.png" />
     <Content Include="Vista\Recursos\Imagenes\flechaIzquierda.png" />
     <Resource Include="Vista\Recursos\Imagenes\iconoMensaje.png" />
