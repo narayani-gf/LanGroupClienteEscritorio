@@ -3,6 +3,7 @@
   <Import Project="packages\Grpc.Tools.2.64.0\build\Grpc.Tools.props" Condition="Exists('packages\Grpc.Tools.2.64.0\build\Grpc.Tools.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <LangVersion>8.0</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0374A812-FFD9-4864-88C5-A55E6621E43F}</ProjectGuid>
@@ -120,6 +121,7 @@
     <Compile Include="Modelo\POJO\Rol.cs" />
     <Compile Include="Modelo\POJO\Solicitud.cs" />
     <Compile Include="Modelo\POJO\Response.cs" />
+    <Compile Include="proto\ClienteGrpc.cs" />
     <Compile Include="Servicio\AuthServicio.cs" />
     <Compile Include="Servicio\ColaboradorServicio.cs" />
     <Compile Include="Servicio\PublicacionServicio.cs" />
@@ -273,7 +275,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="proto\archivos.proto" />
+    <Protobuf Include="proto\archivos.proto" GrpcServices="Client"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
