@@ -4,17 +4,18 @@ using Google.Protobuf;
 using System.Threading.Tasks;
 using Grpc.Core;
 using System.IO;
-using static ArchivosService.ArchivosService;
+using static ArchivosService;
 
-namespace LanGroupClienteEscritorio.proto
+namespace LanGroupClienteEscritorio.ClienteGrpc
 {
     internal class ClienteGrpc
     {
-        private readonly ArchivosServiceClient Cliente;
-        private GrpcChannel Canal;
-        public ClienteGrpc(string url)
+        private ArchivosServiceClient Cliente;
+        private static readonly string URL = string.Concat(Properties.Resources.API_URL, "colaboradores");
+        private GrpcChannel Canal = GrpcChannel.ForAddress(URL);
+
+        public ClienteGrpc()
         {
-            Canal = GrpcChannel.ForAddress(url);
             Cliente = new ArchivosServiceClient(Canal);
         }
 
@@ -22,7 +23,10 @@ namespace LanGroupClienteEscritorio.proto
         {
             try
             {
-                using (var llamada = Cliente.descargarVideo(new ArchivosService.DescargarArchivoRequest { Nombre = nombreArchivo }))
+                using (var llamada = Cliente.descargarVideo(new DescargarArchivoRequest
+                { 
+                    Nombre = nombreArchivo 
+                }))
                 {
                     var writeStream = new MemoryStream();
                     await foreach (var response in llamada.ResponseStream.ReadAllAsync())
@@ -47,7 +51,7 @@ namespace LanGroupClienteEscritorio.proto
             {
                 using (var call = Cliente.subirVideo())
                 {
-                    await call.RequestStream.WriteAsync(new ArchivosService.DescargarArchivoResponse
+                    await call.RequestStream.WriteAsync(new DescargarArchivoResponse
                     {
                         Nombre = nombreArchivo,
                         Archivo = ByteString.CopyFrom(bytesArchivo)
@@ -69,7 +73,10 @@ namespace LanGroupClienteEscritorio.proto
         {
             try
             {
-                using (var call = Cliente.descargarConstancia(new ArchivosService.DescargarArchivoRequest { Nombre = nombreArchivo }))
+                using (var call = Cliente.descargarConstancia(new DescargarArchivoRequest
+                { 
+                    Nombre = nombreArchivo 
+                }))
                 {
                     await foreach (var response in call.ResponseStream.ReadAllAsync())
                     {
@@ -97,7 +104,7 @@ namespace LanGroupClienteEscritorio.proto
             {
                 using (var call = Cliente.subirConstancia())
                 {
-                    await call.RequestStream.WriteAsync(new ArchivosService.DescargarArchivoResponse
+                    await call.RequestStream.WriteAsync(new DescargarArchivoResponse
                     {
                         Nombre = nombreArchivo,
                         Archivo = ByteString.CopyFrom(bytesArchivo)

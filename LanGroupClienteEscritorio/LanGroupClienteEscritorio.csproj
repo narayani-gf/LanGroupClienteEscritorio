@@ -95,6 +95,7 @@
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -125,6 +126,9 @@
     <Compile Include="Modelo\POJO\Rol.cs" />
     <Compile Include="Modelo\POJO\Solicitud.cs" />
     <Compile Include="Modelo\POJO\Response.cs" />
+    <Compile Include="ClienteGrpc\ClienteGrpc.cs" />
+    <Compile Include="obj\Debug\proto\Archivos.cs" />
+    <Compile Include="obj\Debug\proto\ArchivosGrpc.cs" />
     <Compile Include="Servicio\AuthServicio.cs" />
     <Compile Include="Servicio\ColaboradorServicio.cs" />
     <Compile Include="Servicio\PublicacionServicio.cs" />
@@ -274,6 +278,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="appsetings.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
