@@ -142,8 +142,6 @@
     <Compile Include="Servicio\SolicitudServicio.cs" />
     <Compile Include="ViewModel\EstadisticasViewModel.cs" />
     <Compile Include="ViewModel\IdiomasViewModel.cs" />
-    <Compile Include="ViewModel\InstructoresViewModel.cs" />
-    <Compile Include="ViewModel\SolicitudesPendientesViewModel.cs" />
     <Compile Include="Vista\GUICrearGrupo.xaml.cs">
       <DependentUpon>GUICrearGrupo.xaml</DependentUpon>
     </Compile>

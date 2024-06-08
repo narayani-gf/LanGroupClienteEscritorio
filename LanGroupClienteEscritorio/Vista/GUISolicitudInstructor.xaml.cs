@@ -1,10 +1,7 @@
-﻿using Grpc.Core;
-using LanGroupClienteEscritorio.Modelo;
-using LanGroupClienteEscritorio.Modelo.POJO;
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
 //using LanGroupClienteEscritorio.proto;
 using LanGroupClienteEscritorio.Servicio;
 using LanGroupClienteEscritorio.Utils;
-using LanGroupClienteEscritorio.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,7 +24,7 @@ namespace LanGroupClienteEscritorio.Vista
      */
     public partial class GUISolicitudInstructor : Page
     {
-        private Response Usuario;
+        private Colaborador Usuario;
         private Solicitud Solicitud;
 
         private static readonly int GRPC_PORT = 3300;
@@ -38,14 +35,14 @@ namespace LanGroupClienteEscritorio.Vista
             InitializeComponent();
         } 
 
-        public void IniciarVentanaColaborador(Response usuario)
+        public void IniciarVentanaColaborador(Colaborador usuario)
         {
             Usuario = usuario;
             Solicitud = new Solicitud();
             CargarComboBox();
         }
 
-        public void IniciarVentanaAdministrador(Response usuario, Solicitud solicitud, string usuarioSolicitante)
+        public void IniciarVentanaAdministrador(Colaborador usuario, Solicitud solicitud, string usuarioSolicitante)
         {
             Usuario = usuario;
             ModificarVisibilidadObjetos();
@@ -142,6 +139,14 @@ namespace LanGroupClienteEscritorio.Vista
             {
                 //ClienteGrpc clienteGrpc = new ClienteGrpc(GRPC_URL);
                 //await clienteGrpc.SubirConstancia("uploads/" + labelNombreArchivo.Content, bytesArchivo);
+
+                //Solicitud.IdColaborador = Usuario.Id;
+                Idioma idioma = comboBoxIdioma.SelectedItem as Idioma;
+                Solicitud.IdIdioma = idioma.Id;
+                Solicitud.Motivo = textBoxRazon.Text;
+                Solicitud.Contenido = textBoxTipoContenido.Text;
+                Solicitud.Estado = "Pendiente";
+
                 int codigo = await SolicitudServicio.GuardarSolicitud(Solicitud);
 
                 if(codigo == 200)
@@ -155,17 +160,22 @@ namespace LanGroupClienteEscritorio.Vista
             }
         }
 
-        private void Regresar(object sender, MouseButtonEventArgs e)
-        {            
-            if (Usuario.Rol.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
+        private async void Regresar(object sender, MouseButtonEventArgs e)
+        {
+            (Rol rol, int codigo) = await RolServicio.ObtenerRolPorId(Usuario.IdRol);
+
+            if(rol != null && codigo == 200)
             {
-                GUIInstructores guiInstructores = new GUIInstructores();
-                guiInstructores.IniciarVentanaAgregarInstructor(Usuario);
-                NavigationService.Navigate(guiInstructores);
-            }
-            else
-            {
-                AdministrarNavegacion.MostrarMenuPrincipal();
+                if(rol.Nombre.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
+                {
+                    GUIInstructores guiInstructores = new GUIInstructores();
+                    guiInstructores.IniciarVentanaAgregarInstructor(Usuario);
+                    NavigationService.Navigate(guiInstructores);
+                }
+                else
+                {
+                    AdministrarNavegacion.MostrarMenuPrincipal();
+                }
             }
         }
 

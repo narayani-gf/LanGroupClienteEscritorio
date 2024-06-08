@@ -1,7 +1,9 @@
-﻿using LanGroupClienteEscritorio.Modelo;
-using LanGroupClienteEscritorio.Modelo.POJO;
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
 using LanGroupClienteEscritorio.Servicio;
-using LanGroupClienteEscritorio.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -16,24 +18,24 @@ namespace LanGroupClienteEscritorio.Vista
      */
     public partial class GUIInstructores : Page
     {
-        private Response Usuario;
+        private Colaborador Usuario;
 
         public GUIInstructores()
         {
             InitializeComponent();
         }
 
-        public void IniciarVentanaAgregarInstructor(Response usuario)
+        public void IniciarVentanaAgregarInstructor(Colaborador usuario)
         {
             Usuario = usuario;
-            CargarDataGridAgregacion();
+            CargarDataGridAgregacionAsync();
         }
 
-        public void IniciarVentanaEliminarInstructor(Response usuario)
+        public void IniciarVentanaEliminarInstructor(Colaborador usuario)
         {
             Usuario = usuario;
             ModificarVisibilidadObjetos();
-            CargarDataGridEliminacion();
+            CargarDataGridEliminacionAsync();
         }
 
         private async void AceptarSolicitud(object sender, RoutedEventArgs e)
@@ -169,13 +171,50 @@ namespace LanGroupClienteEscritorio.Vista
             dataGridEliminarInstructor.Visibility= Visibility.Visible;
         }
 
-        private void CargarDataGridAgregacion()
+        private async void CargarDataGridAgregacionAsync()
         {
-            SolicitudesPendientesViewModel solicitudesPendientes = new SolicitudesPendientesViewModel();
+            (List<Solicitud> solicitudes, int codigoSolicitudes) = await SolicitudServicio.ObtenerSolicitudes();
 
-            if (solicitudesPendientes.ColaboradoresConSolicitudPendiente != null)
+            if(solicitudes != null)
             {
-                dataGridAgregarInstructor.ItemsSource = solicitudesPendientes.ColaboradoresConSolicitudPendiente;
+                List<Solicitud> solicitudesPendientes = new List<Solicitud>();
+                foreach(Solicitud solicitud in solicitudes)
+                {
+                    if(solicitud.Estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase))
+                    {
+                        solicitudesPendientes.Add(solicitud);
+                    }
+                }
+
+                if (solicitudesPendientes.Count > 0)
+                {
+                    (List<Colaborador> colaboradores, int codigo) = await ColaboradorServicio.ObtenerColaboradores();
+
+                    if(colaboradores != null)
+                    {
+                        ObservableCollection<Colaborador> colaboradoresConSolicitudPendiente = new ObservableCollection<Colaborador>();
+
+                        for(int i = 0; i < solicitudesPendientes.Count; i++)
+                        {
+                            foreach(Colaborador colaborador in colaboradores)
+                            {
+                                if (solicitudesPendientes[i].IdColaborador.Equals(colaborador.Id))
+                                {
+                                    colaboradoresConSolicitudPendiente.Add(colaborador);
+                                }
+                            }
+                        }
+
+                        dataGridAgregarInstructor.ItemsSource = colaboradoresConSolicitudPendiente;
+                    }
+                }
+                else
+                {
+                    imagenDataGrid.Visibility = Visibility.Hidden;
+                    dataGridAgregarInstructor.Visibility = Visibility.Hidden;
+                    labelMensaje.Content = "No hay solicitudes pendientes.";
+                    labelMensaje.Visibility = Visibility.Visible;
+                }
             }
             else
             {
@@ -186,18 +225,27 @@ namespace LanGroupClienteEscritorio.Vista
             }
         }
 
-        private void CargarDataGridEliminacion()
+        private async void CargarDataGridEliminacionAsync()
         {
-            InstructoresViewModel instructores = new InstructoresViewModel();
+            (List<Colaborador> instructoresApi, int codigo) = await ColaboradorServicio.ObtenerInstructores();
 
-            if (instructores.Instructores != null)
+            if(instructoresApi != null)
             {
-                dataGridEliminarInstructor.ItemsSource = instructores.Instructores;
+                ObservableCollection<Colaborador> instructores = new ObservableCollection<Colaborador>();
+                foreach(Colaborador instructor in instructoresApi)
+                {
+                    instructores.Add(instructor);
+                }
+
+                if (instructores.Count > 0)
+                {
+                    dataGridEliminarInstructor.ItemsSource = instructores;
+                }                
             }
             else
             {
                 imagenDataGrid.Visibility = Visibility.Hidden;
-                dataGridEliminarInstructor.Visibility = Visibility.Hidden; 
+                dataGridEliminarInstructor.Visibility = Visibility.Hidden;
                 labelMensaje.Content = "No hay instructores activos.";
                 labelMensaje.Visibility = Visibility.Visible;
             }

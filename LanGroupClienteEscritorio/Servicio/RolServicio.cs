@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace LanGroupClienteEscritorio.Servicio
 {
@@ -82,6 +83,72 @@ namespace LanGroupClienteEscritorio.Servicio
             }
 
             return (roles, codigo);
+        }
+
+        public static async Task<(Rol, int)> ObtenerRolPorId(string idRol)
+        {
+            Rol rol = null;
+            int codigo = 500;
+
+            using (var httpCliente = new HttpClient())
+            {
+                try
+                {
+                    var httpMensaje = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri = new Uri(URL + $"/{idRol}")
+                    };
+
+                    httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
+
+                    if (httpResponseMessage != null)
+                    {
+                        if (httpResponseMessage.Headers.Contains("Set-Authorization"))
+                        {
+                            IEnumerable<string> valores;
+
+                            if (httpResponseMessage.Headers.TryGetValues("Set-Authorization", out valores))
+                            {
+                                string nuevoToken = valores.FirstOrDefault();
+                                if (!string.IsNullOrEmpty(nuevoToken))
+                                {
+                                    GuardarToken(nuevoToken);
+                                    TOKEN = nuevoToken;
+                                }
+                            }
+                        }
+
+                        if (httpResponseMessage.IsSuccessStatusCode)
+                        {
+                            string json = await httpResponseMessage.Content.ReadAsStringAsync();
+                            rol = JsonConvert.DeserializeObject<Rol>(json);
+                        }
+
+                        codigo = (int)httpResponseMessage.StatusCode;
+                    }
+                    else
+                    {
+                        codigo = (int)HttpStatusCode.InternalServerError;
+                    }
+                }
+                catch (HttpRequestException ex)
+                {
+                    Logger.Log(ex);
+                    rol = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
+                }
+                catch (JsonException ex)
+                {
+                    Logger.Log(ex);
+                    rol = null;
+                    codigo = (int)HttpStatusCode.InternalServerError;
+                }
+            }
+
+            return (rol, codigo);
         }
 
         private static void GuardarToken(string jwt)
