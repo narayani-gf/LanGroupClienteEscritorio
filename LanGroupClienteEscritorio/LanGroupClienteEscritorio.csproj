@@ -140,8 +140,6 @@
     <Compile Include="Servicio\PublicacionServicio.cs" />
     <Compile Include="Servicio\RolServicio.cs" />
     <Compile Include="Servicio\SolicitudServicio.cs" />
-    <Compile Include="ViewModel\EstadisticasViewModel.cs" />
-    <Compile Include="ViewModel\IdiomasViewModel.cs" />
     <Compile Include="Vista\GUICrearGrupo.xaml.cs">
       <DependentUpon>GUICrearGrupo.xaml</DependentUpon>
     </Compile>
@@ -316,7 +314,9 @@
     <Resource Include="Vista\Recursos\Imagenes\Perfiles\perfil1.png" />
     <Content Include="Vista\Recursos\Imagenes\perfilPlaceHolder.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
