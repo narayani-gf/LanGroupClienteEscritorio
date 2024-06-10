@@ -1,4 +1,5 @@
 ﻿using LanGroupClienteEscritorio.Modelo;
+using LanGroupClienteEscritorio.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace LanGroupClienteEscritorio.Vista
             InitializeComponent();
             List<Publicacion> publicaciones = ObtenerPublicaciones();
             PublicacionesListBox.ItemsSource = publicaciones;
+            SetColaborador();
         }
 
         private List<Publicacion> ObtenerPublicaciones()
@@ -54,5 +56,51 @@ namespace LanGroupClienteEscritorio.Vista
                 },
             };
         }
+
+        private void SetColaborador()
+        {
+            txtbMensajeSaludo.Text = SesionSingleton.Instance.Colaborador.Nombre.ToString() + " " + SesionSingleton.Instance.Colaborador.Apellido.ToString();
+        }
+
+        private void BtnPublicaciones_Click(object sender, RoutedEventArgs e)
+        {
+            AdministrarNavegacion.MostrarMenuPrincipal();
+        }
+
+        private void BtnIdiomas_Click(object sender, RoutedEventArgs e)
+        {
+            GUISeleccionarIdioma gUISeleccionarIdiomas = new GUISeleccionarIdioma();
+            NavigationService.Navigate(gUISeleccionarIdiomas);
+        }
+
+        private void BtnInstructor_Click(object sender, RoutedEventArgs e)
+        {
+            GUISolicitudInstructor gUIInstructor = new GUISolicitudInstructor();
+            NavigationService.Navigate(gUIInstructor);
+        }
+
+        private void BtnGrupos_Click(object sender, RoutedEventArgs e)
+        {
+            GUIGruposAprendiz gUIGruposAprendiz = new GUIGruposAprendiz();
+            NavigationService.Navigate(gUIGruposAprendiz);
+        }
+
+        private void BtnEstadisticas_Click(object sender, RoutedEventArgs e)
+        {
+            GUIEstadisticas gUIEstadisticas = new GUIEstadisticas();
+            NavigationService.Navigate(gUIEstadisticas);
+        }
+
+        private void BtnAdministrarInstructor_Click(object sender, RoutedEventArgs e)
+        {
+            GUIInstructores gUIInstructores = new GUIInstructores();
+            NavigationService.Navigate(gUIInstructores);
+        }
+
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            GUIInstructores gUIInstructores = new GUIInstructores();
+            NavigationService.Navigate(gUIInstructores);
+        }
     }
-}
+}   

@@ -12,6 +12,7 @@ namespace LanGroupClienteEscritorio.Utils
         private static SesionSingleton instance;
 
         public Colaborador Colaborador {  get; private set; }
+        public string Token { get; private set; }
 
         public static SesionSingleton Instance
         {
@@ -29,6 +30,11 @@ namespace LanGroupClienteEscritorio.Utils
         public void SetColaborador(Colaborador colaborador)
         {
             Colaborador = colaborador;
+        }
+
+        public void SetToken(string token)
+        {
+            Token = token;
         }
     }
 }

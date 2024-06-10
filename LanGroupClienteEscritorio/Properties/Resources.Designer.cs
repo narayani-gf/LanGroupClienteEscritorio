@@ -61,7 +61,7 @@ namespace LanGroupClienteEscritorio.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://localhost:3000/api/.
+        ///   Busca una cadena traducida similar a http://192.168.100.111:3000/api/.
         /// </summary>
         internal static string API_URL {
             get {
