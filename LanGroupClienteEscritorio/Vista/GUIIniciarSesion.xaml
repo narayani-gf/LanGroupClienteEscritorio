@@ -36,13 +36,17 @@
                 <Label Style="{DynamicResource LabelStyle1}" Content="¡Bienvenido de nuevo!" Foreground="White" HorizontalContentAlignment="Center"/>
                 <Label Content="Iniciar sesión" FontSize="20" FontWeight="Normal" Foreground="#7FC7D9" HorizontalContentAlignment="Center" Margin="0,0,0,10"/>
 
-                <Label Style="{DynamicResource LabelStyle2}" Content="Usuario" Foreground="White"/>
-                <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="txtUsername"/>
+                <Label Style="{DynamicResource LabelStyle2}" Content="Correo" Foreground="White"/>
+                <TextBox Style="{DynamicResource TextBoxStyle1}" GotFocus="TxtCorreo_GotFocus" LostFocus="TxtCorreo_LostFocus" x:Name="txtCorreo"/>
 
+                <TextBlock x:Name="lblCorreoError" Text="El correo debe tener el formato adecuado." Foreground="Red" Visibility="Collapsed"/>
+                
                 <Label Content="Contraseña" Style="{DynamicResource LabelStyle2}" Foreground="White"/>
-                <PasswordBox Style="{DynamicResource PasswordBoxStyle1}" x:Name="pwbContraseña"/>
+                <PasswordBox Style="{DynamicResource PasswordBoxStyle1}" GotFocus="PwbContraseña_GotFocus" x:Name="pwbContraseña"/>
 
-                <Label x:Name="lblContraseñaOlvidada" Content="¿Olvidaste tu contraseña? Recupérala aquí" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle2}" FontSize="12" Foreground="White" Cursor="Hand" MouseDown="Label_MouseDown"/>
+                <TextBlock x:Name="lblContraseniaError" TextWrapping="Wrap" Text="La contraseña debe tener de 8 a 16 caracteres. Incluyendo mayúscula, minúscula, número y carácter especial." Foreground="Red" Visibility="Collapsed"/>
+                
+                <Label x:Name="lblContraseniaOlvidada" Content="¿Olvidaste tu contraseña? Recupérala aquí" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle2}" FontSize="12" Foreground="White" Cursor="Hand" MouseDown="Label_MouseDown"/>
                 <Label x:Name="lblRegistrarCuenta" Content="Regístrate aquí" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle2}" FontSize="12" Foreground="White" Cursor="Hand" MouseLeftButtonDown="LblRegistrarCuenta_MouseLeftButtonDown"/>
 
                 <Button Style="{DynamicResource ButtonStyle1}" x:Name="btnIniciarSesion" Content="Iniciar sesión" HorizontalAlignment="Center" Padding="5" Margin="0,10,0,0" Cursor="Hand" Click="BtnIniciarSesion_Click"/>

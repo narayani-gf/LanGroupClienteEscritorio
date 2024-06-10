@@ -16,7 +16,7 @@ namespace LanGroupClienteEscritorio.Servicio
     public class ColaboradorServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "colaboradores");
-        private static string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
+        private static string TOKEN = SesionSingleton.Instance.Token;
 
         public static async Task<(List<Colaborador>, int)> ObtenerInstructores()
         {
@@ -288,11 +288,7 @@ namespace LanGroupClienteEscritorio.Servicio
 
         private static void GuardarToken(string jwt)
         {
-            Configuration configuration = ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location);
-            KeyValueConfigurationElement token = configuration.AppSettings.Settings["TOKEN"];
-            token.Value = jwt;
-            configuration.Save();
-            ConfigurationManager.RefreshSection("appSettings");
+            SesionSingleton.Instance.SetToken(jwt);
         }
     }
 }

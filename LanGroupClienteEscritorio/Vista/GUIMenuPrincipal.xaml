@@ -18,52 +18,116 @@
             <Frame HorizontalAlignment="Center" Height="445" Margin="0,105,0,0" VerticalAlignment="Top" Width="164"/>
         </Border>
 
-        <ListBox Grid.Column="1" Name="PublicacionesListBox">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Padding="10" Margin="5" Background="LightCyan">
-                        <StackPanel>
-                            <TextBlock Text="{Binding Titulo}" FontWeight="Bold" FontSize="18"/>
-                            <StackPanel Orientation="Horizontal" Margin="5">
-                                <TextBlock Text="Por: " FontWeight="Bold"/>
-                                <TextBlock Text="{Binding Colaborador}"/>
-                                <TextBlock Text="    Grupo: " FontWeight="Bold"/>
-                                <TextBlock Text="{Binding Grupo}"/>
-                            </StackPanel>
-                            <TextBlock Text="{Binding Descripcion}" Background="LightGray" Height="100"/>
-                            <StackPanel Orientation="Horizontal" Margin="5">
-                                <TextBlock Text="⭐"/>
-                                <TextBlock Text="{Binding Valoracion}"/>
-                                <TextBlock Text=" Estrellas" Margin="5,0,0,0"/>
-                            </StackPanel>
-                            <Expander Header="Ver comentarios" IsExpanded="False">
-                                <ListBox ItemsSource="{Binding Interacciones}">
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding Fecha}" FontWeight="Bold"/>
-                                                    <TextBlock Text="{Binding Colaborador}" FontWeight="Bold" Margin="10,0,0,0"/>
-                                                    <TextBlock Text="{Binding Valoracion, StringFormat=' {0} ⭐'}" Margin="10,0,0,0"/>
-                                                </StackPanel>
-                                                <TextBlock Text="{Binding Comentario}"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
-                            </Expander>
-                            <StackPanel Orientation="Horizontal" Margin="5">
-                                <TextBox Width="500" Text="Añadir comentario"/>
-                                <Button Content=">" Width="30"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Grid Grid.Column="0">
+            <Button Style="{DynamicResource ButtonStyle}" Foreground="White" HorizontalAlignment="Center" Margin="0,27,0,0" VerticalAlignment="Top" Height="35" Width="144" Click="BtnPublicaciones_Click">
+                <StackPanel Margin="-35,0,0,0" Orientation="Horizontal">
+                    <Image Source="\Vista\Recursos\Imagenes\iconoMensaje.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                    <TextBlock FontSize="14" Text="Mis Publicaciones" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+            </Button>
 
-        <Button x:Name="btnGuardar" HorizontalAlignment="Right" FontSize="15"
-        Width="150" Height="35" Margin="0,549,37,16" 
-        Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Guardar" Grid.Column="1"/>
+            <Button Style="{DynamicResource ButtonStyle}" Foreground="White" HorizontalAlignment="Center" Margin="0,66,0,0" VerticalAlignment="Top" Height="36" Width="144" Click="BtnIdiomas_Click">
+                <StackPanel Margin="-15,0,0,0" Orientation="Horizontal">
+                    <Image Source="\Vista\Recursos\Imagenes\icon-lenguaje.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                    <TextBlock FontSize="14" Text="Mis idiomas" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}" Foreground="White" HorizontalAlignment="Center" Margin="0,109,0,0" VerticalAlignment="Top" Height="32" Width="164" Click="BtnInstructor_Click">
+                <StackPanel Margin="-30,0,0,0" Orientation="Horizontal">
+                    <Image Source="\Vista\Recursos\Imagenes\icon-maestro.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                    <TextBlock FontSize="14" Text="Quiero ser instructor" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}" Foreground="White" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Height="32" Width="144" Click="BtnGrupos_Click">
+                <StackPanel Margin="-15,0,0,0" Orientation="Horizontal">
+                    <Image Source="\Vista\Recursos\Imagenes\icon-grupo.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                    <TextBlock FontSize="14" Text="Mis grupos" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}" Foreground="White" HorizontalAlignment="Center" Margin="0,191,0,0" VerticalAlignment="Top" Height="32" Width="144" Click="BtnEstadisticas_Click">
+                <StackPanel Margin="-15,0,0,0" Orientation="Horizontal">
+                    <Image Source="\Vista\Recursos\Imagenes\icon-estadisticas.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                    <TextBlock FontSize="14" Text="Estadísticas" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="144" Margin="0,232,0,0" Click="BtnAdministrarInstructor_Click">
+                <StackPanel Margin="-20,0,0,0" Orientation="Horizontal">
+                    <Image Source="\Vista\Recursos\Imagenes\icon-administrar.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                    <TextBlock FontSize="14" Text="Administrar&#x0a;Instructores" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}" Foreground="White" HorizontalAlignment="Center" Margin="0,295 2,0" VerticalAlignment="Top" Height="42" Width="144" Click="BtnSalir_Click">
+                <StackPanel Margin="-15,0,0,0" Orientation="Horizontal">
+                    <Image Source="\Vista\Recursos\Imagenes\icon-salir.png" Width="26" Height="26" Margin="0,0,5,0"/>
+                    <TextBlock FontSize="14" Text="Salir" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Column="0" x:Name="btnCrearPublicacion" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="15" Width="150" Height="35" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Agregar publicación"/>
+            
+            <Button Grid.Column="0" x:Name="btnCrearGrupo" Margin="0,0,0,0" HorizontalAlignment="Right" FontSize="15" Padding="5,5,5,5" Height="35" Style="{DynamicResource ButtonStyle1}" Background="#FFF59F" Cursor="Hand" Content="Crear grupo"/>
+
+            <TextBlock Text="¡Hola, !" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="16" FontWeight="Bold" x:Name="txtbMensajeSaludo"/>
+
+            <ListBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Name="PublicacionesListBox">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Padding="10" Margin="5" Background="LightCyan">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Titulo}" FontWeight="Bold" FontSize="18"/>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <TextBlock Text="Por: " FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Colaborador}"/>
+                                    <TextBlock Text="    Grupo: " FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Grupo}"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Descripcion}" Background="LightGray" Height="100"/>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <TextBlock Text="⭐"/>
+                                    <TextBlock Text="{Binding Valoracion}"/>
+                                    <TextBlock Text=" Estrellas" Margin="5,0,0,0"/>
+                                </StackPanel>
+                                <Expander Header="Ver comentarios" IsExpanded="False">
+                                    <ListBox ItemsSource="{Binding Interacciones}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Fecha}" FontWeight="Bold"/>
+                                                        <TextBlock Text="{Binding Colaborador}" FontWeight="Bold" Margin="10,0,0,0"/>
+                                                        <TextBlock Text="{Binding Valoracion, StringFormat=' {0} ⭐'}" Margin="10,0,0,0"/>
+                                                    </StackPanel>
+                                                    <TextBlock Text="{Binding Comentario}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Expander>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <TextBox Width="500" Text="Añadir comentario"/>
+                                    <Button Content=">" Width="30"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
     </Grid>
 </Page>
