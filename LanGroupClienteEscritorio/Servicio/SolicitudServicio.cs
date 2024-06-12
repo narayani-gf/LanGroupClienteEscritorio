@@ -17,7 +17,7 @@ namespace LanGroupClienteEscritorio.Servicio
     internal class SolicitudServicio
     {
         private static readonly string URL = string.Concat(Properties.Resources.API_URL, "solicitudes");
-        private static string TOKEN = ConfigurationManager.AppSettings["TOKEN"];
+        private static string TOKEN = SesionSingleton.Instance.Token;
 
         public static async Task<(List<Solicitud>, int)> ObtenerSolicitudes()
         {
@@ -276,11 +276,7 @@ namespace LanGroupClienteEscritorio.Servicio
 
         private static void GuardarToken(string jwt)
         {
-            Configuration configuration = ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location);
-            KeyValueConfigurationElement token = configuration.AppSettings.Settings["TOKEN"];
-            token.Value = jwt;
-            configuration.Save();
-            ConfigurationManager.RefreshSection("appSettings");
+            SesionSingleton.Instance.SetToken(jwt);
         }
     }
 }
