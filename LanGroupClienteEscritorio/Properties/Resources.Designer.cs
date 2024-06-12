@@ -61,11 +61,20 @@ namespace LanGroupClienteEscritorio.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://192.168.100.111:3000/api/.
+        ///   Busca una cadena traducida similar a http://localhost:3000/api/.
         /// </summary>
         internal static string API_URL {
             get {
                 return ResourceManager.GetString("API_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a http://localhost:3300/.
+        /// </summary>
+        internal static string GRPC_URL {
+            get {
+                return ResourceManager.GetString("GRPC_URL", resourceCulture);
             }
         }
     }

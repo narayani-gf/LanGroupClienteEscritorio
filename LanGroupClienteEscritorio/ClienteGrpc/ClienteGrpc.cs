@@ -11,7 +11,7 @@ namespace LanGroupClienteEscritorio.ClienteGrpc
     internal class ClienteGrpc
     {
         private ArchivosServiceClient Cliente;
-        private GrpcChannel Canal = GrpcChannel.ForAddress("http://localhost:3300");
+        private GrpcChannel Canal = GrpcChannel.ForAddress(Properties.Resources.GRPC_URL);
 
         public ClienteGrpc()
         {

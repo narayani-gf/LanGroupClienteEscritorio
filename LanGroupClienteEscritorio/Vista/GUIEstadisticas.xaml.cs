@@ -11,7 +11,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 02/06/2024                                ==
+     * == Fecha de actualización: 12/06/2024                                ==
      * == Descripción: Logica de interacción para GUIEstadisticas.xaml      ==
      * =======================================================================
      */
@@ -31,14 +31,15 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void Regresar(object sender, RoutedEventArgs e)
         {
-            Utils.AdministrarNavegacion.MostrarMenuPrincipal();
+            GUIMenuPrincipal gUIMenuPrincipal = new GUIMenuPrincipal();
+            NavigationService.Navigate(gUIMenuPrincipal);
         }
 
         private async void cargarBarChart()
         {
             List<Estadisticas> estadisticas = await ObtenerPublicaciones();
 
-            if(estadisticas != null)
+            if(estadisticas != null && estadisticas.Count > 0)
             {
                 columnSeriesPublicaciones.ItemsSource = estadisticas;
             }
@@ -53,22 +54,18 @@ namespace LanGroupClienteEscritorio.Vista
         {
             List<Estadisticas> estadisticas = new List<Estadisticas>();
             (List<Publicacion> publicaciones, int codigo) = await PublicacionServicio.ObtenerPublicacionesPorColaborador(Usuario.Id);
-            if (publicaciones != null)
+            if (publicaciones != null && publicaciones.Count > 0)
             {
-                if (publicaciones.Count > 0)
-                {
-                    List<int> publicacionesPorMes = ContarPublicacionesPorMes(publicaciones);
-                    List<string> meses = EnlistarMeses();
-                    Estadisticas estadistica;
+                List<int> publicacionesPorMes = ContarPublicacionesPorMes(publicaciones);
+                List<string> meses = EnlistarMeses();
+                Estadisticas estadistica;
                     
 
-                    for (int i = 0; i < 12; i++)
-                    {
-                        estadistica = new Estadisticas(publicacionesPorMes[i], meses[i]);
-                        estadisticas.Add(estadistica);
-                    }
+                for (int i = 0; i < 12; i++)
+                {
+                    estadistica = new Estadisticas(publicacionesPorMes[i], meses[i]);
+                    estadisticas.Add(estadistica);
                 }
-
             }
 
             return estadisticas;

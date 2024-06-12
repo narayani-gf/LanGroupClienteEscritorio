@@ -1,0 +1,33 @@
+﻿<Page x:Class="LanGroupClienteEscritorio.Vista.GUIAdministrarInstructores"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LanGroupClienteEscritorio.Vista"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdministrarInstructores">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid Background="#365486">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
+            <Button BorderThickness="0" Cursor="Hand" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="24" Width="91" Click="Regresar">
+                <Button.Background>
+                    <ImageBrush ImageSource="Recursos\Imagenes\img-regresar.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Button Grid.Column="1" Content="Eliminar instructores" HorizontalAlignment="Center" Margin="0,276,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Click="IrEliminarInstructores"/>
+        <Button Grid.Column="1" Content="Agregar instructores" HorizontalAlignment="Center" Margin="0,144,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Click="IrAgregarInstructores"/>
+    </Grid>
+</Page>

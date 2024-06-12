@@ -33,7 +33,7 @@
                 </StackPanel>
             </Button>
 
-            <Button Style="{DynamicResource ButtonStyle}" Foreground="White" HorizontalAlignment="Center" Margin="0,109,0,0" VerticalAlignment="Top" Height="32" Width="164" Click="BtnInstructor_Click">
+            <Button x:Name="buttonQuieroSerInstructor" Style="{DynamicResource ButtonStyle}" Foreground="White" HorizontalAlignment="Center" Margin="0,109,0,0" VerticalAlignment="Top" Height="32" Width="164" Click="BtnInstructor_Click">
                 <StackPanel Margin="-30,0,0,0" Orientation="Horizontal">
                     <Image Source="\Vista\Recursos\Imagenes\icon-maestro.png" Width="16" Height="16" Margin="0,0,5,0"/>
                     <TextBlock FontSize="14" Text="Quiero ser instructor" VerticalAlignment="Center" Foreground="White"/>

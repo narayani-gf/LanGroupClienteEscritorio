@@ -143,6 +143,9 @@
     <Compile Include="Servicio\InteraccionServicio.cs" />
     <Compile Include="Servicio\RolServicio.cs" />
     <Compile Include="Servicio\SolicitudServicio.cs" />
+    <Compile Include="Vista\GUIAdministrarInstructores.xaml.cs">
+      <DependentUpon>GUIAdministrarInstructores.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\GUICrearGrupo.xaml.cs">
       <DependentUpon>GUICrearGrupo.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
     <Compile Include="Vista\GUISolicitudInstructor.xaml.cs">
       <DependentUpon>GUISolicitudInstructor.xaml</DependentUpon>
     </Compile>
+    <Page Include="Vista\GUIAdministrarInstructores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\GUIMenuPrincipal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

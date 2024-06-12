@@ -18,7 +18,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =========================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                       ==
-     * == Fecha de actualización: 02/05/2024                                  ==
+     * == Fecha de actualización: 12/06/2024                                  ==
      * == Descripción: Logica de interacción para GUISolicitudInstructor.xaml ==
      * =========================================================================
      */
@@ -171,7 +171,8 @@ namespace LanGroupClienteEscritorio.Vista
                 }
                 else
                 {
-                    AdministrarNavegacion.MostrarMenuPrincipal();
+                    GUIMenuPrincipal gUIMenuPrincipal = new GUIMenuPrincipal();
+                    NavigationService.Navigate(gUIMenuPrincipal);
                 }
             }
         }

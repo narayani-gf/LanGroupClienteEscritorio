@@ -1,4 +1,5 @@
 ﻿using LanGroupClienteEscritorio.Modelo;
+using LanGroupClienteEscritorio.Servicio;
 using LanGroupClienteEscritorio.Utils;
 using System;
 using System.Collections.Generic;
@@ -76,6 +77,7 @@ namespace LanGroupClienteEscritorio.Vista
         private void BtnInstructor_Click(object sender, RoutedEventArgs e)
         {
             GUISolicitudInstructor gUIInstructor = new GUISolicitudInstructor();
+            gUIInstructor.IniciarVentanaColaborador(SesionSingleton.Instance.Colaborador);
             NavigationService.Navigate(gUIInstructor);
         }
 
@@ -88,13 +90,15 @@ namespace LanGroupClienteEscritorio.Vista
         private void BtnEstadisticas_Click(object sender, RoutedEventArgs e)
         {
             GUIEstadisticas gUIEstadisticas = new GUIEstadisticas();
+            gUIEstadisticas.IniciarVentana(SesionSingleton.Instance.Colaborador);
             NavigationService.Navigate(gUIEstadisticas);
         }
 
         private void BtnAdministrarInstructor_Click(object sender, RoutedEventArgs e)
         {
-            GUIInstructores gUIInstructores = new GUIInstructores();
-            NavigationService.Navigate(gUIInstructores);
+            GUIAdministrarInstructores gUIAdministrarInstructores = new GUIAdministrarInstructores();
+            gUIAdministrarInstructores.IniciarVentana(SesionSingleton.Instance.Colaborador);
+            NavigationService.Navigate(gUIAdministrarInstructores);
         }
 
         private void BtnSalir_Click(object sender, RoutedEventArgs e)

@@ -12,7 +12,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 02/06/2024                                ==
+     * == Fecha de actualización: 12/06/2024                                ==
      * == Descripción: Logica de interacción para GUIInstructores.xaml      ==
      * =======================================================================
      */
@@ -175,7 +175,7 @@ namespace LanGroupClienteEscritorio.Vista
         {
             (List<Solicitud> solicitudes, int codigoSolicitudes) = await SolicitudServicio.ObtenerSolicitudes();
 
-            if(solicitudes != null)
+            if(solicitudes != null && solicitudes.Count > 0)
             {
                 List<Solicitud> solicitudesPendientes = new List<Solicitud>();
                 foreach(Solicitud solicitud in solicitudes)
@@ -229,7 +229,7 @@ namespace LanGroupClienteEscritorio.Vista
         {
             (List<Colaborador> instructoresApi, int codigo) = await ColaboradorServicio.ObtenerInstructores();
 
-            if(instructoresApi != null)
+            if(instructoresApi != null && instructoresApi.Count > 0)
             {
                 ObservableCollection<Colaborador> instructores = new ObservableCollection<Colaborador>();
                 foreach(Colaborador instructor in instructoresApi)
@@ -263,7 +263,9 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void Regresar(object sender, RoutedEventArgs e)
         {
-            Utils.AdministrarNavegacion.MostrarMenuPrincipal();
+            GUIAdministrarInstructores gUIAdministrarInstructores = new GUIAdministrarInstructores();
+            gUIAdministrarInstructores.IniciarVentana(Usuario);
+            NavigationService.Navigate(gUIAdministrarInstructores);
         }
     }
 }
