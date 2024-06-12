@@ -27,9 +27,6 @@ namespace LanGroupClienteEscritorio.Vista
         private Colaborador Usuario;
         private Solicitud Solicitud;
 
-        private static readonly int GRPC_PORT = 3300;
-        private static readonly string GRPC_URL = "http://localhost:" + GRPC_PORT;
-
         public GUISolicitudInstructor()
         {
             InitializeComponent();
