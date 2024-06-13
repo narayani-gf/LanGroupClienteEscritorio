@@ -15,7 +15,7 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     */
     public class Solicitud
     {
-        [JsonProperty("id")]
+        [JsonProperty("solicitudId")]
         public string Id { get; set; }
 
         [JsonProperty("colaboradorid")]

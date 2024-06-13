@@ -31,10 +31,9 @@ namespace LanGroupClienteEscritorio.Modelo
         public DateTime Fecha { get; set; }
 
         public float Valoracion {  get; set; }
+
         public string Colaborador { get; set; }
         public string Grupo { get; set; }
-
-        public int Codigo { get; set; }
 
         public List<Interaccion> Interacciones { get; set; }
       
