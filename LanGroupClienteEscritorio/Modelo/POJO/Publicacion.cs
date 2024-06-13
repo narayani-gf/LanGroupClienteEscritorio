@@ -32,8 +32,10 @@ namespace LanGroupClienteEscritorio.Modelo
 
         public float Valoracion {  get; set; }
 
-        public string Colaborador { get; set; }
-        public string Grupo { get; set; }
+        [JsonProperty("colaborador")]
+        public Colaborador Colaborador { get; set; }
+        [JsonProperty("grupo")]
+        public Grupo Grupo { get; set; }
 
         public List<Interaccion> Interacciones { get; set; }
       

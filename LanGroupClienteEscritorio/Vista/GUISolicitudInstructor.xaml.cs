@@ -1,10 +1,11 @@
-﻿using LanGroupClienteEscritorio.Modelo.POJO;
-//using LanGroupClienteEscritorio.proto;
+﻿using LanGroupClienteEscritorio.ClienteGrpc;
+using LanGroupClienteEscritorio.Modelo.POJO;
 using LanGroupClienteEscritorio.Servicio;
 using LanGroupClienteEscritorio.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -32,11 +33,23 @@ namespace LanGroupClienteEscritorio.Vista
             InitializeComponent();
         } 
 
-        public void IniciarVentanaColaborador(Colaborador usuario)
+        public async void IniciarVentanaColaborador(Colaborador usuario)
         {
-            Usuario = usuario;
-            Solicitud = new Solicitud();
-            CargarComboBox();
+            bool tieneSolicitudPendiente = await TieneSolicitudPendiente(usuario);
+
+            if(!tieneSolicitudPendiente)
+            {
+                Usuario = usuario;
+                Solicitud = new Solicitud();
+                CargarComboBox();
+            }
+            else
+            {
+                MessageBox.Show("Ya tiene una solicitud pendiente.", "Solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
+                GUIMenuPrincipal gUIMenuPrincipal = new GUIMenuPrincipal();
+                NavigationService.Navigate(gUIMenuPrincipal);
+            }
+            
         }
 
         public void IniciarVentanaAdministrador(Colaborador usuario, Solicitud solicitud, string usuarioSolicitante)
@@ -65,8 +78,8 @@ namespace LanGroupClienteEscritorio.Vista
         {
             Solicitud = solicitud;
             labelSolicitudDe.Content = "Solicitud de " + usuarioSolicitante;
-            labelNombreArchivo.Content = "";
-            (Idioma idiomaSolicitud, int codigo) = await IdiomaServicio.ObtenerIdiomaPorId(solicitud.IdIdioma);
+            labelNombreArchivo.Content = Solicitud.NombreArchivo;
+            (Idioma idiomaSolicitud, int codigo) = await IdiomaServicio.ObtenerIdiomaPorId(solicitud.Idioma.Id);
             labelIdioma.Content = idiomaSolicitud.Nombre;
             textBoxRazon.Text = solicitud.Motivo;
             textBoxTipoContenido.Text = solicitud.Contenido;
@@ -84,7 +97,7 @@ namespace LanGroupClienteEscritorio.Vista
             comboBoxIdioma.SelectedIndex = 0;
         }
 
-        private async void AgregarConstancia(object sender, RoutedEventArgs e)
+        private void AgregarConstancia(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Documentos (*.pdf)|*.pdf";
@@ -97,6 +110,7 @@ namespace LanGroupClienteEscritorio.Vista
                     labelNombreArchivo.Content = nombreArchivo;
                     byte[] bytesArchivo = File.ReadAllBytes(openFileDialog.FileName);
                     Solicitud.Constancia = bytesArchivo;
+                    Solicitud.NombreArchivo = nombreArchivo;
                 }
                 else
                 {
@@ -114,10 +128,7 @@ namespace LanGroupClienteEscritorio.Vista
                 if (folderBrowserDialog.SelectedPath != string.Empty)
                 {
                     //TODO obtener desde la api                
-                    //ClienteGrpc clienteGrpc = new ClienteGrpc(GRPC_URL);
-                    //await clienteGrpc.DescargarConstancia("uploads/", folderBrowserDialog.SelectedPath);
-
-                    File.WriteAllBytes(folderBrowserDialog.SelectedPath + ".pdf", Solicitud.Constancia);
+                    File.WriteAllBytes(folderBrowserDialog.SelectedPath, Solicitud.Constancia);
 
                     MessageBox.Show("La solicitud ha sido descargada en " + folderBrowserDialog.SelectedPath + ".", "Solicitud descargada", MessageBoxButton.OK);
                 }
@@ -137,7 +148,7 @@ namespace LanGroupClienteEscritorio.Vista
                 //ClienteGrpc clienteGrpc = new ClienteGrpc(GRPC_URL);
                 //await clienteGrpc.SubirConstancia("uploads/" + labelNombreArchivo.Content, bytesArchivo);
 
-                //Solicitud.IdColaborador = Usuario.Id;
+                Solicitud.IdColaborador = Usuario.Id;
                 Idioma idioma = comboBoxIdioma.SelectedItem as Idioma;
                 Solicitud.IdIdioma = idioma.Id;
                 Solicitud.Motivo = textBoxRazon.Text;
@@ -217,6 +228,18 @@ namespace LanGroupClienteEscritorio.Vista
         private void MostrarMensajeError()
         {
             MessageBox.Show("Algo salió mal.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private async Task<bool> TieneSolicitudPendiente(Colaborador colaborador)
+        {
+            bool tieneSolicitudPendiente = false;
+            (Solicitud solicitud, int codigo) = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaborador.Id);
+            if (solicitud != null && solicitud.Estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase));
+            {
+                tieneSolicitudPendiente = true;
+            }
+
+            return tieneSolicitudPendiente;
         }
     }
 }

@@ -47,7 +47,7 @@ namespace LanGroupClienteEscritorio.Vista
                 {
                     int codigo = await ColaboradorServicio.AsignarRolAColaborador(colaboradorSeleccionado, "Instructor");               
 
-                    if(codigo == 200)
+                    if(codigo >= 200 && codigo < 300)
                     {
                         (Solicitud solicitud, int codigoSolicitudes) = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaboradorSeleccionado.Id);
 
@@ -55,9 +55,10 @@ namespace LanGroupClienteEscritorio.Vista
                         {
                             codigo = await SolicitudServicio.CambiarEstadoSolicitud(solicitud, "Aceptado");
 
-                            if (codigo == 200)
+                            if (codigoSolicitudes >= 200 && codigoSolicitudes < 300)
                             {
                                 MessageBox.Show("Se agregó a " + colaboradorSeleccionado.Usuario + " como instructor.", "Solicitud Aceptada", MessageBoxButton.OK);
+                                CargarDataGridAgregacionAsync();
                             }
                             else
                             {
@@ -90,13 +91,14 @@ namespace LanGroupClienteEscritorio.Vista
                 {
                     (Solicitud solicitud, int codigoSolicitud) = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaboradorSeleccionado.Id);
 
-                    if(solicitud != null)
+                    if (solicitud != null)
                     {
                         int codigo = await SolicitudServicio.CambiarEstadoSolicitud(solicitud, "Rechazado");
 
-                        if (codigo == 200)
+                        if (codigo >= 200 && codigo < 300)
                         {
                             MessageBox.Show("Se rechazó a " + colaboradorSeleccionado.Usuario + " como instructor.", "Solicitud Rechazada", MessageBoxButton.OK);
+                            CargarDataGridAgregacionAsync();
                         }
                         else
                         {
@@ -143,9 +145,10 @@ namespace LanGroupClienteEscritorio.Vista
                 if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas eliminar como instructor a " + colaboradorSeleccionado.Usuario + "?", "Eliminar instructor", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
                     int codigo = await ColaboradorServicio.AsignarRolAColaborador(colaboradorSeleccionado, "Aprendiz");
-                    if (codigo == 200)
+                    if (codigo >= 200 && codigo < 300)
                     {
                         MessageBox.Show("Se eliminó como instructor a " + colaboradorSeleccionado.Usuario, "Instructor eliminado", MessageBoxButton.OK);
+                        CargarDataGridEliminacionAsync();
                     }
                     else
                     {
@@ -198,7 +201,7 @@ namespace LanGroupClienteEscritorio.Vista
                         {
                             foreach(Colaborador colaborador in colaboradores)
                             {
-                                if (solicitudesPendientes[i].IdColaborador.Equals(colaborador.Id))
+                                if (solicitudesPendientes[i].Colaborador.Id.Equals(colaborador.Id))
                                 {
                                     colaboradoresConSolicitudPendiente.Add(colaborador);
                                 }

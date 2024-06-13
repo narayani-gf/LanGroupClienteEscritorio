@@ -30,21 +30,24 @@
             </Button.Background>
         </Button>
 
+        <ScrollViewer Grid.Column="1">
+            <Grid>
+                <Label x:Name="labelSinPublicaciones" Content="Aun no tienes publicaciones creadas, &#xA;regresa cuando hayas creado una." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Visibility="Hidden" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
+                <Label Content="Mis estadísticas" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Grid.Column="1"/>
+                <syncfusion:SfChart x:Name="barChartPublicaciones" Header="Publicaciones creadas por mes" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Height="350" Width="500" Grid.Column="1">
+                    <syncfusion:SfChart.PrimaryAxis>
+                        <syncfusion:CategoryAxis/>
+                    </syncfusion:SfChart.PrimaryAxis>
 
-        <Label x:Name="labelSinPublicaciones" Content="Aun no tienes publicaciones creadas, &#xA;regresa cuando hayas creado una." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Visibility="Hidden" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
-        <Label Content="Mis estadísticas" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Grid.Column="1"/>
-        <syncfusion:SfChart x:Name="barChartPublicaciones" Header="Publicaciones creadas por mes" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Height="350" Width="500" Grid.Column="1">
-            <syncfusion:SfChart.PrimaryAxis>
-                <syncfusion:CategoryAxis/>
-            </syncfusion:SfChart.PrimaryAxis>
+                    <syncfusion:SfChart.SecondaryAxis>
+                        <syncfusion:NumericalAxis/>
+                    </syncfusion:SfChart.SecondaryAxis>
 
-            <syncfusion:SfChart.SecondaryAxis>
-                <syncfusion:NumericalAxis/>
-            </syncfusion:SfChart.SecondaryAxis>
+                    <syncfusion:ColumnSeries x:Name="columnSeriesPublicaciones" XBindingPath="{Binding Mes}" YBindingPath="{Binding TotalPublicaciones}">
 
-            <syncfusion:ColumnSeries x:Name="columnSeriesPublicaciones" XBindingPath="{Binding Mes}" YBindingPath="{Binding TotalPublicaciones}">
-
-            </syncfusion:ColumnSeries>
-        </syncfusion:SfChart>
+                    </syncfusion:ColumnSeries>
+                </syncfusion:SfChart>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

@@ -72,7 +72,7 @@ namespace LanGroupClienteEscritorio.Servicio
                     publicaciones = null;
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
-                catch(JsonException ex)
+                catch (JsonException ex)
                 {
                     Logger.Log(ex);
                     publicaciones = null;

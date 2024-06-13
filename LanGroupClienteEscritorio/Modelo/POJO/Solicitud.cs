@@ -9,7 +9,7 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
 {
     /* ======================================================================
     * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-    * == Fecha de actualización: 01/06/2024                                ==
+    * == Fecha de actualización: 13/06/2024                                ==
     * == Descripción:                                                      ==
     * =======================================================================
     */
@@ -18,14 +18,11 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
         [JsonProperty("solicitudId")]
         public string Id { get; set; }
 
-        [JsonProperty("colaboradorid")]
-        public string IdColaborador { get; set; }
-
-        [JsonProperty("idiomaid")]
-        public string IdIdioma { get; set; }
-
         [JsonProperty("constancia")]
         public byte[] Constancia { get; set; }
+
+        [JsonProperty("nombrearchivo")]
+        public string NombreArchivo { get; set; }
 
         [JsonProperty("contenido")]
         public string Contenido { get; set; }
@@ -36,19 +33,34 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
         [JsonProperty("estado")]
         public string Estado { get; set; }
 
+        [JsonProperty("colaboradorid")]
+        public string IdColaborador { get; set; }
+
+        [JsonProperty("idiomaid")]
+        public string IdIdioma { get; set; }
+
+        [JsonProperty("colaborador")]
+        public Colaborador Colaborador { get; set; }
+
+        [JsonProperty("idioma")]
+        public Idioma Idioma { get; set; }
+
         public Solicitud()
         {
         }
 
-        public Solicitud(string id, string idColaborador, string idIdioma, byte[] constancia, string contenido, string motivo, string estado)
+        public Solicitud(string id, byte[] constancia, string nombreArchivo, string contenido, string motivo, string estado, string idColaborador, string idIdioma, Colaborador colaborador, Idioma idioma)
         {
             Id = id;
-            IdColaborador = idColaborador;
-            IdIdioma = idIdioma;
             Constancia = constancia;
+            NombreArchivo = nombreArchivo;
             Contenido = contenido;
             Motivo = motivo;
             Estado = estado;
+            IdColaborador = idColaborador;
+            IdIdioma = idIdioma;
+            Colaborador = colaborador;
+            Idioma = idioma;
         }
     }
 }

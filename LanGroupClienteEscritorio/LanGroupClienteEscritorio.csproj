@@ -120,6 +120,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Modelo\POJO\Auth.cs" />
+    <Compile Include="Modelo\POJO\ColaboradorRequest.cs" />
     <Compile Include="Modelo\POJO\Estadisticas.cs" />
     <Compile Include="Modelo\POJO\ArchivoMultimedia.cs" />
     <Compile Include="Modelo\POJO\Colaborador.cs" />
@@ -130,7 +131,7 @@
     <Compile Include="Modelo\POJO\Rol.cs" />
     <Compile Include="Modelo\POJO\Solicitud.cs" />
     <Compile Include="Modelo\POJO\Response.cs" />
-    <Compile Include="ClienteGrpc\ClienteGrpc.cs" />
+    <Compile Include="ClienteGrpc\Grpc.cs" />
     <Compile Include="obj\Debug\proto\Archivos.cs" />
     <Compile Include="obj\Debug\proto\ArchivosGrpc.cs" />
     <Compile Include="Servicio\AuthServicio.cs" />

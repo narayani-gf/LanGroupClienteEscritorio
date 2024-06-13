@@ -18,7 +18,7 @@
 
         <Button BorderThickness="0" Cursor="Hand" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="24" Width="91" Click="BtnRegresar_Click">
             <Button.Background>
-                <ImageBrush ImageSource="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\img-regresar.png"/>
+                <ImageBrush ImageSource="\Vista\Recursos\Imagenes\img-regresar.png"/>
             </Button.Background>
         </Button>
 

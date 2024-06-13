@@ -1,4 +1,5 @@
 ﻿using LanGroupClienteEscritorio.Modelo;
+using LanGroupClienteEscritorio.Modelo.POJO;
 using LanGroupClienteEscritorio.Servicio;
 using LanGroupClienteEscritorio.Utils;
 using System;
@@ -29,6 +30,7 @@ namespace LanGroupClienteEscritorio.Vista
             List<Publicacion> publicaciones = ObtenerPublicaciones();
             PublicacionesListBox.ItemsSource = publicaciones;
             SetColaborador();
+            CambiarVisibilidadBotones();
         }
 
         private List<Publicacion> ObtenerPublicaciones()
@@ -38,9 +40,9 @@ namespace LanGroupClienteEscritorio.Vista
                 new Publicacion
                 {
                     Titulo = "Publicacion 1",
-                    Colaborador = "a",
+                    //Colaborador = "a",
                     Id = "asd",
-                    Grupo = "b",
+                    //Grupo = "b",
                     Descripcion = "c",
                     Fecha = DateTime.Now,
                     Valoracion = 4,
@@ -105,6 +107,31 @@ namespace LanGroupClienteEscritorio.Vista
         {
             GUIInstructores gUIInstructores = new GUIInstructores();
             NavigationService.Navigate(gUIInstructores);
+        }
+
+        private async void CambiarVisibilidadBotones()
+        {
+            (List<Rol> roles, int codigo) = await RolServicio.ObtenerRoles();
+
+            if(roles != null && codigo >= 200 && codigo < 300)
+            {
+                foreach(Rol rol in roles)
+                {
+                    if(rol.Id.Equals(SesionSingleton.Instance.Colaborador.IdRol, StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (rol.Nombre.Equals("Aprendiz", StringComparison.OrdinalIgnoreCase))
+                        {
+                            buttonAdministrarInstructores.Visibility = Visibility.Hidden;
+                            break;
+                        }
+
+                        if(rol.Nombre.Equals("Administrador", StringComparison.OrdinalIgnoreCase) || rol.Nombre.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
+                        {
+                            buttonQuieroSerInstructor.Visibility = Visibility.Hidden;
+                        }
+                    }
+                }
+            }
         }
     }
 }   

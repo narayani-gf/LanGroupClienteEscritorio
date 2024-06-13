@@ -8,12 +8,12 @@ using static ArchivosService;
 
 namespace LanGroupClienteEscritorio.ClienteGrpc
 {
-    internal class ClienteGrpc
+    internal class Grpc
     {
         private ArchivosServiceClient Cliente;
         private GrpcChannel Canal = GrpcChannel.ForAddress(Properties.Resources.GRPC_URL);
 
-        public ClienteGrpc()
+        public Grpc()
         {
             Cliente = new ArchivosServiceClient(Canal);
         }

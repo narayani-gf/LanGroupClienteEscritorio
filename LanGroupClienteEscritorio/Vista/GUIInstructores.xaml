@@ -28,63 +28,67 @@
             </Button>
         </Grid>
 
-        <Button x:Name="buttonAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="66,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Click="AceptarSolicitud" Grid.Column="1"/>
-        <Button x:Name="buttonRechazar" Content="Rechazar" HorizontalAlignment="Center" Margin="0,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Background="#FFD8D97F" Click="RechazarSolicitud" Grid.Column="1"/>
-        <Button x:Name="buttonVerSolicitud" Content="Ver solicitud" HorizontalAlignment="Left" Margin="444,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="110" Background="#FFB8B8B5" Click="VerSolicitud" Grid.Column="1"/>
-        <Label x:Name="labelAgregarInstructor" Content="Agregar instructor" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Grid.Column="1"/>
+        <ScrollViewer Grid.Column="1">
+            <Grid>
+                <Button x:Name="buttonAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="66,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Click="AceptarSolicitud" Grid.Column="1"/>
+                <Button x:Name="buttonRechazar" Content="Rechazar" HorizontalAlignment="Center" Margin="0,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Background="#FFD8D97F" Click="RechazarSolicitud" Grid.Column="1"/>
+                <Button x:Name="buttonVerSolicitud" Content="Ver solicitud" HorizontalAlignment="Left" Margin="444,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="110" Background="#FFB8B8B5" Click="VerSolicitud" Grid.Column="1"/>
+                <Label x:Name="labelAgregarInstructor" Content="Agregar instructor" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Grid.Column="1"/>
 
-        <Label x:Name="labelEliminarInstructor" Content="Eliminar instructor" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Visibility="Hidden" Grid.Column="1"/>
-        <Button x:Name="buttonEliminar" Content="Eliminar" HorizontalAlignment="Center" Margin="0,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Background="#FFD97F7F" Visibility="Hidden" Click="EliminarInstructor" Grid.Column="1"/>
-        <Label x:Name="labelMensaje" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{DynamicResource LabelStyle2}" FontSize="20" Visibility="Hidden"/>
+                <Label x:Name="labelEliminarInstructor" Content="Eliminar instructor" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Visibility="Hidden" Grid.Column="1"/>
+                <Button x:Name="buttonEliminar" Content="Eliminar" HorizontalAlignment="Center" Margin="0,397,0,0" VerticalAlignment="Top" FontSize="18" Style="{DynamicResource ButtonStyle1}" Width="84" Background="#FFD97F7F" Visibility="Hidden" Click="EliminarInstructor" Grid.Column="1"/>
+                <Label x:Name="labelMensaje" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Style="{DynamicResource LabelStyle2}" FontSize="20" Visibility="Hidden"/>
 
-        <Image x:Name="imagenDataGrid" Source="Recursos\Imagenes\Fondo-tabla-instructor.png" Grid.Column="1" HorizontalAlignment="Center" Height="296" VerticalAlignment="Center" Width="489"/>
-        <DataGrid x:Name="dataGridAgregarInstructor" FontSize="16" Margin="75,94,80,93" AutoGenerateColumns="False" Background="Transparent" 
+                <Image x:Name="imagenDataGrid" Source="Recursos\Imagenes\Fondo-tabla-instructor.png" Grid.Column="1" HorizontalAlignment="Center" Height="296" VerticalAlignment="Center" Width="489"/>
+                <DataGrid x:Name="dataGridAgregarInstructor" FontSize="16" Margin="75,94,80,93" AutoGenerateColumns="False" Background="Transparent" 
     GridLinesVisibility="None" BorderBrush="Transparent" Grid.Column="1" >
-            <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridRow}" >
-                    <Setter Property="Margin" Value="0,0,0,10"/>
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="BorderBrush" Value="Transparent"/>
-                    <Setter Property="BorderThickness" Value="0"/>
-                </Style>
-                <Style TargetType="{x:Type DataGridColumnHeader}" >
-                    <Setter Property="Background" Value="Transparent"/>
-                </Style>
-                <Style TargetType="{x:Type DataGridCell}"  >
-                    <Setter Property="Margin" Value="0,12,0,12"/>
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="BorderBrush" Value="Transparent"/>
-                    <Setter Property="BorderThickness" Value="0"/>
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Usuarios" Binding="{Binding Usuario}" Width="*" FontSize="16"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridRow}" >
+                            <Setter Property="Margin" Value="0,0,0,10"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridColumnHeader}" >
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridCell}"  >
+                            <Setter Property="Margin" Value="0,12,0,12"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Usuarios" Binding="{Binding Correo}" Width="*" FontSize="16"/>
+                    </DataGrid.Columns>
+                </DataGrid>
 
-        <DataGrid x:Name="dataGridEliminarInstructor" FontSize="16" Grid.Column="1" Visibility="Hidden" Margin="75,94,80,93" AutoGenerateColumns="False" Background="Transparent" 
+                <DataGrid x:Name="dataGridEliminarInstructor" FontSize="16" Grid.Column="1" Visibility="Hidden" Margin="75,94,80,93" AutoGenerateColumns="False" Background="Transparent" 
     GridLinesVisibility="None" BorderBrush="Transparent">
-            <DataGrid.Resources>
-            <Style TargetType="{x:Type DataGridRow}" >
-                <Setter Property="Margin" Value="0,0,0,10"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-            </Style>
-            <Style TargetType="{x:Type DataGridColumnHeader}" >
-                <Setter Property="Background" Value="Transparent"/>
-            </Style>
-            <Style TargetType="{x:Type DataGridCell}"  >
-                <Setter Property="Margin" Value="0,12,0,12"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-            </Style>
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Usuarios" Binding="{Binding Usuario}" Width="*" FontSize="16"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridRow}" >
+                            <Setter Property="Margin" Value="0,0,0,10"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridColumnHeader}" >
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridCell}"  >
+                            <Setter Property="Margin" Value="0,12,0,12"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Usuarios" Binding="{Binding Correo}" Width="*" FontSize="16"/>
+                    </DataGrid.Columns>
+                </DataGrid>
 
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

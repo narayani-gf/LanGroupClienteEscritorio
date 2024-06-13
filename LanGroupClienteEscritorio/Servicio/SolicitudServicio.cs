@@ -126,7 +126,7 @@ namespace LanGroupClienteEscritorio.Servicio
                         {
                             solicitud = new Solicitud();
                             string json = await httpResponseMessage.Content.ReadAsStringAsync();
-                            solicitud = JsonConvert.DeserializeObject<Solicitud>(json);
+                            solicitud = JsonConvert.DeserializeObject<List<Solicitud>>(json).FirstOrDefault();
                         }
 
                         codigo = (int)httpResponseMessage.StatusCode;
@@ -142,7 +142,7 @@ namespace LanGroupClienteEscritorio.Servicio
                     solicitud = null;
                     codigo = (int)HttpStatusCode.InternalServerError;
                 }
-                catch(JsonException ex)
+                catch (JsonException ex)
                 {
                     Logger.Log(ex);
                     solicitud = null;
@@ -165,7 +165,7 @@ namespace LanGroupClienteEscritorio.Servicio
                     {
                         Content = new StringContent(JsonConvert.SerializeObject(solicitud), Encoding.UTF8, "application/json"),
                         Method = HttpMethod.Put,
-                        RequestUri = new Uri(URL)
+                        RequestUri = new Uri(URL + $"/{solicitud.Id}")
                     };
 
                     httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);

@@ -24,25 +24,29 @@
             <Label Grid.Row="0" Grid.Column="1" Style="{DynamicResource LabelStyle2}" Foreground="White" Content="Regresar" Margin="0,19,0,0"/>
         </Grid>
 
-        <Label x:Name="labelSolicitarRol" Content="Solicitar rol de instructor" HorizontalAlignment="Left" Margin="52,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Grid.Column="1"/>
-        <Button x:Name="buttonAgregarConstancia" Content="➕ Agregar constancia" HorizontalAlignment="Left" Margin="52,84,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Background="#FF808687" Width="140" Height="25" Click="AgregarConstancia" Grid.Column="1"/>
-        <Label x:Name="labelNombreArchivo" Content="Nombre de archivo" HorizontalAlignment="Left" Margin="198,81,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Width="211" Grid.Column="1" FontSize="14"/>
-        <Label x:Name="labelSeleccionarIdioma" Grid.Column="1" Content="Seleccionar idioma" HorizontalAlignment="Left" Margin="448,59,0,0" VerticalAlignment="Top" FontWeight="Bold" />
-        <ComboBox x:Name="comboBoxIdioma" Grid.Column="1" HorizontalAlignment="Left" Margin="448,85,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Explica, ¿Por qué quieres ser instructor?" HorizontalAlignment="Left" Margin="52,153,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
-        <TextBox x:Name="textBoxRazon" HorizontalAlignment="Center" Margin="0,189,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Height="58" Grid.Column="1"/>
-        <Label Content="Explica, ¿Qué tipo de contenido publicarás?" HorizontalAlignment="Left" Margin="52,271,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
-        <TextBox x:Name="textBoxTipoContenido" HorizontalAlignment="Center" Margin="0,307,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Height="58" Grid.Column="1"/>
-        <Button x:Name="buttonGuardar" Content="Guardar" HorizontalAlignment="Left" Margin="490,415,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Width="78" Height="25" Click="GuardarSolicitud" Grid.Column="1"/>
+        <ScrollViewer Grid.Column="1">
+            <Grid>
+                <Label x:Name="labelSolicitarRol" Content="Solicitar rol de instructor" HorizontalAlignment="Left" Margin="52,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Grid.Column="1"/>
+                <Button x:Name="buttonAgregarConstancia" Content="➕ Agregar constancia" HorizontalAlignment="Left" Margin="52,84,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Background="#FF808687" Width="140" Height="25" Click="AgregarConstancia" Grid.Column="1"/>
+                <Label x:Name="labelNombreArchivo" Content="Nombre de archivo" HorizontalAlignment="Left" Margin="198,81,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Width="211" Grid.Column="1" FontSize="14"/>
+                <Label x:Name="labelSeleccionarIdioma" Grid.Column="1" Content="Seleccionar idioma" HorizontalAlignment="Left" Margin="448,59,0,0" VerticalAlignment="Top" FontWeight="Bold" />
+                <ComboBox x:Name="comboBoxIdioma" Grid.Column="1" HorizontalAlignment="Left" Margin="448,85,0,0" VerticalAlignment="Top" Width="120"/>
+                <Label Content="Explica, ¿Por qué quieres ser instructor?" HorizontalAlignment="Left" Margin="52,153,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
+                <TextBox x:Name="textBoxRazon" HorizontalAlignment="Center" Margin="0,189,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Height="58" Grid.Column="1" MaxLength="500"/>
+                <Label Content="Explica, ¿Qué tipo de contenido publicarás?" HorizontalAlignment="Left" Margin="52,271,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Grid.Column="1"/>
+                <TextBox x:Name="textBoxTipoContenido" HorizontalAlignment="Center" Margin="0,307,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="516" Style="{DynamicResource TextBoxStyle1}" Height="58" Grid.Column="1" MaxLength="500"/>
+                <Button x:Name="buttonGuardar" Content="Guardar" HorizontalAlignment="Left" Margin="490,415,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Width="78" Height="25" Click="GuardarSolicitud" Grid.Column="1"/>
 
-        <Label x:Name="labelSolicitudDe" Content="Solicitud de XXX" HorizontalAlignment="Left" Margin="52,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Visibility="Hidden" Grid.Column="1"/>
-        <Label x:Name="labelConstancia" Content="Constancia" HorizontalAlignment="Left" Margin="52,51,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Visibility="Hidden" Grid.Column="1"/>
-        <Button x:Name="buttonDescargar" Content="Descargar" HorizontalAlignment="Left" Margin="52,82,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Background="#FF808687" Width="140" Visibility="Hidden" Height="25" Click="DescargarConstancia" Grid.Column="1"/>
-        <Label x:Name="labelIdioma" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="448,84,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Visibility="Hidden"/>
+                <Label x:Name="labelSolicitudDe" Content="Solicitud de XXX" HorizontalAlignment="Left" Margin="52,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}" Visibility="Hidden" Grid.Column="1"/>
+                <Label x:Name="labelConstancia" Content="Constancia" HorizontalAlignment="Left" Margin="52,51,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Visibility="Hidden" Grid.Column="1"/>
+                <Button x:Name="buttonDescargar" Content="Descargar" HorizontalAlignment="Left" Margin="52,82,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Background="#FF808687" Width="140" Visibility="Hidden" Height="25" Click="DescargarConstancia" Grid.Column="1"/>
+                <Label x:Name="labelIdioma" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="448,84,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Visibility="Hidden"/>
 
-        <Label x:Name="labelErrorConstancia"  Content="" HorizontalAlignment="Left" Margin="52,109,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
-        <Label x:Name="labelErrorProfesion"  Content="" HorizontalAlignment="Left" Margin="52,184,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
-        <Label x:Name="labelErrorRazon" Content="" HorizontalAlignment="Left" Margin="52,291,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
-        <Label x:Name="labelErrorTipoContenido" Content="" HorizontalAlignment="Left" Margin="52,397,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
+                <Label x:Name="labelErrorConstancia"  Content="" HorizontalAlignment="Left" Margin="52,109,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
+                <Label x:Name="labelErrorProfesion"  Content="" HorizontalAlignment="Left" Margin="52,184,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
+                <Label x:Name="labelErrorRazon" Content="" HorizontalAlignment="Left" Margin="52,291,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
+                <Label x:Name="labelErrorTipoContenido" Content="" HorizontalAlignment="Left" Margin="52,397,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

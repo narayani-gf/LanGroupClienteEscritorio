@@ -15,7 +15,7 @@ namespace LanGroupClienteEscritorio.Modelo.POJO
     */
     public class Idioma
     {
-        [JsonProperty("id")]
+        [JsonProperty("idiomaId")]
         public string Id {  get; set; }
 
         [JsonProperty("nombre")]

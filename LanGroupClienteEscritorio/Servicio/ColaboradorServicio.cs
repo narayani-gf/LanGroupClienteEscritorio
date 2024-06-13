@@ -153,6 +153,7 @@ namespace LanGroupClienteEscritorio.Servicio
 
         public static async Task<int> AsignarRolAColaborador(Colaborador colaborador, string nombreRol)
         {
+            Console.WriteLine(colaborador.Id);
             int codigo = 500;
             using (var httpCliente = new HttpClient())
             {
@@ -167,18 +168,18 @@ namespace LanGroupClienteEscritorio.Servicio
                             if (rol.Nombre.Equals(nombreRol, StringComparison.OrdinalIgnoreCase))
                             {
                                 colaborador.IdRol = rol.Id;
+                                break;
                             }
                         }
 
                         var httpMensaje = new HttpRequestMessage()
                         {
-                            Content = new StringContent(JsonConvert.SerializeObject(colaborador), Encoding.UTF8, "application/json"),
+                            Content = new StringContent(JsonConvert.SerializeObject(new ColaboradorRequest { RolId = colaborador.IdRol}), Encoding.UTF8, "application/json"),
                             Method = HttpMethod.Put,
-                            RequestUri = new Uri(URL)
+                            RequestUri = new Uri(URL + $"/{colaborador.Id}")
                         };
 
                         httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
-
                         HttpResponseMessage httpResponseMessage = await httpCliente.SendAsync(httpMensaje);
 
                         if (httpResponseMessage != null)

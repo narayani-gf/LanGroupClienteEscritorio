@@ -6,6 +6,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace LanGroupClienteEscritorio.Vista
 {
@@ -41,7 +42,14 @@ namespace LanGroupClienteEscritorio.Vista
 
             if(estadisticas != null && estadisticas.Count > 0)
             {
-                columnSeriesPublicaciones.ItemsSource = estadisticas;
+                ObservableCollection<Estadisticas> ocEstadisticas = new ObservableCollection<Estadisticas>();
+                foreach(Estadisticas estadistica in estadisticas)
+                {
+                    Console.WriteLine(estadistica.Mes + " " + estadistica.TotalPublicaciones);
+                    ocEstadisticas.Add(estadistica);
+                }
+
+                columnSeriesPublicaciones.ItemsSource = ocEstadisticas;                
             }
             else
             {
