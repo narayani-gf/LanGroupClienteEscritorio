@@ -45,7 +45,7 @@ namespace LanGroupClienteEscritorio.Vista
                 Colaborador colaboradorSeleccionado = dataGridAgregarInstructor.SelectedItem as Colaborador;
                 if(MessageBoxResult.Yes == MessageBox.Show("“¿Seguro que deseas agregar como instructor a " + colaboradorSeleccionado.Usuario + "?", "Aceptar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
-                    int codigo = await ColaboradorServicio.AsignarRolAColaborador(colaboradorSeleccionado, "Instructor");               
+                    int codigo = await ColaboradorServicio.AsignarRolAColaborador(colaboradorSeleccionado, "Instructor"); 
 
                     if(codigo >= 200 && codigo < 300)
                     {
@@ -53,9 +53,10 @@ namespace LanGroupClienteEscritorio.Vista
 
                         if(solicitud != null)
                         {
+                            Console.WriteLine(solicitud.IdColaborador);
                             codigo = await SolicitudServicio.CambiarEstadoSolicitud(solicitud, "Aceptado");
 
-                            if (codigoSolicitudes >= 200 && codigoSolicitudes < 300)
+                            if (codigo >= 200 && codigo < 300)
                             {
                                 MessageBox.Show("Se agregó a " + colaboradorSeleccionado.Usuario + " como instructor.", "Solicitud Aceptada", MessageBoxButton.OK);
                                 CargarDataGridAgregacionAsync();

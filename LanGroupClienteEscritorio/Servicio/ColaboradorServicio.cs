@@ -153,7 +153,6 @@ namespace LanGroupClienteEscritorio.Servicio
 
         public static async Task<int> AsignarRolAColaborador(Colaborador colaborador, string nombreRol)
         {
-            Console.WriteLine(colaborador.Id);
             int codigo = 500;
             using (var httpCliente = new HttpClient())
             {

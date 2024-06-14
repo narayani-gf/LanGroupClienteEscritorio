@@ -62,7 +62,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void SetColaborador()
         {
-            txtbMensajeSaludo.Text = SesionSingleton.Instance.Colaborador.Nombre.ToString() + " " + SesionSingleton.Instance.Colaborador.Apellido.ToString();
+            txtbMensajeSaludo.Text = "¡Hola " + SesionSingleton.Instance.Colaborador.Nombre.ToString() + " " + SesionSingleton.Instance.Colaborador.Apellido.ToString() + "!";
         }
 
         private void BtnPublicaciones_Click(object sender, RoutedEventArgs e)
@@ -105,8 +105,7 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void BtnSalir_Click(object sender, RoutedEventArgs e)
         {
-            GUIInstructores gUIInstructores = new GUIInstructores();
-            NavigationService.Navigate(gUIInstructores);
+            
         }
 
         private async void CambiarVisibilidadBotones()
