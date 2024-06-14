@@ -68,7 +68,7 @@ namespace LanGroupClienteEscritorio.Vista
             buttonDescargar.Visibility = Visibility.Visible;
             buttonGuardar.Visibility = Visibility.Hidden;
             comboBoxIdioma.Visibility = Visibility.Hidden;
-            labelSeleccionarIdioma.Visibility = Visibility.Hidden;
+            labelSeleccionarIdioma.Content = "Idioma";
             labelIdioma.Visibility = Visibility.Visible;
             textBoxRazon.IsReadOnly = true;
             textBoxTipoContenido.IsReadOnly = true;
@@ -232,11 +232,15 @@ namespace LanGroupClienteEscritorio.Vista
 
         private async Task<bool> TieneSolicitudPendiente(Colaborador colaborador)
         {
-            bool tieneSolicitudPendiente = false;
+            bool tieneSolicitudPendiente;
             (Solicitud solicitud, int codigo) = await SolicitudServicio.ObtenerSolicitudPorIdUsuario(colaborador.Id);
-            if (solicitud != null && solicitud.Estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase));
+            if (solicitud != null && solicitud.Estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase))
             {
                 tieneSolicitudPendiente = true;
+            }
+            else
+            {
+                tieneSolicitudPendiente = false;
             }
 
             return tieneSolicitudPendiente;
