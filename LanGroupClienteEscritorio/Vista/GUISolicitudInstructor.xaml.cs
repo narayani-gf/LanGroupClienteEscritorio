@@ -27,6 +27,7 @@ namespace LanGroupClienteEscritorio.Vista
     {
         private Colaborador Usuario;
         private Solicitud Solicitud;
+        private string RutaArchivo;
 
         public GUISolicitudInstructor()
         {
@@ -111,6 +112,7 @@ namespace LanGroupClienteEscritorio.Vista
                     byte[] bytesArchivo = File.ReadAllBytes(openFileDialog.FileName);
                     Solicitud.Constancia = bytesArchivo;
                     Solicitud.NombreArchivo = nombreArchivo;
+                    RutaArchivo = file.FullName;
                 }
                 else
                 {
@@ -125,27 +127,38 @@ namespace LanGroupClienteEscritorio.Vista
             LimpiarErrores();
             if (CamposValidos())
             {
-                await ClienteGrpc.Grpc.SubirConstancia("" + labelNombreArchivo.Content, Solicitud.Constancia);
+                string nombreArchivo = labelNombreArchivo.Content.ToString();
+                string rutaArchivo = RutaArchivo;
 
-                Solicitud.IdColaborador = Usuario.Id;
-                Idioma idioma = comboBoxIdioma.SelectedItem as Idioma;
-                Solicitud.IdIdioma = idioma.Id;
-                Solicitud.Motivo = textBoxRazon.Text;
-                Solicitud.Contenido = textBoxTipoContenido.Text;
-                Solicitud.Estado = "Pendiente";
+                ClienteGrpc.Grpc grpc = new ClienteGrpc.Grpc();
+                bool subidaExitosa = await grpc.SubirConstancia(nombreArchivo, rutaArchivo);
 
-                int codigo = await SolicitudServicio.GuardarSolicitud(Solicitud);
+                //if (subidaExitosa)
+                //{
+                    Solicitud.IdColaborador = Usuario.Id;
+                    Idioma idioma = comboBoxIdioma.SelectedItem as Idioma;
+                    Solicitud.IdIdioma = idioma.Id;
+                    Solicitud.Motivo = textBoxRazon.Text;
+                    Solicitud.Contenido = textBoxTipoContenido.Text;
+                    Solicitud.Estado = "Pendiente";
 
-                if(codigo == 200)
-                {
-                    MessageBox.Show("Se subió la solicitud con éxito.", "Solicitud enviada", MessageBoxButton.OK);
-                    GUIMenuPrincipal gUIMenuPrincipal = new GUIMenuPrincipal();
-                    NavigationService.Navigate(gUIMenuPrincipal);
-                }
-                else
-                {
-                    MostrarMensajeError();
-                }
+                    int codigo = await SolicitudServicio.GuardarSolicitud(Solicitud);
+
+                    if (codigo == 200)
+                    {
+                        MessageBox.Show("Se subió la solicitud con éxito.", "Solicitud enviada", MessageBoxButton.OK);
+                        GUIMenuPrincipal gUIMenuPrincipal = new GUIMenuPrincipal();
+                        NavigationService.Navigate(gUIMenuPrincipal);
+                    }
+                    else
+                    {
+                        MostrarMensajeError();
+                    }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("No se pudo subir la constancia.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //}
             }
         }
 
@@ -234,20 +247,13 @@ namespace LanGroupClienteEscritorio.Vista
                 if (folderBrowserDialog.SelectedPath != string.Empty)
                 {
                     ClienteGrpc.Grpc grpc = new ClienteGrpc.Grpc();
-                    if(await grpc.DescargarConstancia(Solicitud.NombreArchivo, folderBrowserDialog.SelectedPath))
-                    {
-                        MessageBox.Show("La solicitud ha sido descargada en " + folderBrowserDialog.SelectedPath + ".", "Solicitud descargada", MessageBoxButton.OK);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo descargar la constancia.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    await grpc.DescargarConstancia(Solicitud.NombreArchivo, folderBrowserDialog.SelectedPath);
+                    MessageBox.Show("La solicitud ha sido descargada en " + folderBrowserDialog.SelectedPath + ".", "Solicitud descargada", MessageBoxButton.OK);
                 }
                 else
                 {
                     MessageBox.Show("Debe seleccionar una carpeta de destino.", "Carpeta no seleccionada", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-
             }
         }
     }

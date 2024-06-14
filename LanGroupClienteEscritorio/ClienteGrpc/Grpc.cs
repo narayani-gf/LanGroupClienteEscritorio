@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using System.IO;
 using static ArchivosService;
+using System.Threading;
+using Newtonsoft.Json.Linq;
 
 namespace LanGroupClienteEscritorio.ClienteGrpc
 {
@@ -44,14 +46,14 @@ namespace LanGroupClienteEscritorio.ClienteGrpc
         {
             try
             {
-                using (var call = Cliente.subirVideo())
+                using (var llamada = Cliente.subirVideo())
                 {
-                    await call.RequestStream.WriteAsync(new DescargarArchivoResponse
+                    await llamada.RequestStream.WriteAsync(new DescargarArchivoResponse
                     {
                         Nombre = nombreArchivo,
                         Archivo = ByteString.CopyFrom(bytesArchivo)
                     });
-                    await call.RequestStream.CompleteAsync();
+                    await llamada.RequestStream.CompleteAsync();
                 }
             }
             catch (RpcException e)
@@ -60,56 +62,69 @@ namespace LanGroupClienteEscritorio.ClienteGrpc
             }
         }
 
-        public async Task<bool> DescargarConstancia(string nombreArchivo, string destino)
+        public async Task<MemoryStream> DescargarConstancia(string nombreArchivo, string destino)
         {
-            bool resultado = false;
+            var writeStream = new MemoryStream();
             try
             {
-                using (var call = Cliente.descargarConstancia(new DescargarArchivoRequest
-                { 
-                    Nombre = nombreArchivo 
-                }))
+                using var llamada = Cliente.descargarConstancia(new DescargarArchivoRequest
                 {
-                    await foreach (var response in call.ResponseStream.ReadAllAsync())
-                    {
-                        FileInfo fileInfo = new FileInfo(nombreArchivo);
-                        string nombre = fileInfo.Name;
-                        string extension = fileInfo.Extension;
+                    Nombre = nombreArchivo
+                });
 
-                        File.WriteAllBytes(destino + nombre + extension, response.Archivo.ToByteArray());
-                        resultado = true;
+                Console.WriteLine($"Recibiendo el archivo: {nombreArchivo}");
+
+                var ruta = Path.Combine(destino, nombreArchivo);
+                using var fileStream = new FileStream(ruta, FileMode.Create);
+                
+                await foreach (var response in llamada.ResponseStream.ReadAllAsync())
+                {
+                    if(response.Archivo != null)
+                    {
+                        var archivo = response.Archivo.Memory;
+                        await fileStream.WriteAsync(archivo.ToArray(), 0, archivo.Length);
                     }
                 }
+
+                Console.WriteLine($"Archivo guardado en: {ruta}");
             }
             catch (RpcException e)
             {
                 Console.WriteLine($"Error al descargar la constancia: {e.GetType().FullName}: {e.Message}");
-                resultado = false;
+                writeStream = null;
             }
 
-            return resultado;
+            return writeStream;
         }
 
-        public static async Task<bool> SubirConstancia(string nombreArchivo, byte[] bytesArchivo)
+        public async Task<bool> SubirConstancia(string nombreArchivo, string rutaArchivo)
         {
             bool resultado = false;
             try
             {
-                using (var call = Cliente.subirConstancia())
+                using (var llamada = Cliente.subirConstancia())
                 {
-                    await call.RequestStream.WriteAsync(new DescargarArchivoResponse
+                    using (var fileStream = File.OpenRead(rutaArchivo))
                     {
-                        Nombre = nombreArchivo,
-                        Archivo = ByteString.CopyFrom(bytesArchivo)
-                    });
-                    await call.RequestStream.CompleteAsync();
+                        var buffer = new byte[1024];
+                        int bytesRead;
+                        while ((bytesRead = await fileStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                        {
+                            await llamada.RequestStream.WriteAsync(new DescargarArchivoResponse
+                            {
+                                Nombre = nombreArchivo,
+                                Archivo = ByteString.CopyFrom(buffer, 0, bytesRead)
+                            });
+                        }
+                    }
+                    await llamada.RequestStream.CompleteAsync();
                     resultado = true;
                 }
             }
             catch (RpcException e)
             {
                 Console.WriteLine($"Error al subir la constancia: {e.GetType().FullName}: {e.Message}");
-                resultado= false;
+                resultado = false;
             }
 
             return resultado;
