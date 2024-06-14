@@ -287,6 +287,52 @@ namespace LanGroupClienteEscritorio.Servicio
             return (colaborador, codigo);
         }
 
+        public static async Task<Response> ActualizarContrasena(string correo, string nuevaContraseña)
+        {
+            Response response = new Response();
+
+            try
+            {
+                var requestBody = new
+                {
+                    email = correo,
+                    newPassword = nuevaContraseña
+                };
+
+                string jsonBody = JsonConvert.SerializeObject(requestBody);
+
+                using (var httpClient = new HttpClient())
+                {
+                    var request = new HttpRequestMessage
+                    {
+                        Method = HttpMethod.Post,
+                        RequestUri = new Uri(URL + "/recuperarContrasenia"),
+                        Content = new StringContent(jsonBody, Encoding.UTF8, "application/json")
+                    };
+
+                    request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponse = await httpClient.SendAsync(request);
+
+                    if (httpResponse.IsSuccessStatusCode)
+                    {
+                        response.Codigo = (int)httpResponse.StatusCode;
+                    }
+                    else
+                    {
+                        response.Codigo = (int)httpResponse.StatusCode;
+                        string errorMessage = await httpResponse.Content.ReadAsStringAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Codigo = 500;
+            }
+
+            return response;
+        }
+
         private static void GuardarToken(string jwt)
         {
             SesionSingleton.Instance.SetToken(jwt);

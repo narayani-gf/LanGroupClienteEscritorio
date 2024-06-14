@@ -1,23 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LanGroupClienteEscritorio.Modelo.POJO;
+using LanGroupClienteEscritorio.Servicio;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LanGroupClienteEscritorio.Vista
 {
-    /// <summary>
-    /// Lógica de interacción para GUIRecuperarContraseña.xaml
-    /// </summary>
     public partial class GUIRecuperarContraseña : Page
     {
         public GUIRecuperarContraseña()
@@ -28,6 +16,38 @@ namespace LanGroupClienteEscritorio.Vista
         private void BtnRegresar_Click(object sender, RoutedEventArgs e)
         {
             Utils.AdministrarNavegacion.MostrarMenuPrincipal();
+        }
+
+        private async void btnRecuperarContrasenia_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string nuevaContraseña = txtTitulo.Text;
+
+
+                if (string.IsNullOrWhiteSpace(nuevaContraseña) || nuevaContraseña != txtConfirmarContraseña.Text)
+                {
+                    MessageBox.Show("Las contraseñas no coinciden o están vacías.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                string email = "dms19-@hotmail.com";
+
+                Response response = await ColaboradorServicio.ActualizarContrasena(email, nuevaContraseña);
+
+                if (response.Codigo == 200)
+                {
+                    MessageBox.Show("Contraseña actualizada con éxito.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error al actualizar la contraseña.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

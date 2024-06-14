@@ -21,30 +21,22 @@
             </Grid>
         </Border>
 
-        <Button BorderThickness="0" Cursor="Hand" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="24" Width="91" Click="BtnRegresar_Click">
-            <Button.Background>
-                <ImageBrush ImageSource="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\img-regresar.png"/>
-            </Button.Background>
-        </Button>
-
         <Grid Grid.Column="1">
             <StackPanel Background="{x:Null}" Orientation="Vertical">
                 <Label FontSize="25" HorizontalAlignment="Left" Margin="40,30,40,0" FontWeight="Bold" Content="Nueva contraseña"/>
-                <Label FontSize="15" Margin="40,0,0,0" FontWeight="Bold" Content="Contraseña actual"/>
+                <Label FontSize="15" Margin="40,0,0,0" FontWeight="Bold" Content="Nueva contraseña"/>
                 <TextBox x:Name="txtTitulo" FontSize="20" Margin="-325,0,40,0" Height="35" Style="{DynamicResource TextBoxStyle1}" Width="262"/>
-                <Label FontSize="15" Margin="40,15,0,0" FontWeight="Bold" Content="Idioma"/>
-                <TextBox x:Name="txtNuevaContraseña" FontSize="20" Margin="-325,0,40,0" Height="35" Style="{DynamicResource TextBoxStyle1}" Width="262"/>
                 <Label FontSize="15" Margin="40,15,0,0" FontWeight="Bold" Content="Confirmar contraseña"/>
                 <TextBox x:Name="txtConfirmarContraseña" FontSize="20" Margin="-325,0,40,0" Height="35" Style="{DynamicResource TextBoxStyle1}" Width="262"/>
-                <Button x:Name="btnPublicar" HorizontalAlignment="Right" FontSize="15" Width="120" Height="35" Margin="0,120,40,0" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Guardar"/>
+                <Button x:Name="btnPublicar" HorizontalAlignment="Right" FontSize="15" Width="120" Height="35" Margin="0,120,40,0" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Guardar" Click="btnRecuperarContrasenia_Click"/>
                 <Image Height="100" Width="100"/>
-                
-                
+
+
 
             </StackPanel>
         </Grid>
 
-        <Image Source="C:\Users\Dani\Desktop\LanGroup\LanGroupClienteEscritorio\LanGroupClienteEscritorio\Vista\Recursos\Imagenes\Img-contraseña.png" Grid.Column="1" Margin="360,55,46,228"></Image>
+        <Image Source="\Vista\Recursos\Imagenes\Img-contraseña.png" Grid.Column="1" Margin="360,20,63,268"></Image>
 
     </Grid>
 </Page>

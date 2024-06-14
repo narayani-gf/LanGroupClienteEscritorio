@@ -35,7 +35,7 @@
                 <Label FontSize="15" Margin="40,15,0,0" FontWeight="Bold" Content="Descripción"/>
                 <TextBox x:Name="txtDescripcion" FontSize="20" Margin="40,0,40,0" Height="100" Style="{DynamicResource TextBoxStyle1}"/>
                 <Button x:Name="btnPublicar" HorizontalAlignment="Right" FontSize="15" Width="120" Height="35" Margin="0,30,40,0" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Publicar"/>
-                <Button Background="#FF7B7B" Margin="-520,-35,0,0" x:Name="btnPublicar_Copiar" FontSize="15" Width="157" Height="35" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Eliminar publicación"/>
+                <Button Background="#FF7B7B" Margin="-520,-35,0,0" x:Name="btnPublicar_Copiar" FontSize="15" Width="157" Height="35" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Content="Eliminar publicación"  Click="BtnEliminarPublicacion_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

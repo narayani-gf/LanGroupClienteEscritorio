@@ -1,4 +1,5 @@
 ﻿using LanGroupClienteEscritorio.Modelo;
+using LanGroupClienteEscritorio.Modelo.POJO;
 using LanGroupClienteEscritorio.Utils;
 using Newtonsoft.Json;
 using System;
@@ -81,6 +82,45 @@ namespace LanGroupClienteEscritorio.Servicio
             }
 
             return (publicaciones, codigo);
+        }
+
+        public static async Task<Response> EliminarPublicacion(string idPublicacion)
+        {
+            Response response = new Response();
+            using (var httpClient = new HttpClient())
+            {
+                try
+                {
+                    var httpRequest = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Delete,
+                        RequestUri = new Uri(URL + "/" + idPublicacion)
+                    };
+
+                    httpRequest.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
+
+                    HttpResponseMessage httpResponse = await httpClient.SendAsync(httpRequest);
+
+                    if (httpResponse.IsSuccessStatusCode)
+                    {
+                        response.Codigo = (int)HttpStatusCode.OK;
+                    }
+                    else
+                    {
+                        response.Codigo = (int)httpResponse.StatusCode;
+                    }
+                }
+                catch (HttpRequestException ex)
+                {
+                    response.Codigo = (int)HttpStatusCode.InternalServerError;
+                }
+                catch (JsonException ex)
+                {
+                    response.Codigo = (int)HttpStatusCode.InternalServerError;
+                }
+            }
+
+            return response;
         }
 
         private static void GuardarToken(string jwt)
