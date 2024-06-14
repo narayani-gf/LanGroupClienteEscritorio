@@ -19,7 +19,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =========================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                       ==
-     * == Fecha de actualización: 12/06/2024                                  ==
+     * == Fecha de actualización: 13/06/2024                                  ==
      * == Descripción: Logica de interacción para GUISolicitudInstructor.xaml ==
      * =========================================================================
      */
@@ -120,33 +120,12 @@ namespace LanGroupClienteEscritorio.Vista
             }
         }
 
-        private void DescargarConstancia(object sender, RoutedEventArgs e)
-        {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (DialogResult.OK == folderBrowserDialog.ShowDialog())
-            {
-                if (folderBrowserDialog.SelectedPath != string.Empty)
-                {
-                    //TODO obtener desde la api                
-                    File.WriteAllBytes(folderBrowserDialog.SelectedPath, Solicitud.Constancia);
-
-                    MessageBox.Show("La solicitud ha sido descargada en " + folderBrowserDialog.SelectedPath + ".", "Solicitud descargada", MessageBoxButton.OK);
-                }
-                else
-                {
-                    MessageBox.Show("Debe seleccionar una carpeta de destino.", "Carpeta no seleccionada", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-
-            }
-        }
-
         private async void GuardarSolicitud(object sender, RoutedEventArgs e)
         {
             LimpiarErrores();
             if (CamposValidos())
             {
-                //ClienteGrpc clienteGrpc = new ClienteGrpc(GRPC_URL);
-                //await clienteGrpc.SubirConstancia("uploads/" + labelNombreArchivo.Content, bytesArchivo);
+                await ClienteGrpc.Grpc.SubirConstancia("" + labelNombreArchivo.Content, Solicitud.Constancia);
 
                 Solicitud.IdColaborador = Usuario.Id;
                 Idioma idioma = comboBoxIdioma.SelectedItem as Idioma;
@@ -160,6 +139,8 @@ namespace LanGroupClienteEscritorio.Vista
                 if(codigo == 200)
                 {
                     MessageBox.Show("Se subió la solicitud con éxito.", "Solicitud enviada", MessageBoxButton.OK);
+                    GUIMenuPrincipal gUIMenuPrincipal = new GUIMenuPrincipal();
+                    NavigationService.Navigate(gUIMenuPrincipal);
                 }
                 else
                 {
@@ -217,7 +198,6 @@ namespace LanGroupClienteEscritorio.Vista
 
         private void LimpiarErrores()
         {
-            labelErrorProfesion.Content = String.Empty;
             labelErrorRazon.Content = String.Empty;
             textBoxRazon.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
             labelErrorTipoContenido.Content = String.Empty;
@@ -244,6 +224,31 @@ namespace LanGroupClienteEscritorio.Vista
             }
 
             return tieneSolicitudPendiente;
+        }
+
+        private async void DescargarConstancia(object sender, RoutedEventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (DialogResult.OK == folderBrowserDialog.ShowDialog())
+            {
+                if (folderBrowserDialog.SelectedPath != string.Empty)
+                {
+                    ClienteGrpc.Grpc grpc = new ClienteGrpc.Grpc();
+                    if(await grpc.DescargarConstancia(Solicitud.NombreArchivo, folderBrowserDialog.SelectedPath))
+                    {
+                        MessageBox.Show("La solicitud ha sido descargada en " + folderBrowserDialog.SelectedPath + ".", "Solicitud descargada", MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo descargar la constancia.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar una carpeta de destino.", "Carpeta no seleccionada", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
+            }
         }
     }
 }

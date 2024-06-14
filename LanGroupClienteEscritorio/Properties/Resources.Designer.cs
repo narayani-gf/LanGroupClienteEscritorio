@@ -70,7 +70,7 @@ namespace LanGroupClienteEscritorio.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://localhost:3300/.
+        ///   Busca una cadena traducida similar a http://localhost:3300.
         /// </summary>
         internal static string GRPC_URL {
             get {

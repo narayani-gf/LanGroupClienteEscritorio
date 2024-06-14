@@ -10,12 +10,12 @@ namespace LanGroupClienteEscritorio.ClienteGrpc
 {
     internal class Grpc
     {
-        private ArchivosServiceClient Cliente;
-        private GrpcChannel Canal = GrpcChannel.ForAddress(Properties.Resources.GRPC_URL);
+        public static readonly GrpcChannel Canal = GrpcChannel.ForAddress(Properties.Resources.GRPC_URL);
+        public static ArchivosServiceClient Cliente = new ArchivosServiceClient(Canal);
 
         public Grpc()
         {
-            Cliente = new ArchivosServiceClient(Canal);
+            
         }
 
         public async Task DescargarVideo(string nombreArchivo)
@@ -36,11 +36,7 @@ namespace LanGroupClienteEscritorio.ClienteGrpc
             }
             catch (RpcException e)
             {
-                Console.WriteLine($"Error al descargar el archivo: {e}");
-            }
-            finally
-            {
-                Canal.ShutdownAsync().Wait();
+                Console.WriteLine($"Error al descargar el archivo: {e.GetType().FullName}: {e.Message}");
             }
         }
 
@@ -60,16 +56,13 @@ namespace LanGroupClienteEscritorio.ClienteGrpc
             }
             catch (RpcException e)
             {
-                Console.WriteLine($"Error al subir el archivo: {e}");
-            }
-            finally
-            {
-                Canal.ShutdownAsync().Wait();
+                Console.WriteLine($"Error al subir el archivo: {e.GetType().FullName}: {e.Message}");
             }
         }
 
-        public async Task DescargarConstancia(string nombreArchivo, string destino)
+        public async Task<bool> DescargarConstancia(string nombreArchivo, string destino)
         {
+            bool resultado = false;
             try
             {
                 using (var call = Cliente.descargarConstancia(new DescargarArchivoRequest
@@ -84,21 +77,22 @@ namespace LanGroupClienteEscritorio.ClienteGrpc
                         string extension = fileInfo.Extension;
 
                         File.WriteAllBytes(destino + nombre + extension, response.Archivo.ToByteArray());
+                        resultado = true;
                     }
                 }
             }
             catch (RpcException e)
             {
-                Console.WriteLine($"Error al descargar el archivo: {e}");
+                Console.WriteLine($"Error al descargar la constancia: {e.GetType().FullName}: {e.Message}");
+                resultado = false;
             }
-            finally
-            {
-                Canal.ShutdownAsync().Wait();
-            }
+
+            return resultado;
         }
 
-        public async Task SubirConstancia(string nombreArchivo, byte[] bytesArchivo)
+        public static async Task<bool> SubirConstancia(string nombreArchivo, byte[] bytesArchivo)
         {
+            bool resultado = false;
             try
             {
                 using (var call = Cliente.subirConstancia())
@@ -109,16 +103,16 @@ namespace LanGroupClienteEscritorio.ClienteGrpc
                         Archivo = ByteString.CopyFrom(bytesArchivo)
                     });
                     await call.RequestStream.CompleteAsync();
+                    resultado = true;
                 }
             }
             catch (RpcException e)
             {
-                Console.WriteLine($"Error al subir el archivo: {e}");
+                Console.WriteLine($"Error al subir la constancia: {e.GetType().FullName}: {e.Message}");
+                resultado= false;
             }
-            finally
-            {
-                Canal.ShutdownAsync().Wait();
-            }
+
+            return resultado;
         }
 
     }

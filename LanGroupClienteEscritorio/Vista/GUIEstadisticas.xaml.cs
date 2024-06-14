@@ -12,7 +12,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 12/06/2024                                ==
+     * == Fecha de actualización: 13/06/2024                                ==
      * == Descripción: Logica de interacción para GUIEstadisticas.xaml      ==
      * =======================================================================
      */
@@ -45,10 +45,8 @@ namespace LanGroupClienteEscritorio.Vista
                 ObservableCollection<Estadisticas> ocEstadisticas = new ObservableCollection<Estadisticas>();
                 foreach(Estadisticas estadistica in estadisticas)
                 {
-                    Console.WriteLine(estadistica.Mes + " " + estadistica.TotalPublicaciones);
                     ocEstadisticas.Add(estadistica);
                 }
-
                 columnSeriesPublicaciones.ItemsSource = ocEstadisticas;                
             }
             else

@@ -121,6 +121,6 @@
     <value>http://localhost:3000/api/</value>
   </data>
   <data name="GRPC_URL" xml:space="preserve">
-    <value>http://localhost:3300/</value>
+    <value>http://localhost:3300</value>
   </data>
 </root>

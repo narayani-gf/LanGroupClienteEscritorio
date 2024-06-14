@@ -12,7 +12,7 @@ namespace LanGroupClienteEscritorio.Vista
 {
     /* =======================================================================
      * == Autor(es): Froylan De Jesus Alvarez Rodriguez                     ==
-     * == Fecha de actualización: 12/06/2024                                ==
+     * == Fecha de actualización: 13/06/2024                                ==
      * == Descripción: Logica de interacción para GUIInstructores.xaml      ==
      * =======================================================================
      */
@@ -53,7 +53,6 @@ namespace LanGroupClienteEscritorio.Vista
 
                         if(solicitud != null)
                         {
-                            Console.WriteLine(solicitud.IdColaborador);
                             codigo = await SolicitudServicio.CambiarEstadoSolicitud(solicitud, "Aceptado");
 
                             if (codigo >= 200 && codigo < 300)

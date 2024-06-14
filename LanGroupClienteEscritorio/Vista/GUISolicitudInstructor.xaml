@@ -43,9 +43,8 @@
                 <Label x:Name="labelIdioma" Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="448,84,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle2}" Visibility="Hidden"/>
 
                 <Label x:Name="labelErrorConstancia"  Content="" HorizontalAlignment="Left" Margin="52,109,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
-                <Label x:Name="labelErrorProfesion"  Content="" HorizontalAlignment="Left" Margin="52,184,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
-                <Label x:Name="labelErrorRazon" Content="" HorizontalAlignment="Left" Margin="52,291,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
-                <Label x:Name="labelErrorTipoContenido" Content="" HorizontalAlignment="Left" Margin="52,397,0,0" VerticalAlignment="Top" Height="23" Grid.Column="1" FontSize="10" Foreground="Red"/>
+                <Label x:Name="labelErrorRazon" Content="" HorizontalAlignment="Left" Margin="44,247,0,0" VerticalAlignment="Top" Height="23" FontSize="10" Foreground="Red"/>
+                <Label x:Name="labelErrorTipoContenido" Content="" HorizontalAlignment="Left" Margin="44,365,0,0" VerticalAlignment="Top" Height="23" FontSize="10" Foreground="Red"/>
             </Grid>
         </ScrollViewer>
     </Grid>

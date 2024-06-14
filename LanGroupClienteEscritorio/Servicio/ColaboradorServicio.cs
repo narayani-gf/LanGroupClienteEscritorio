@@ -175,7 +175,7 @@ namespace LanGroupClienteEscritorio.Servicio
                         {
                             Content = new StringContent(JsonConvert.SerializeObject(new ColaboradorRequest { RolId = colaborador.IdRol}), Encoding.UTF8, "application/json"),
                             Method = HttpMethod.Put,
-                            RequestUri = new Uri(URL + $"/{colaborador.Id}")
+                            RequestUri = new Uri(URL + $"/{colaborador.Id}/rol")
                         };
 
                         httpMensaje.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TOKEN);
